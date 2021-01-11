@@ -1,0 +1,85 @@
+@media (min-width: 768px) and (max-width: 991px){
+	.navbar-nav .nav-link{
+		display: flex;
+		justify-content: left;
+	}
+	#btn .btn-block{
+		margin-right: -8px;	
+	}
+	.navbar-nav .dropdown-menu{
+		width: 190px;
+	}
+}
+
+@media (min-width: 576px) and (max-width: 767px){
+
+	.navbar-nav .nav-link{
+		display: flex;
+		justify-content: left;
+	}
+	#btn .btn-block{
+		margin-right: -8px;	
+	}
+	.navbar-nav .dropdown-menu{
+		width: 190px;
+	}
+	.heading h3{
+		margin-top: 10px;
+	}
+	.container{
+		width: 85%;
+	}
+}
+
+@media (min-width: 481px) and (max-width: 575px){
+
+	.navbar-nav .nav-link{
+		display: flex;
+		justify-content: left;
+	}
+	#btn .btn-block{
+		margin-right: -8px;	
+	}
+	.navbar-nav .dropdown-menu{
+		width: 190px;
+	}
+	.text-left p{
+		text-align: center !important;
+	}
+	.text-right p{
+		text-align: center !important;
+	}
+	.heading h3{
+		margin-top: 10px;
+	}
+	.container{
+		width: 85%;
+	}
+}
+
+@media (max-width: 480px){
+	.container{
+		width: 85%;
+	}
+
+	.navbar-nav .nav-link{
+		display: flex;
+		justify-content: left;
+	}
+	.navbar-nav .dropdown-menu{
+		width: 190px;
+	}
+	#btn .btn-block{
+		margin-right: -8px;	
+	}
+	.text-left p{
+		text-align: center !important;
+	}
+	.text-right p{
+		text-align: center !important;
+	}
+	.heading h3{
+		margin-top: 10px;
+	}
+
+}

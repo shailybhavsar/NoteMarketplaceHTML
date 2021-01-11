@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Note Details</title>
+
+    <!--Important meta tags-->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!--Google Fonts-->
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+	<!--Bootstrap CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap.min.css">
+
+	<!--Custom CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/note_details.css">
+
+	<!--Custom CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/responsive_note_details.css">
+</head>
+
+<body>
+	<!--Navbar-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
+		<div class="container">
+		  		<a class="navbar-brand" href="#">
+		  			<img src="../images/logo.png" alt="logo" class="logo">
+		  		</a>
+
+	  			<button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+		  		
+				  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				    	<ul class="navbar-nav ml-auto text-right">
+				    		<li class="nav-item"><a class="nav-link" href="#">Search Notes</a></li>
+				    		<li class="nav-item"><a class="nav-link" href="#">Sell Your Notes</a></li>
+				    		<li class="nav-item"><a class="nav-link" href="#">Buyer Requests</a></li>
+				    		<li class="nav-item"><a class="nav-link" href="#">FAQ</a></li>
+				    		<li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+				    		<li class="nav-item"><a class="nav-link" href="#"><img src="../images/user-img.png" alt="user-img"></a></li>
+					      	<li class="nav-item" id="btn">
+					        	<a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Logout</button></a>
+					      	</li>
+				    	</ul>
+				    </div>
+			</div>
+	</nav>
+	<!--Navbar Ends-->
+
+	<!--Notes Details-->
+	<div class="container" id="padding">
+		<div class="row">
+			<div class="col-md-12 col-sm-12 col-12">
+				<!--Part 1-->
+					<div class="row">
+						<!--Left Part-->
+						<div class="col-lg-7 col-md-7 col-sm-12" id="note-details">
+							<!--Heading-->
+							<div class="row">
+								<div class="col-md-6 col-sm-12 col-12" id="heading-left">
+									<h3>Notes Details</h3>
+									<img src="../images/Notes Details/1.jpg" class="img-fluid">
+								</div>
+								<div class="col-md-6 col-sm-12 col-12" id="heading-right">
+									<h2>Computer Science</h2>
+									<h6>Sciences</h6>
+									<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur et expedita placeat, debitis amet impedit fugit natus?</p>
+									<button type="button" class="btn btn-primary" id="download-btn" data-toggle="modal" data-target="#exampleModal">DOWNLOAD / $15</button>
+
+									<!--Modal-->
+									<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  										<div class="modal-dialog" role="document">
+    										<div class="modal-content">
+      											<div class="modal-body">
+      												<button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
+												         <span aria-hidden="true">&times;</span>
+												    </button>
+      												<div class="heading text-center">
+														<img src="../images/Notes Details/SUCCESS.png" alt="success">
+														<h3>Thank you for purchasing!</h3>
+													</div>
+													<div class="text text-left">
+														<div class="head-text">
+												        	<p>Dear Smith,</p>
+												        </div>
+												        <div class="content-text">
+															<p>As this is paid-you need to pay to seller Rahil Shah offline. We will send him an email that you want to download this note.He may contact you further for payment process completion.</p>
+															<p>Incase,you have urgency,<br>Please contact us on +9195377345959.</p>
+															<p>Once he receives the payment and acknowledge us -selected notes you can see over my downloads tab for download.</p>
+															<p>Have a good day</p>
+														</div>
+													</div>
+      											</div>
+      										</div>
+      									</div>
+      									<!--Modal Ends-->
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!--Right Part-->
+						<div class="col-lg-5 col-md-5 col-sm-12" id="note-review">
+							<div class="row">
+								<div class="col-md-6 col-sm-6 col-6"><span id="type">Institution:</span></div>
+                                <div class="col-md-6 col-sm-6 col-6 text-right"><span id="value">University Of
+                                        California</span></div>
+                                <div class="col-md-6 col-sm-6 col-6"><span id="type">Country:</span></div>
+                                <div class="col-md-6 col-sm-6 col-6 text-right"><span id="value">United
+                                        State</span></div>
+                                <div class="col-md-6 col-sm-6 col-6"><span id="type">Course Name:</span></div>
+                                <div class="col-md-6 col-sm-6 col-6 text-right"><span id="value">Computer
+                                        Engineering</span></div>
+                                <div class="col-md-6 col-sm-6 col-6"><span id="type">Course Code:</span></div>
+                                <div class="col-md-6 col-sm-6 col-6 text-right"><span id="value">248705</span></div>
+                                <div class="col-md-6 col-sm-6 col-6"><span id="type">Proffessor:</span></div>
+                                <div class="col-md-6 col-sm-6 col-6 text-right"><span id="value">Mr. Richard
+                                        Brown</span></div>
+                                <div class="col-md-6 col-sm-6 col-6"><span id="type">Number Of Pages:</span></div>
+                                <div class="col-md-6 col-sm-6 col-6 text-right"><span id="value">277</span></div>
+                                <div class="col-md-6 col-sm-6 col-6"><span id="type">Approoved date:</span></div>
+                                <div class="col-md-6 col-sm-6 col-6 text-right"><span id="value">November 25
+                                        2020</span></div>
+                                <div class="col-md-6 col-sm-6 col-6"><span id="type">Rating:</span></div>
+                                <div class="col-md-6 col-sm-6 col-6 text-right"><span id="value" class="rate"> 
+									    <img src="../images/star.png" alt="star">
+									    <img src="../images/star.png" alt="star">
+									    <img src="../images/star.png" alt="star">
+									    <img src="../images/star.png" alt="star">
+									    <img src="../images/star-white.png" alt="star">
+										100 Reviews
+									</span>
+								</div>
+								<div class="col-md-12 col-sm-12 col-12" id="special-note">
+									<p>5 Users marked this note as inappropriate.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+			
+				<!--Part 1 Ends-->
+
+			</div>
+		</div>
+	</div>
+	<!--Notes Details Ends-->
+
+	<div class="container">
+		<div class="row">
+			<div id="line">	
+			</div>
+		</div>
+	</div>
+
+	<!--Part 2-->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-5 col-sm-12 col-12" id="notes-preview"> 
+				<!--Left Part-->
+				<div class="col-md-12 col-sm-12 col-12" id="heading">
+					<h3>Notes Preview </h3>
+				</div>
+
+				<!--PDF-->
+
+				<div id="Iframe-Cicis-Menu-To-Go" class="set-margin-cicis-menu-to-go set-padding-cicis-menu-to-go set-border-cicis-menu-to-go set-box-shadow-cicis-menu-to-go center-block-horiz">
+  					<div class="responsive-wrapper responsive-wrapper-padding-bottom-90pct" style="-webkit-overflow-scrolling: touch; overflow: auto;">
+     						<iframe src="../images/sample.pdf">
+      							<p style="font-size: 110%;"><em><strong>ERROR: </strong>  
+								An &#105;frame should be displayed here but your browser version does not support &#105;frames.</em> Please update your browser to its most recent version and try again, or access the file <a href="../images/sample.pdf">with this link.</a></p>
+    						</iframe>
+  					</div>
+				</div>
+
+			</div>
+						
+			<div class="col-md-7 col-sm-12 col-12" id="customer-review">
+			<!--Right Part-->
+				<div class="col-md-12 col-sm-12 col-12" id="heading">
+					<h3>Customer Review </h3>
+				</div>
+				<div class="col-md-12 col-sm-12 col-12" id="customer-review-box">
+					<!--Reviewer 1-->
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-12 reviewer-1">
+							<div class="row">
+								<div class="col-md-3 col-sm-3 col-3 img-fluid" id="img">
+									<img src="../images/reviewer-1.png">
+								</div>
+								<div class="col-md-9 col-sm-9 col-9 reviewer-1" id="text">
+									<div class="row">
+										<h4>Richard Brown</h4>
+									</div>
+										<div class="row">
+											<div class="rate" id="rating">
+										    <img src="../images/star.png" alt="star">
+										    <img src="../images/star.png" alt="star">
+										    <img src="../images/star.png" alt="star">
+										    <img src="../images/star.png" alt="star">
+										    <img src="../images/star-white.png" alt="star">
+										</div>
+									</div>
+									<div class="row"> 	
+									 	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto aliquid expedita voluptates itaque, mollitia corporis</p>
+									</div>									
+								</div>
+							</div>
+							<div class="row">
+								<div id="line1">					
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--Reviewer 2-->
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-12" id="reviewer-2">
+							<div class="row">
+								<div class="col-md-3 col-sm-3 col-3 img-responsive" id="img">
+									<img src="../images/reviewer-2.png">
+								</div>
+								<div class="col-md-9 col-sm-9 col-9 reviewer-2" id="text">
+									<div class="row">
+										<h4>Alice Ortiaz</h4>
+									</div>
+									<div class="row">
+										<div class="rate" id="rating">
+									    <img src="../images/star.png" alt="star">
+									    <img src="../images/star.png" alt="star">
+									    <img src="../images/star.png" alt="star">
+									    <img src="../images/star.png" alt="star">
+									    <img src="../images/star-white.png" alt="star">
+									</div>
+									</div>
+									<div class="row"> 	
+									 	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto aliquid expedita voluptates itaque, mollitia corporis</p>
+									</div>
+									
+								</div>
+							</div>
+							<div class="row">
+								<div id="line1">		
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!--Reviewer 3-->
+					<div class="row">
+						<div class="col-md-12 col-sm-12  col-12" id="reviewer-3">
+							<div class="row">
+								<div class="col-md-3 col-sm-3 col-3 img-responsive" id="img">
+									<img src="../images/reviewer-3.png" style="float: left;">
+								</div>
+								<div class="col-md-9 col-sm-9 col-9 reviewer-3" id="text">
+									<div class="row">
+										<h4>Sara Passmore</h4>
+									</div>
+										<div class="row">
+											<div class="rate" id="rating">
+										    <img src="../images/star.png" alt="star">
+										    <img src="../images/star.png" alt="star">
+										    <img src="../images/star.png" alt="star">
+										    <img src="../images/star.png" alt="star">
+										    <img src="../images/star-white.png" alt="star">
+										</div>
+									</div>
+									<div class="row"> 	
+									 	<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+									</div>	
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Part 2 Ends-->
+
+	<!--Footer-->
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-sm-8 col-12 text-left" id="text">
+					<p>
+						Copyright &copy; Tatvasoft All rights reserved.
+					</p>
+				</div>
+			
+				<div class="col-md-6 col-sm-4 col-12" id="img">
+					<div class="social-list text-right">	
+						<a href="#"><img src="../images/facebook.png" alt="facebook-img"></a>
+						<a href="#"><img src="../images/twitter.png" alt="twitter-img"></a>
+						<a href="#"><img src="../images/linkedin.png" alt="linkedin-img"></a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</footer>
+	
+	<!--JQuery JS-->
+	<script src="../js/jquery.js"></script>
+
+	<!--Bootstrap JS-->
+	<script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+
+</body>
+</html>

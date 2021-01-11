@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login Page</title>
+
+    <!--Important meta tags-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no">
+
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap.min.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="../css/login.css">
+
+    <link rel="stylesheet" type="text/css" href="../css/responsive_login.css">
+
+</head>
+
+<body>
+    <section id="login">
+        <div class="content-box-lg">
+            <div class="row justify-content-center">
+                <div class="col-6 ml-auto mr-auto page-center">
+                	<div class="col-md-12 col-sm-12 col-12">
+	                    <div class="img-logo">
+	                        <img src="../images/pre-login/top-logo.png" alt="logo">
+	                    </div>
+	                </div>
+                    
+                    <div>
+                        <div class="form-container">
+
+                            <h1>Login</h1>
+                            <p>Enter your email address and password to login</p>
+                            <form>
+                            	<div class="row">
+	                                <!--Email-->
+	                                <div class="col-md-12 col-sm-12 col-12">
+		                                <div class="form-group e-mail">
+		                                    <label for="exampleInputEmail1">Email</label>
+		                                    <input type="email" class="form-control email-id" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="notesmarketplace77@gmail.com">
+		                                </div>
+		                            </div>
+
+	                                <!--Password-->
+	                                <div class="col-md-12 col-sm-12 col-12">
+		                                <div class="form-group pwd">
+		                                	<div class="row">
+		                                		<div class="col-md-6 col-sm-6 col-6">
+				                                    <label for="password-field" class="password">Password</label>
+				                                </div>
+				                                <div class="col-md-6 col-sm-6 col-6">
+				                                    <label for="forgotpassword" class="float-right forgotpassword"><a href="#">Forgot Password?</a></label>
+				                                </div>
+			                                </div>
+		                                    <input type="password" class="form-control" id="password-field" placeholder="Enter Your Password">
+		                                    <span toggle="#password-field" class="eye field-icon toggle-password"><img src="../images/pre-login/eye.png" alt="eye"></span>
+		                                    <p class="text-left" style="margin-top: 10px;">The password you've entered is incorrect</p>
+		                                </div>
+		                            </div>
+
+	                                <!--Check box-->
+	                                <div class="col-md-12 col-sm-12 col-12">
+		                                <div class="form-group form-check">
+		                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+		                                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+		                                </div>
+		                            </div>
+
+	                                <!--Button-->
+	                                <div class="col-md-12 col-sm-12 col-12 end">
+		                                <button type="submit" class="btn btn-primary btn-block">LOGIN</button>
+		                                <p style="margin-top: 20px;">Don't have an account?<span><a href="#"> Sign Up</a></span></p>
+		                            </div>
+	                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--JQuery JS-->
+    <script type="text/javascript" src="../js/jquery.js"></script>
+
+    <!--Bootstrap JS-->
+    <script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+
+    <!--Custom JS-->
+    <script type="text/javascript" src="../js/login.js"></script>
+
+</body>
+
+</html>

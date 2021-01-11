@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Notes</title>
+
+    <!--Important meta tags-->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!--Google Fonts-->
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+	<!--Bootstrap CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap.min.css">
+
+	<!--Custom CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/add_notes.css">
+
+	<!--Custom CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/responsive_add_notes.css">
+	
+</head>
+
+<body>
+	<!--Navbar-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
+		<div class="container">
+		  		<a class="navbar-brand" href="#">
+		  			<img src="../images/Add-notes/logo.png" alt="logo" class="logo">
+		  		</a>
+
+	  			<button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+		  		
+				  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				    	<ul class="navbar-nav ml-auto text-right">
+				    		<li class="nav-item"><a class="nav-link" href="search_notes.html">Search Notes</a></li>
+					      	<li class="nav-item"><a class="nav-link" href="mysold_notes.html">Sell Your Notes</a></li>
+					      	<li class="nav-item"><a class="nav-link" href="buyer_request.html">Buyer Requests</a></li>
+					      	<li class="nav-item"><a class="nav-link" href="FAQ.html">FAQ</a></li>
+					      	<li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+					      	<li class="nav-item"><a class="nav-link" href="#"><img src="../images/Add-notes/user-img.png" alt="user-img"></a></li>
+					      	<li class="nav-item" id="btn">
+					        	<a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Logout</button></a>
+					      	</li>
+				    	</ul>
+				    </div>
+			</div>
+	</nav>
+	<!--Navbar Ends-->
+	
+	<!--Background image-->
+	<section id="background-image">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-12 text-center">
+					<h2 id="title">Add Notes</h2>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--Background image Ends-->
+
+	<!--Basic Notes Details-->
+	<div class="container">
+		<div class="row">
+			<!--Left Part-->
+			<div class="col-md-12" id="heading">
+				<h2>Basic Profile Details</h2>
+			</div>
+				<div class="col-md-6">
+					<div class="form-row">  
+						<div class="col-md-12 col-sm-12 col-12">
+							<div class="form-group input">
+								<label for="exampleInput">Title*</label>
+									<input type="text" class="form-control" id="exampleInput" placeholder="Enter your notes title">
+							</div>
+						</div>
+
+						<div class="col-md-12 col-sm-12 col-12">
+							<div class="form-group input">
+								<div class="row">
+									<div class="col-md-12 col-sm-12 col-12">
+										<label for="input">Profile Picture</label>
+									</div>
+								</div>
+								<div class="col-md-12 text-center add-border">
+									<label for="upload">
+										<img src="../images/Add-notes/upload-file.png">
+											<p>Upload a Picture</p>
+										<input type="file" id="upload" style="display: none;">
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-12 col-sm-12 col-12">
+							<div class="form-group input" id="type">
+								<label>Type</label>
+								<select class="form-control custom-select" id="exampleInput">  
+									<option>Select Your Type</option>
+									<option>.</option>
+								</select>	
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<!--Left side ends-->
+
+				<!--Right Side Part-->
+				<div class="col-md-6">
+					<div class="form-row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="form-group e-mail" id="category">
+								<label>Category</label>
+								<select class="form-control custom-select" id="exampleInput">
+									<option>Select Your Category</option>
+									<option>.</option>
+								</select>
+							</div>
+						</div>
+						
+						<div class="col-md-12 col-sm-12 col-12">
+							<div class="form-group input">
+								<div class="row">
+									<div class="col-md-12 col-sm-12 col-12">
+										<label for="input">Upload Notes</label>
+									</div>
+								</div>
+								<div class="col-md-12 text-center add-border">
+									<label for="upload">
+										<img src="../images/upload-note.png">
+											<p>Upload your notes</p>
+										<input type="file" id="upload" style="display: none;">
+									</label>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="form-group input">
+								<label for="exampleInput">Number Of Pages</label>
+									<input type="text" class="form-control" id="exampleInput" placeholder="Enter number of note pages">
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--Right side part ends-->
+
+				<!--Description Part-->
+				<div class="col-md-12">
+						<div class="form-group">
+						    <label for="exampleFormControlTextarea1">Description</label>
+						    <textarea class="form-control" id="exampleFormControlTextarea" style="height: 150px;" placeholder="Enter Your Description"></textarea>
+						  </div>
+				
+				</div>
+			</div>
+		</div>
+
+	<!--Basic Notes Details Ends-->
+
+	<!--Instituion Information-->
+	<div class="container">
+		<div class="row">
+			<!--Left Part-->
+			<div class="col-md-12" id="heading">
+				<h2>Instituion Information</h2>
+			</div>
+				<div class="col-md-6">
+					<div class="form-row">
+						<div class="col-md-12 col-sm-12 col-12">
+							<div class="form-group input" id="country">
+								<label for="exampleInputEmail1">Country*</label>
+									<select class="form-control custom-select" id="exampleInput">
+										<option>Select Your Country</option>
+										<option>.</option>
+									</select>
+							</div>
+						</div>
+
+					</div>
+				</div>	
+
+			<!--Right Part-->
+			<div class="col-md-6">
+				<div class="form-row">
+					<div class="col-md-12 col-sm-12 col-12">
+						<div class="form-group input">
+							<label for="exampleInput">Instituion Name</label>
+								<input type="text" class="form-control" id="exampleInput" placeholder="Enter your Instituion Name">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Instituion Information ends-->
+
+	<!--Course Details-->
+	<div class="container">
+		<div class="row">
+			<!--Left Part-->
+			<div class="col-md-12" id="heading">
+				<h2>Course Details</h2>
+			</div>
+				<div class="col-md-6">
+					<div class="form-row">  
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="form-group input">
+								<label for="exampleInput">Course Name</label>
+									<input type="text" class="form-control" id="exampleInput" placeholder="Enter your course name">
+							</div>
+						</div>
+
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="form-group input">
+								<label for="exampleInput">Professor / Lecturer</label>
+									<input type="text" class="form-control" id="exampleInput" placeholder="Enter your professor name">
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--Right Part-->
+				<div class="col-md-6">
+					<div class="form-row">  
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="form-group input">
+								<label for="exampleInput">Course Code</label>
+									<input type="text" class="form-control" id="exampleInput" placeholder="Enter your course code">
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+	</div>
+	<!--Course Details Ends-->
+
+	<!--Selling information-->
+	<div class="container">
+		<div class="row">
+			<!--Left Part-->
+			<div class="col-md-12" id="heading">
+				<h2>Selling Information</h2>
+			</div>
+
+			<div class="col-md-6 col-sm-6 col-12">
+					<div class="form-row">  
+						<div class="col-md-12 col-sm-12 col-12">
+							<label for="exampleInput">Sell For*</label><br>
+								<div id="radio-button">		
+									<input type="radio" id="free" name="value" value="value-1"><label for="free" id="label1">Free</label>
+									<input type="radio" id="paid" name="value" value="value-2"><label for="paid" id="label2">Paid</label>
+								</div>
+						</div>
+						
+						<div class="col-md-12 col-sm-12 col-12">
+							<div class="form-group e-mail">
+								<label for="exampleInputEmail1">Sell Price*</label>
+									<input type="text" class="form-control" id="exampleInput" placeholder="Enter your price" style="margin-top: 10px;">
+							</div>
+						</div>
+
+						
+					</div>
+			</div>
+		
+			<!--Right Part-->
+			<div class="col-md-6 col-6 col-12">
+				<div class="form-row">
+					<div class="col-md-12 col-sm-12 col-12">
+						<div class="form-group input">
+							<div class="row">
+								<div class="col-md-12 col-sm-12 col-12">
+									<label for="input">Note Preview</label>
+								</div>
+							</div>
+							<div class="col-md-12 text-center add-border">
+								<label for="upload">
+									<img src="../images/Add-notes/upload-file.png">
+										<p>Upload a File</p>
+											<input type="file" id="upload" style="display: none;">
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+
+			<!--Button-->
+			<div class="col-md-12 col-sm-12 col-12">
+				<div class="form-row">
+					<div class="col-md-12 col-sm-12 col-12">
+					    <div class="Button-class">
+					        <button class="btn btn-primary">SAVE</button>
+						    <button class="btn btn-primary">PUBLISH</button>
+						</div>
+					</div>
+				</div>
+			</div>	
+			<!--Button Ends-->
+		</div>
+	</div>		
+
+	<!--Footer-->
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-sm-8 col-12 text-left" id="text">
+						<p>
+							Copyright &copy; Tatvasoft All rights reserved.
+						</p>
+					</div>
+						
+					<div class="col-md-6 col-sm-4 col-12" id="img">
+						<div class="social-list text-right">	
+							<a href="#"><img src="../images/facebook.png" alt="facebook-img"></a>
+							<a href="#"><img src="../images/twitter.png" alt="twitter-img"></a>
+							<a href="#"><img src="../images/linkedin.png" alt="linkedin-img"></a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</footer>
+
+			</div>
+		</div>
+
+	<!--Selling information Ends-->
+
+	<!--JQuery JS-->
+	<script src="../js/jquery.js"></script>
+
+	<!--Bootstrap JS-->
+	<script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+</body>
+</html>

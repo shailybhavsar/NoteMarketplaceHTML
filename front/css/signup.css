@@ -1,0 +1,237 @@
+/*================================================
+                  HTML,Body
+==================================================*/
+
+.content-box-lg {
+    background-image: url("../images/pre-login/banner-with-overlay.jpg");
+    background-repeat: repeat;
+    width: 100%;
+    height: 210vh;
+}
+
+.page-center {
+    max-width: 610px;
+    position: absolute;
+    top: 10vh;
+    max-height: 500px;
+}
+
+.img-logo {
+    text-align: center;
+}
+
+/*================================================
+                    FORM
+==================================================*/
+
+.form-container {
+    background: #fff;
+    padding: 50px;
+    border-radius: 3px;
+    max-width: 580px;
+    margin: 25px auto;
+
+}
+
+/*================================================
+                    E mail
+==================================================*/
+
+/*Style to Login(h1 element)*/
+.form-container h1 {
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 38px;
+    color: #6255a5;
+}
+
+/*Style to p element Login*/
+.form-container p {
+    text-align: center;
+    /*   margin-top: 20px;  */
+    font-family: Open sans;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 19px;
+    color: #333333;
+}
+
+.e-mail .form-control::placeholder{
+    color: #8a8a8a;
+    font-family: Open Sans;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+/*Label Email*/
+.e-mail label {
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #333333;
+    /*   margin-top: 45px;  */
+}
+
+/*Email text*/
+#exampleInputEmail1 {
+    max-width: 480px;
+    height: 50px;
+    border-radius: 3px;
+}
+
+
+/*================================================
+                  Password
+==================================================*/
+/*Password*/
+.pwd {
+    margin-top: 15px;
+}
+
+.password {
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #333333;
+}
+
+/*Password Text*/
+#password-field1,#password-field2{
+   
+    max-width: 480px;
+    height: 50px;
+    border-radius: 3px;
+}
+
+/*Icon of password field*/
+.field-icon img {
+    float: right;
+    margin-left: -25px;
+    margin-top: -32px;
+    margin-right: 10px;
+    position: relative;
+    z-index: 2;
+}
+
+/*Forgot Password*/
+.forgotpassword a {
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #6255a5;
+}
+
+.pwd p {
+    /*  text-align: left;
+    margin-top: 10px; */
+    font-family: Open Sans;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 20px;
+    color: #ff3636;
+}
+
+.pwd .form-control::placeholder{
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #8a8a8a;
+}
+
+/*================================================
+                   Name
+==================================================*/
+.name label {
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #333333;
+    /*   margin-top: 45px;  */
+}
+
+.name .form-control::placeholder{
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #8a8a8a;
+}
+
+#exampleInputName {
+   
+    max-width: 480px;
+    height: 50px;
+    border-radius: 3px;
+}
+
+/*================================================
+                    BUTTON
+==================================================*/
+
+/*Button*/
+.btn-block {
+    background-color: #6255a5;
+    max-width: 480px;
+    height: 50px;
+    border-color: transparent;
+    border-radius: 3px;
+    color: #fff;
+    font-family: Open Sans;
+    font-size: 18px;
+    line-height: 22px;
+    margin-top: 30px;
+    font-weight: 700;
+}
+
+.btn-block:hover {
+    background-color: #6255a5;
+    opacity: 0.9;
+}
+
+/*================================================
+                    END
+==================================================*/
+
+.end p {
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #333333;
+    /*   margin-bottom: 50px;  */
+}
+
+.end p span a {
+    color: #6255a5;
+}
+
+/*Success Message*/
+.text-msg p{
+  margin-top: 45px;
+  font-family: "open Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 19px;
+  margin-bottom: 0;
+  color: green;
+  }
+
+.circle{
+  border: 0px solid green;
+  border-radius: 20px;
+  background-color: green;
+  color: white;
+  font-size: 10px;
+  width: 24px;
+  padding: 5px;
+  font-weight: 200;
+
+  }

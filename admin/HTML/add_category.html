@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Category</title>
+
+    <!--Important meta tags-->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!--Google Fonts-->
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+	<!--Bootstrap CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap.min.css">
+
+	<!--Custom CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/add_category.css">
+
+	<!--Custom CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/responsive_add_category.css">
+</head>
+<body>
+
+	<!--Navbar-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
+		<div class="container">
+		  		<a class="navbar-brand" href="#">
+		  			<img src="../images/logo.png" alt="logo" class="logo">
+		  		</a>
+
+	  			<button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+		  		
+				  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				    	<ul class="navbar-nav ml-auto text-right">
+				    		<li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+					      	<li class="nav-item dropdown">
+	                            <a class="nav-link" href="#" id="navbarDropdown-1" role="button" data-toggle="dropdown"
+	                                aria-haspopup="true" aria-expanded="false">
+	                                Notes
+	                            </a>
+	                            <div class="dropdown-menu" aria-labelledby="navbarDropdown-1">
+	                                <a class="dropdown-item" href="notes_underreview.html">Notes Under Review</a>
+	                                <a class="dropdown-item" href="published_notes.html">Published Notes</a>
+	                                <a class="dropdown-item" href="download_notes.html">Downloaded Notes</a>
+	                                <a class="dropdown-item" href="rejected_notes.html">Rejected Notes</a>
+	                            </div>
+                       		</li>
+					      	<li class="nav-item"><a class="nav-link" href="members.html">Members</a></li>
+					      	<li class="nav-item dropdown">
+	                            <a class="nav-link" href="#" id="navbarDropdown-2" role="button" data-toggle="dropdown"
+	                                aria-haspopup="true" aria-expanded="false">
+	                                Reports
+	                            </a>
+                            	<div class="dropdown-menu" aria-labelledby="navbarDropdown-2">
+                                	<a class="dropdown-item" href="spam_reports.html">Spam Reports</a>
+                                </div>
+                        	</li>
+					      	<li class="nav-item"><a class="nav-link" href="#">Settings</a>
+					      	</li>
+					      	<li class="nav-item dropdown">
+					        	<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+					        		<img src="../images/user-img.png" alt="user-1">
+					        	</a>
+					        	<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                               		<a class="dropdown-item" href="#">Update Profile</a>
+                                	<a class="dropdown-item" href="#">Change Password</a>
+                                	<a class="dropdown-item" href="#" style="color: #6255a5;">Logout</a>
+                            	</div>
+					      	</li>
+					      	<li class="nav-item" id="btn">
+					        	<a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Logout</button></a>
+					      	</li>
+				    	</ul>
+				    </div>
+			</div>
+	</nav>
+	<!--Navbar Ends-->
+
+	<!--Add Category-->
+	<section id="add-category">
+		<div class="container">
+			<div class="form-row" id="add">
+				<div class="col-md-6">
+
+					<!--Heading-->
+					<div class="heading">
+						<h3>Add Category</h3>
+					</div>
+
+					<!--Details-->
+					<div class="form-group input">
+						<label for="input">Category Name*</label>
+							<input type="text" class="form-control" id="input" placeholder="Enter Category" value="IT">
+					</div>
+
+					<div class="form-group input">
+						<label for="input">Description*</label>
+							<textarea class="form-control" aria-label="With textarea" placeholder="Enter your description" style="height: 150px;"></textarea>
+					</div>
+
+					<div class="row">
+						<div class="col-md-3 submit">
+							<button type="button" class="btn btn-primary" style="width: 115px;">SUBMIT</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--Add Category Ends-->
+
+	<!--Footer-->
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-12 text-left">
+					<p>Version : 1.1.24</p>
+				</div>
+			
+				<div class="col-md-6 col-sm-6 col-12 text-right">	
+					<p>
+						Copyright &copy; Tatvasoft All rights reserved.
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--Footer Ends-->
+
+	<!--JQuery JS-->
+	<script src="../js/jquery.js"></script>
+
+	<!--Bootstrap JS-->
+	<script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+
+
+</body>
+</html>

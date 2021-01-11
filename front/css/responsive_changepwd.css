@@ -1,0 +1,18 @@
+@media (max-width: 464px) {
+	.content-box-lg{
+		height: 140vh;
+	}
+
+	.form-container{
+		padding: 20px;
+	}
+	.pwd {
+		margin-top: 10px;
+	}
+	.btn-block{
+		margin-top: 10px;
+	}
+	.pwd .form-control::placeholder{
+		font-size: 14px;
+	}
+}

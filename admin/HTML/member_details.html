@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Member Details</title>
+
+    <!--Important meta tags-->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!--Google Fonts-->
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+	<!--Bootstrap CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap.min.css">
+
+	<!--Custom CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/member_details.css">
+
+	<!--Custom CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/responsive_member_details.css">
+</head>
+<body>
+
+	<!--Navbar-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
+		<div class="container">
+		  		<a class="navbar-brand" href="#">
+		  			<img src="../images/logo.png" alt="logo" class="logo">
+		  		</a>
+
+	  			<button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+		  		
+				  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				    	<ul class="navbar-nav ml-auto text-right">
+				    		<li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+					      	<li class="nav-item dropdown">
+	                            <a class="nav-link" href="#" id="navbarDropdown-1" role="button" data-toggle="dropdown"
+	                                aria-haspopup="true" aria-expanded="false">
+	                                Notes
+	                            </a>
+	                            <div class="dropdown-menu" aria-labelledby="navbarDropdown-1">
+	                                <a class="dropdown-item" href="notes_underreview.html">Notes Under Review</a>
+	                                <a class="dropdown-item" href="published_notes.html">Published Notes</a>
+	                                <a class="dropdown-item" href="download_notes.html">Downloaded Notes</a>
+	                                <a class="dropdown-item" href="rejected_notes.html">Rejected Notes</a>
+	                            </div>
+                       		</li>
+					      	<li class="nav-item"><a class="nav-link" href="members.html">Members</a></li>
+					      	<li class="nav-item dropdown">
+	                            <a class="nav-link" href="#" id="navbarDropdown-2" role="button" data-toggle="dropdown"
+	                                aria-haspopup="true" aria-expanded="false">
+	                                Reports
+	                            </a>
+                            	<div class="dropdown-menu" aria-labelledby="navbarDropdown-2">
+                                	<a class="dropdown-item" href="spam_reports.html">Spam Reports</a>
+                                </div>
+                        	</li>
+					      	<li class="nav-item"><a class="nav-link" href="#">Settings</a>
+					      	</li>
+					      	<li class="nav-item dropdown">
+					        	<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+					        		<img src="../images/user-img.png" alt="user-1">
+					        	</a>
+					        	<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                               		<a class="dropdown-item" href="#">Update Profile</a>
+                                	<a class="dropdown-item" href="#">Change Password</a>
+                                	<a class="dropdown-item" href="#" id="log-out">Logout</a>
+                            	</div>
+					      	</li>
+					      	<li class="nav-item" id="btn">
+					        	<a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Logout</button></a>
+					      	</li>
+				    	</ul>
+				    </div>
+			</div>
+	</nav>
+	<!--Navbar Ends-->
+
+	<!--Member Details-->
+	<section id="member-detail">
+		<div class="container">
+			<!--Member details heading-->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="member-detail">
+						<div class="heading">
+							<h3>Member Details</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--Member Details-->
+			<div class="row">
+				<div class="col-md-7 col-sm-7">
+					<div class="row">
+						<div class="col-md-3 col-sm-3">
+							<img src="../images/member.png" alt="member-1" class="img-fluid">
+						</div>
+						
+						<div class="col-md-9 col-sm-9">
+							<div class="row">
+							<div class="col-md-6 col-sm-6 col-6"><span id="input"><p>First Name:</p></span></div><div class="col-md-5 col-sm-5 col-5"><span id="value"><p>Richard<p></span></div>
+
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="input"><p>Last Name:</p></span></div>
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="value"><p>Brown</p></span></div>
+
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="input"><p>Email:</p></span></div>
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="value" class="gmail"><p>richardbrown77@gmail.com</p></span></div>
+
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="input"><p>DOB:</p></span></div>
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="value"><p>13-08-1990</p></span></div>
+	                                
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="input"><p>Phone Number:</p></span></div>
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="value"><p>9988731221</p></span></div>
+
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="input"><p>College / University</p></span></div>
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="value"><p>University Of California</p></span></div>
+	                        </div>
+	                    </div>
+                 	</div>
+               </div>
+                           
+				<div class="col-md-5 col-sm-5" id="v1">
+					<div class="row" id="right-part">
+						<div class="col-md-6 col-sm-6 col-6"><span id="input"><p>Address 1:</p></span></div><div class="col-md-5 col-sm-5 col-5"><span id="value"><p>144-Diamond Height<p></span></div>
+
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="input"><p>Address 2:</p></span></div>
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="value"><p>Star Colony</p></span></div>
+
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="input"><p>City:</p></span></div>
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="value"><p>New York</p></span></div>
+
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="input"><p>State:</p></span></div>
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="value"><p>New York State</p></span></div>
+	                                
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="input"><p>Country:</p></span></div>
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="value"><p>United State</p></span></div>
+
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="input"><p>Zip Code:</p></span></div>
+	                        <div class="col-md-6 col-sm-6 col-6"><span id="value"><p>11004-05</p></span></div>
+					</div>
+				</div>
+			</div>
+			<br><br>
+			<hr>
+			<!--Member Details Ends-->
+
+			<!--Notes Heading-->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="notes">
+						<div class="heading">
+							<h3>Notes</h3>
+						</div>
+					</div>
+				</div>
+			</div>	
+
+			<!--Table-->
+			<div class="row">
+				<div class="table-responsive">
+					<div class="col-md-12">
+						<table class="table">
+		    				<thead>
+		        				<tr class="tr">
+		            				<th>SR NO.</th>
+		            				<th>NOTE TITLE</th>
+		            				<th>CATEGORY</th>
+		            				<th>STATUS</th>
+		            				<th>DOWNLOADED NOTES</th>
+		            				<th>TOTAL EARNINGS</th>
+		            				<th>DATE ADDED</th> 
+		            				<th>PUBLISHED DATE</th>
+		            				<th></th>
+		        				</tr>
+		    				</thead>
+						    <tbody>
+						        <tr>
+						        	<td>1</td>
+						        	<td>Software Development</td>
+						            <td>IT</td>
+						            <td>Published</td>
+						            <td>22</td>
+						            <td>$177</td>
+						            <td>09-10-2020,10:10</td>
+						            <td>09-10-2020,10:10</td>
+						            <td>
+						            	<div class="dropdown">
+											<img src="../images/dots.png" alt="view-deatails">
+											<div class="dropdown-content">
+											    <a href="#">Download Notes</a>
+										    </div>
+										</div>
+						            </td>
+						        </tr>
+						        <tr>
+						        	<td>2</td>
+						            <td>Computer Basic</td>
+						            <td>Computer</td>
+						            <td>Published</td>
+						            <td>4</td>
+						            <td>$125</td>
+						            <td>10-10-2020, 11:25</td>
+						            <td>10-10-2020, 11:25</td>
+						            <td>
+										<div class="dropdown">
+											<img src="../images/dots.png" alt="view-deatails">
+											<div class="dropdown-content">
+											    <a href="#">Download Notes</a>
+										    </div>
+										</div>
+						            </td>
+						        </tr>
+						        <tr>
+						        	<td>3</td>
+						            <td>Human Body</td>
+						            <td>Science</td>
+						            <td>InReview</td>
+						            <td>17</td>
+						            <td>$978</td>
+						            <td>11-10-2020, 01:00</td>
+						            <td>11-10-2020, 01:00</td>
+						            <td>
+										<div class="dropdown">
+											<img src="../images/dots.png" alt="view-deatails">
+											<div class="dropdown-content">
+											    <a href="#">Download Notes</a>
+										    </div>
+										</div>
+						            </td>
+						        </tr>
+						        <tr>
+						        	<td>4</td>
+						            <td>World War 2</td>
+						            <td>History</td>
+						            <td>Published</td>
+						            <td>28</td>
+						            <td>$15254</td>
+						            <td>12-10-2020, 10:10</td>
+						            <td>12-10-2020, 10:10</td>
+						            <td>
+										<div class="dropdown">
+											<img src="../images/dots.png" alt="view-deatails">
+											<div class="dropdown-content">
+											    <a href="#">Download Notes</a>
+										    </div>
+										</div>
+						            </td>
+						        </tr>
+						        <tr>
+						        	<td>5</td>
+						            <td>Accounting</td>
+						            <td>Account</td>
+						            <td>Published</td>
+						            <td>0</td>
+						            <td>$69</td>
+						            <td>13-10-2020, 11:25</td>
+						            <td>NA</td>
+						            <td>
+										<div class="dropdown">
+											<img src="../images/dots.png" alt="view-deatails">
+											<div class="dropdown-content">
+											    <a href="#">Download Notes</a>
+										    </div>
+										</div>
+						            </td>
+						        </tr>
+						    </tbody>
+						</table>
+					</div>
+				</div>
+
+			<!--Page Navigation Example-->
+			<div class="container" id="page-nav">
+					<div class="row">
+						<div class="col-md-12">
+							<nav aria-label="Page navigation example">
+							  <ul class="pagination">
+							    <li class="page-item" id="arrow"><a class="page-link" href="#" ><</a></li>
+							    <li class="page-item" id="num"><a class="page-link" href="#">1</a></li>
+							    <li class="page-item" id="num"><a class="page-link" href="#">2</a></li>
+							    <li class="page-item" id="num"><a class="page-link" href="#">3</a></li>
+							    <li class="page-item" id="num"><a class="page-link" href="#">4</a></li>
+							    <li class="page-item" id="num"><a class="page-link" href="#">5</a></li>
+							    <li class="page-item" id="arrow"><a class="page-link" href="#">></a></li>
+							  </ul>
+							</nav>
+						</div>
+					</div>
+			</div>
+
+			</div>
+		</div>
+	</section>
+
+	<!--Footer-->
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 text-left">
+					<p>Version : 1.1.24</p>
+				</div>
+			
+				<div class="col-md-6 text-right">	
+					<p>
+						Copyright &copy; Tatvasoft All rights reserved.
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!--JQuery JS-->
+	<script src="../js/jquery.js"></script>
+
+	<!--Bootstrap JS-->
+	<script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+
+</body>
+</html>

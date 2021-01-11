@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Change Password</title>
+
+	<!--Important meta tags-->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no">
+
+	<!--Google Fonts-->
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+	<!--Bootstrap CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap.min.css">
+
+	<!--Custom CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/changepwd.css">
+
+	<!--Responsive CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/responsive_changepwd.css">
+</head>
+<body>
+	<section id="login">
+		<div class="content-box-lg">
+			<div class="row justify-content-center">
+				<div class="col-6 ml-auto mr-auto page-center">
+                	<div class="col-md-12 col-sm-12 col-12">
+	                    <div class="img-logo">
+	                        <img src="../images/pre-login/top-logo.png" alt="logo">
+	                    </div>
+	                </div>
+						
+
+					<div class="form-container">
+						<h1>Change Password</h1>
+						<p>Enter your new password to change your password</p>
+
+						<form>
+							<div class="row">
+							<!--Old Password-->
+							<div class="col-md-12 col-sm-12 col-12">
+							    <div class="form-group pwd">
+									<label for="password-field" class="password">Old Password</label>
+										<input type="password" class="form-control" id="password-field1" placeholder="Enter Your Old Password">
+										<span toggle="#password-field1" class="eye1 field-icon toggle-password" id="old-pwd"><img src="../images/pre-login/eye.png" alt="eye"></span>
+								</div>
+						    </div>
+
+						    <!--New Password-->
+							<div class="col-md-12 col-sm-12 col-12">
+							    <div class="form-group pwd">
+									<label for="password-field" class="password">New Password</label>
+										<input type="password" class="form-control" id="password-field2" placeholder="Enter Your New Password">
+										<span toggle="#password-field2" class="eye2 field-icon toggle-password" id="new-pwd"><img src="../images/pre-login/eye.png" alt="eye"></span>
+								</div>
+						    </div>
+
+						    <!--Confirm Password-->
+							<div class="col-md-12 col-sm-12 col-12">
+							    <div class="form-group pwd">
+									<label for="password-field" class="password">Confirm Password</label>
+										<input type="password" class="form-control" id="password-field3" placeholder="Enter Your Confirm Password">
+										<span toggle="#password-field3" class="eye3 field-icon toggle-password" id="confirm-pwd"><img src="../images/pre-login/eye.png" alt="eye"></span>
+								</div>
+						    </div>
+
+							<!--Button-->
+							<div class="col-md-12 col-sm-12 col-xs-12">
+								<button type="submit" class="btn btn-primary btn-block">SUBMIT</button>
+							</div>
+							</div>
+					   	</form>
+					</div>
+				</div>
+		   	</div>
+		</div>
+   	</section>
+
+   	<!--JQuery JS-->
+	<script type="text/javascript" src="../js/jquery.js"></script>
+
+	<!--Bootstrap JS-->
+	<script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+
+	<!--Custom JS-->
+	<script type="text/javascript" src="../js/login.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+@media (max-width: 464px) {
+	.content-box-lg{
+		height: 190vh;
+	}
+
+	.form-container{
+		padding: 20px;
+	}
+	.pwd {
+		margin-top: 10px;
+	}
+	.btn-block{
+		margin-top: 10px;
+	}
+}
+

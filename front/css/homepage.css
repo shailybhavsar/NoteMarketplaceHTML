@@ -1,0 +1,335 @@
+/*================================================
+                Navbar(Part-1)
+==================================================*/
+.container{
+  width: 100%;
+}
+header{
+  background-image: url("../images/home/banner-with-overlay.jpg");
+  background-repeat: no-repeat;
+  height: 620px;
+}
+
+#header-text .lg-text{
+  font-family: Open Sans;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 54px;
+  color: #ffffff;
+  margin-top: 25%;
+}
+
+#header-text .sm-text{
+  font-family: Open Sans;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #ffffff;
+}
+
+.btn-text{
+  width: 172px;
+  height: 45px;
+  border: 1px solid #ffffff; 
+  border-color: none;
+  color: #fff;
+  font-family: Open Sans;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+
+#navbar{
+  padding-right: 0px;
+}
+
+.collapse .navbar-collapse{
+  margin-left: auto !important;
+}
+
+#navbarSupportedContent{
+  margin-right: 70px;
+}
+
+.navbar .navbar-light .bg-light{
+  width: 1920px;
+  height: 100px;
+  box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.08);
+}
+
+/*logo*/
+.logo img{
+  margin: 8px 556px 10px -9px;
+}
+
+.collapse .navbar-collapse #navbarSupportedContent{
+  margin-left: 40px;
+}
+
+.navbar-light .navbar-nav .nav-link{
+  font-family: Open Sans;
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  line-height:  20px;
+  margin-top: 13px;
+}
+
+/*Button*/
+#btn .btn-block{
+ font-family: Open Sans;
+ font-weight: 600;
+ font-size: 16px;
+ background-color: #fff;
+ line-height: 22px;
+ width: 89px;
+ height: 30px;
+ border-radius: 3px;
+ border-color: transparent;
+ color: #6255a5;
+ padding: 1px 2px 3px 2px;
+ margin-right: -68px;
+ margin-top: -5px;
+ margin-bottom: 0px;
+}
+
+
+/*================================================
+                  (Part-2)
+==================================================*/
+.part-2-left h2{
+  color: #6255a5;
+  margin-top: 60px;
+}
+
+.part-2-1{
+  margin-bottom: -25px;
+  margin-top: 60px;
+}
+
+.part-2-2{
+  margin-bottom: 60px;
+}
+
+/*================================================
+                  (Part-3)
+==================================================*/
+#part-3{
+  background-color: #f4f4f4;
+  height: 530px;
+}
+
+#part-3 .heading-h2{
+  padding-top: 60px;
+  color: #6255a5;
+  text-align: center !important;
+}
+
+.left-image{
+  width: 140px;
+  height: 140px;
+  box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.08);
+  -webkit-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.08);
+  border-radius: 50%;
+  padding: 8%;
+  margin-top: 6%;
+  margin-left: 53%;
+}
+
+.right-image{
+  width: 140px;
+  height: 140px;
+  box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.08);
+  -webkit-box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.08);
+  border-radius: 50%;
+  padding: 8%;
+  margin-top: 6%;
+  margin-left: 20%;
+}
+
+#img-left-text h4{
+  margin-left: 195px;
+  font-family: Open Sans;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-top: 30px;
+}
+
+#img-right-text h4{
+  margin-left: 149px;
+  font-family: Open Sans;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+  margin-top: 30px;
+}
+
+.p1{
+  font-family: Open Sans;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #333333;
+  margin-top: 0px;
+  margin-left: 48%;
+}
+.p2{
+  font-family: Open Sans;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #333333; 
+  margin-top: -14px;
+  margin-left: 55%;
+}
+
+.img-left-text-btn{
+  width: 172px;
+  height: 40px;
+  border-radius: 3px;
+  font-family: Open Sans;
+  font-weight: 600;
+  font-size: 18px;
+  color: #fff;
+  margin-top: 35px;
+  margin-left: 50%;
+  margin-bottom: 25px;
+  background-color: #6255a5;
+  border-color: transparent;
+}
+
+.p1-r{
+  font-family: Open Sans;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #333333;
+  margin-top: 0px;
+  margin-left: 12%;
+}
+.p2-r{
+  font-family: Open Sans;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #333333; 
+  margin-top: -14px;
+  margin-left: 26%;
+}
+
+.img-right-text-btn{
+  width: 150px;
+  height: 40px;
+  border-radius: 3px;
+  font-family: Open Sans;
+  font-weight: 600;
+  font-size: 18px;
+  color: #fff;
+  margin-top: 35px;
+  margin-left: 20%;
+  margin-bottom: 25px;
+  background-color: #6255a5;
+  border-color: transparent;
+}
+/*================================================
+                  (Part-4)
+==================================================*/
+#part-4{
+  padding-right: 5px;
+  margin-bottom: 60px;
+}
+
+#part-4 .heading{
+  margin-top: 90px;
+  margin-bottom: 60px;
+}
+
+#customer{
+  height: 300px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.08);
+  padding:40px;
+}
+
+#part-4 h2{
+  margin-top: 60px;
+  font-family: Open Sans;
+  font-size: 34px;
+  font-weight: 600;
+  line-height: 38px;
+  color: #6255a5; 
+}
+
+#customer img{
+  margin: 16px 20px 30px 0px;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+
+#text h3{
+  margin-top: 25px;
+  margin-left: 60px;
+  font-family: Open Sans;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  color: #6255a5;
+}
+
+#text h6{
+  margin-top: -10px;
+  margin-left: 60px;
+  font-family: Open Sans;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 30px;
+  color: #333333;
+}
+
+#customer p{
+  margin-top: -15px;
+  font-family: Open Sans;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #333333;
+  margin-bottom: 40px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.margin-top{
+  margin-top: 30px;
+}
+
+.margin-left{
+  margin-left: -10px;
+}
+
+footer {
+  width: 100%;
+  bottom: 0;
+  height: 60px;
+  border-top: 1px solid #aaa;
+  padding-top: 20px;
+  background: #fff;
+ 
+}
+
+.social-list a{
+  border: 1px solid #6255a5;
+  height:30px;
+  width: 30px;
+  display: inline-block;
+  line-height: 24px;
+  color: #fff;
+  background-color: #6255a5;
+  border-radius: 50%;
+  padding-left: 8px;
+  padding-right: 10px;
+}

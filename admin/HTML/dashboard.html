@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+
+    <!--Important meta tags-->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!--Google Fonts-->
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+	<!--Bootstrap CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap.min.css">
+
+	<!--Custom CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/dashboard.css">
+
+	<!--Custom CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/responsive_dashboard.css">
+</head>
+
+<body>
+	<!--Navbar-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
+		<div class="container">
+		  		<a class="navbar-brand" href="#">
+		  			<img src="../images/logo.png" alt="logo" class="logo">
+		  		</a>
+
+	  			<button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+		  		
+				  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				    	<ul class="navbar-nav ml-auto text-right">
+				    		<li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+					      	<li class="nav-item dropdown">
+	                            <a class="nav-link" href="#" id="navbarDropdown-1" role="button" data-toggle="dropdown"
+	                                aria-haspopup="true" aria-expanded="false">
+	                                Notes
+	                            </a>
+	                            <div class="dropdown-menu" aria-labelledby="navbarDropdown-1">
+	                                <a class="dropdown-item" href="notes_underreview.html">Notes Under Review</a>
+	                                <a class="dropdown-item" href="published_notes.html">Published Notes</a>
+	                                <a class="dropdown-item" href="download_notes.html">Downloaded Notes</a>
+	                                <a class="dropdown-item" href="rejected_notes.html">Rejected Notes</a>
+	                            </div>
+                       		</li>
+					      	<li class="nav-item"><a class="nav-link" href="members.html">Members</a></li>
+					      	<li class="nav-item dropdown">
+	                            <a class="nav-link" href="#" id="navbarDropdown-2" role="button" data-toggle="dropdown"
+	                                aria-haspopup="true" aria-expanded="false">
+	                                Reports
+	                            </a>
+                            	<div class="dropdown-menu" aria-labelledby="navbarDropdown-2">
+                                	<a class="dropdown-item" href="spam_reports.html">Spam Reports</a>
+                                </div>
+                        	</li>
+					      	<li class="nav-item"><a class="nav-link" href="#">Settings</a>
+					      	</li>
+					      	<li class="nav-item dropdown">
+					        	<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+					        		<img src="../images/user-img.png" alt="user-1">
+					        	</a>
+					        	<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                               		<a class="dropdown-item" href="#">Update Profile</a>
+                                	<a class="dropdown-item" href="#">Change Password</a>
+                                	<a class="dropdown-item" href="#" id="log-out">Logout</a>
+                            	</div>
+					      	</li>
+					      	<li class="nav-item" id="btn">
+					        	<a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Logout</button></a>
+					      	</li>
+				    	</ul>
+				    </div>
+			</div>
+	</nav>
+	<!--Navbar Ends-->
+
+	<!--Dashboard-->
+	<section id="dashboard">
+		<div class="container">
+
+			<!--Dashboard Heading-->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="dashboard-heading">
+						<div class="heading">
+							<h3>Dashboard</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--Dashboard Box-->
+			<div class="row" id="dashboard-box">
+					<!--Dashboard Box 1-->
+					<div class="col-md-4 col-sm-12 col-12">
+						<div class="card dashboard-card mx-auto">
+							<div class="card-body text-center">
+								<h1 class="dashboard-heading">20</h1>
+								<p>Number Of Notes in review for publish</p>
+							</div>
+						</div>
+					</div>
+
+					<!--Dashboard Box 2-->
+					<div class="col-md-4 col-sm-12 col-12">
+						<div class="card dashboard-card mx-auto">
+							<div class="card-body text-center">
+								<h1 class="dashboard-heading">103</h1>
+								<p>Number Of New Notes Downloaded(Last 7 Days)</p>
+							</div>
+						</div>
+					</div>
+
+					<!--Dashboard Box 3-->
+					<div class="col-md-4 col-sm-12 col-12">
+						<div class="card dashboard-card mx-auto">
+							<div class="card-body text-center">
+								<h1 class="dashboard-heading">223</h1>
+								<p>Number Of New Registration(Last 7 Days)</p>
+							</div>
+						</div>
+					</div>
+			</div>
+
+			<!--Published Notes And Search-->
+			<div class="row" id="publish-search">
+				<div class="col-md-4 col-sm-12 col-12">
+					<div class="publish-notes">
+						<div class="heading">
+							<h3>Published Notes</h3>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-8 col-sm-12 col-12">
+					<div id="search">
+						<div class="row">
+							<div class="col-md-5 col-sm-5 col-12">
+								<div class="form-group search-note">
+									<input type="text" class="form-control" id="example" placeholder="Search">
+								</div>
+							</div>
+							<div class="col-md-3 col-sm-3 col-6">
+								<div class="button">
+									<button class="btn btn-primary">SEARCH</button>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-4 col-6">
+								<div class="form-group select-month" id="month">
+									<select class="form-control custom-select" id="option">
+										<option class="custom-select">Select Month</option>
+										<option>.</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--Table-->
+			<div class="row" id="table-1">
+				<div class="col-md-12">
+					<div class="table-responsive">
+						<table class="table">
+		    				<thead>
+		        				<tr class="tr">
+		            				<th>SR NO.</th>
+		            				<th>TITLE</th>
+		            				<th>CATEGORY</th>
+		            				<th>ATTACHMENT SIZE</th>
+		            				<th>SELL TYPE</th>
+		            				<th>PRICE</th>
+		            				<th>PUBLISHER</th>
+		            				<th>PUBLISHED DATE</th>
+		            				<th>NUMBER OF DOWNLOADS</th>
+		        				</tr>
+		    				</thead>
+						    <tbody>
+						        <tr>
+						        	<td>1</td>
+						            <td>Data Science</td>
+						            <td>Science</td>
+						            <td>10 KB</td>
+						            <td>Free</td>
+						            <td>$0</td>
+						            <td>Pritesh Panchal</td>
+						            <td>09-10-2020, 10:10</td>
+						            <td>
+						            	10
+						            	<div class="dropdown" id="download-related">
+							            	<img src="../images/dots.png" alt="review">
+							            		<div class="dropdown-content">
+											    <a href="#">Download Note</a>
+											    <a href="#">View More Details</a>
+											    <a href="#">Unpublish</a>
+											  </div>
+										</div>
+						            </td>
+						        </tr>
+						        <tr>
+						            <td>2</td>
+						            <td>Accounts</td>
+						            <td>Commerce</td>
+						            <td>23 MB</td>
+						            <td>Paid</td>
+						            <td>$22</td>
+						            <td>Rahil Shah</td>
+						            <td>10-10-2020, 12:30</td>
+						            <td>
+						            	21
+						            	<div class="dropdown" id="download-related">
+							            	<img src="../images/dots.png" alt="review">
+							            		<div class="dropdown-content">
+											    <a href="#">Download Note</a>
+											    <a href="#">View More Details</a>
+											    <a href="#">Unpublish</a>
+											  </div>
+										</div>
+						       		</td>
+						        </tr>
+						        <tr>
+						            <td>3</td>
+						            <td>Social Studies</td>
+						            <td>Social</td>
+						            <td>3 MB</td>
+						            <td>Paid</td>
+						            <td>$56</td>
+						            <td>Anish Patel</td>
+						            <td>11-10-2020, 01:00</td>
+						            <td>
+						            	13
+						            	<div class="dropdown" id="download-related">
+							            	<img src="../images/dots.png" alt="review">
+							            		<div class="dropdown-content">
+											    <a href="#">Download Note</a>
+											    <a href="#">View More Details</a>
+											    <a href="#">Unpublish</a>
+											  </div>
+										</div>
+						            </td>
+						        </tr>
+						        <tr>
+						            <td>4</td>
+						            <td>AI</td>
+						            <td>IT</td>
+						            <td>1 MB</td>
+						            <td>Free</td>
+						            <td>$0</td>
+						            <td>Vijay Vaishnav</td>
+						            <td>12-10-2020, 10:10</td>
+						            <td> 
+						            	34
+						            	<div class="dropdown" id="download-related">
+							            	<img src="../images/dots.png" alt="review">
+							            		<div class="dropdown-content">
+											    <a href="#">Download Note</a>
+											    <a href="#">View More Details</a>
+											    <a href="#">Unpublish</a>
+											  </div>
+										</div>
+						            </td>
+						        </tr>
+						        <tr>
+						            <td>5</td>
+						            <td>Lorem ipsum</td>
+						            <td>Lorem</td>
+						            <td>105 KB</td>
+						            <td>Paid</td>
+						            <td>$90</td>
+						            <td>Mehul Patel</td>
+						            <td>13-10-2020, 11:25</td>
+						            <td>
+						            	09
+						            	<div class="dropdown" id="download-related">
+							            	<img src="../images/dots.png" alt="review">
+							            		<div class="dropdown-content">
+											    <a href="#">Download Note</a>
+											    <a href="#">View More Details</a>
+											    <a href="#">Unpublish</a>
+											  </div>
+										</div>
+						            </td>
+						        </tr>
+						    </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<!--Page Navigation-->
+				<div class="container" id="page-nav">
+					<div class="row">
+						<div class="col-md-12">
+							<nav aria-label="Page navigation example">
+							  <ul class="pagination">
+							    <li class="page-item" id="arrow"><a class="page-link" href="#" ><</a></li>
+							    <li class="page-item" id="num"><a class="page-link" href="#">1</a></li>
+							    <li class="page-item" id="num"><a class="page-link" href="#">2</a></li>
+							    <li class="page-item" id="num"><a class="page-link" href="#">3</a></li>
+							    <li class="page-item" id="num"><a class="page-link" href="#">4</a></li>
+							    <li class="page-item" id="num"><a class="page-link" href="#">5</a></li>
+							    <li class="page-item" id="arrow"><a class="page-link" href="#">></a></li>
+							  </ul>
+							</nav>
+						</div>
+					</div>
+				</div>
+	</section>
+	<!--Dashboard Ends-->
+
+	<!--Footer-->
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-12 text-left">
+					<p>Version : 1.1.24</p>
+				</div>
+			
+				<div class="col-md-6 col-sm-6 col-12 text-right">	
+					<p>
+						Copyright &copy; Tatvasoft All rights reserved.
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!--JQuery JS-->
+	<script src="../js/jquery.js"></script>
+
+	<!--Bootstrap JS-->
+	<script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Download Notes</title>
+
+    <!--Important meta tags-->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!--Google Fonts-->
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+	<!--Bootstrap CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap.min.css">
+
+	<!--Custom CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/download_notes.css">
+
+	<!--Custom CSS-->
+	<link rel="stylesheet" type="text/css" href="../css/responsive_download_notes.css">
+</head>
+<body>
+
+	<!--Navbar-->
+	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
+		<div class="container">
+		  		<a class="navbar-brand" href="#">
+		  			<img src="../images/logo.png" alt="logo" class="logo">
+		  		</a>
+
+	  			<button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+		  		
+				  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				    	<ul class="navbar-nav ml-auto text-right">
+				    		<li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+					      	<li class="nav-item dropdown">
+	                            <a class="nav-link" href="#" id="navbarDropdown-1" role="button" data-toggle="dropdown"
+	                                aria-haspopup="true" aria-expanded="false">
+	                                Notes
+	                            </a>
+	                            <div class="dropdown-menu" aria-labelledby="navbarDropdown-1">
+	                                <a class="dropdown-item" href="notes_underreview.html">Notes Under Review</a>
+	                                <a class="dropdown-item" href="published_notes.html">Published Notes</a>
+	                                <a class="dropdown-item" href="download_notes.html">Downloaded Notes</a>
+	                                <a class="dropdown-item" href="rejected_notes.html">Rejected Notes</a>
+	                            </div>
+                       		</li>
+					      	<li class="nav-item"><a class="nav-link" href="members.html">Members</a></li>
+					      	<li class="nav-item dropdown">
+	                            <a class="nav-link" href="#" id="navbarDropdown-2" role="button" data-toggle="dropdown"
+	                                aria-haspopup="true" aria-expanded="false">
+	                                Reports
+	                            </a>
+                            	<div class="dropdown-menu" aria-labelledby="navbarDropdown-2">
+                                	<a class="dropdown-item" href="spam_reports.html">Spam Reports</a>
+                                </div>
+                        	</li>
+					      	<li class="nav-item"><a class="nav-link" href="#">Settings</a>
+					      	</li>
+					      	<li class="nav-item dropdown">
+					        	<a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+					        		<img src="../images/user-img.png" alt="user-1">
+					        	</a>
+					        	<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                               		<a class="dropdown-item" href="#">Update Profile</a>
+                                	<a class="dropdown-item" href="#">Change Password</a>
+                                	<a class="dropdown-item" href="#" id="log-out">Logout</a>
+                            	</div>
+					      	</li>
+					      	<li class="nav-item" id="btn">
+					        	<a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Logout</button></a>
+					      	</li>
+				    	</ul>
+				    </div>
+			</div>
+	</nav>
+	<!--Navbar Ends-->
+
+	<!--Download Notes-->
+	<section id="download-notes-search">
+		<div class="container">
+			<!--Heading-->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="download-notes">
+						<div class="heading">
+							<h3>Download Notes</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!--Search Name nd review books-->
+			<div class="row">
+				<div class="col-md-6 col-sm-12 col-12">
+					<div class="row">
+						<div class="col-md-4 col-sm-4 col-4">
+							<div class="form-group search-name" id="note">
+								<p>Note</p>
+								<select class="form-control custom-select">
+									<option class="custom-select">Select Note</option>
+									<option>.</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="col-md-4 col-sm-4 col-4">
+							<div class="form-group search-name" id="seller">
+								<p>Seller</p>
+								<select class="form-control custom-select">
+									<option class="custom-select">Select Seller</option>
+									<option>.</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="col-md-4 col-sm-4 col-4">
+							<div class="form-group search-name" id="buyer">
+								<p>Buyer</p>
+								<select class="form-control custom-select">
+									<option class="custom-select">Rahul Shah</option>
+									<option>.</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6 col-sm-12 col-12">
+					<div id="search">
+						<div class="row">
+							<div class="col-md-8 col-sm-9 col-6">
+								<div class="form-group search-note">
+									<input type="text" class="form-control" id="example" placeholder="Search">
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-3 col-6">
+								<div class="button">
+									<button class="btn btn-primary">SEARCH</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div> 
+
+			<!--Table-->
+			<div class="row">
+				<div class="col-md-12">
+					<div class="table-responsive">
+						<table class="table">
+		    				<thead>
+		        				<tr class="tr">
+		            				<th>SR NO.</th>
+		            				<th>NOTE TITLE</th>
+		            				<th>CATEGORY</th>
+		            				<th>BUYER</th>
+		            				<th>SELLER</th>
+		            				<th>SELL TYPE</th>
+		            				<th>PRICE</th>
+		            				<th>DOWNLOADED DATE/TIME</th>
+		            				<th>  </th>
+		        				</tr>
+		    				</thead>
+						    <tbody>
+						        <tr>
+						        	<td>1</td>
+						            <td>Software Development</td>
+						            <td>IT</td>
+						            <td>Rahul Shah <img src="../images/eye.png" id="view-1" alt="view"></td>
+						            <td>Khyati Patel <img src="../images/eye.png" id="view-1" alt="view"></td>
+						           	<td>Paid</td>
+						            <td>$145</td>
+						            <td>25-11-2020, 11:08</td>
+						            <td>
+						           		<div class="dropdown">
+						            		<img src="../images/dots.png" id="view-1" alt="review">
+						            		<div class="dropdown-content">
+						            			<a href="#">Download Notes</a>
+						            			<a href="#">View More Details</a>
+						            		</div>
+						            	</div> 	
+						            </td>
+						        </tr>
+						        <tr>
+						        	<td>2</td>
+						            <td>Computer Basic</td>
+						            <td>Computer</td>
+						            <td>Rahul Shah <img src="../images/eye.png" id="view-1" alt="review"></td>
+						           	<td>Nikunj Shah <img src="../images/eye.png" id="view-1" alt="review"></td>
+						            <td>Free</td>
+						            <td>$0</td>
+						            <td>20-11-2020, 12:30</td>
+						            <td>
+						            	<div class="dropdown">
+						            		<img src="../images/dots.png" id="view-1" alt="review">
+						            		<div class="dropdown-content">
+						            			<a href="#">Download Notes</a>
+						            			<a href="#">View More Details</a>
+						            		</div>
+						            	</div>
+						            </td>
+						        </tr>
+						       	<tr>
+						        	<td>3</td>
+						            <td>Human Body</td>
+						            <td>Science</td>
+						            <td>Rahul Shah <img src="../images/eye.png" alt="review"></td>
+						           	<td>Raj  Sheth   <img src="../images/eye.png" alt="review"></td>
+						            <td>Paid</td>
+						            <td>$204</td>
+						            <td>08-11-2020, 04:07</td>
+						            <td>
+						            	<div class="dropdown">
+						            		<img src="../images/dots.png" id="view-1" alt="review">
+						            		<div class="dropdown-content">
+						            			<a href="#">Download Notes</a>
+						            			<a href="#">View More Details</a>
+						            		</div>
+						            	</div>
+						            </td>
+						        </tr>
+						        <tr>
+						        	<td>4</td>
+						            <td>World war 2</td>
+						            <td>History</td>
+						            <td>Rahul Shah <img src="../images/eye.png" id="view-1" alt="review"></td>
+						           	<td>Niya Patel <img src="../images/eye.png" id="view-1" alt="review"></td>
+						            <td>Paid</td>
+						            <td>$58</td>
+						            <td>17-10-2020, 12:30</td>
+						            <td>
+						            	<div class="dropdown">
+						            		<img src="../images/dots.png" id="view-1" alt="review">
+						            		<div class="dropdown-content">
+						            			<a href="#">Download Notes</a>
+						            			<a href="#">View More Details</a>
+						            		</div>
+						            	</div>
+						            </td>
+						        </tr>
+						        <tr>
+						        	<td>5</td>
+						            <td>Accounting</td>
+						            <td>Account</td>
+						            <td>Rahul Shah <img src="../images/eye.png" id="view-1" alt="review"></td>
+						           	<td>Rohit Gajera <img src="../images/eye.png" id="view-1" alt="review"></td>
+						            <td>Free</td>
+						            <td>$0</td>
+						            <td>12-12-2019, 17:45</td>
+						            <td>
+						            	<div class="dropdown">
+						            		<img src="../images/dots.png" id="view-1" alt="review">
+						            		<div class="dropdown-content">
+						            			<a href="#">Download Notes</a>
+						            			<a href="#">View More Details</a>
+						            		</div>
+						            	</div>
+						            </td>
+						        </tr>
+						    </tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<!--Page Navigation Example-->
+				<div class="container" id="page-nav">
+					<div class="row">
+						<div class="col-md-12">
+							<nav aria-label="Page navigation example">
+							  <ul class="pagination">
+							    <li class="page-item" id="arrow"><a class="page-link" href="#" ><</a></li>
+							    <li class="page-item" id="num"><a class="page-link" href="#">1</a></li>
+							    <li class="page-item" id="num"><a class="page-link" href="#">2</a></li>
+							    <li class="page-item" id="num"><a class="page-link" href="#">3</a></li>
+							    <li class="page-item" id="num"><a class="page-link" href="#">4</a></li>
+							    <li class="page-item" id="num"><a class="page-link" href="#">5</a></li>
+							    <li class="page-item" id="arrow"><a class="page-link" href="#">></a></li>
+							  </ul>
+							</nav>
+						</div>
+					</div>
+				</div>
+		</div>
+	</section>
+
+	<!--Footer-->
+	<footer>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-sm-6 col-12 text-left">
+					<p>Version : 1.1.24</p>
+				</div>
+			
+				<div class="col-md-6 col-sm-6 col-12 text-right">	
+					<p>
+						Copyright &copy; Tatvasoft All rights reserved.
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!--JQuery JS-->
+	<script src="../js/jquery.js"></script>
+
+	<!--Bootstrap JS-->
+	<script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+
+
+</body>
+</html>
