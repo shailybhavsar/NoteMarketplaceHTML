@@ -39,6 +39,11 @@ body{
   font-size: 14px;
 }
 
+.navbar-light .navbar-nav .nav-link:hover{
+  color: #6255a5;
+  text-decoration: underline;
+}
+
 /*Button*/
 #btn .btn-block{
  font-family: Open Sans;
@@ -79,22 +84,6 @@ body{
   margin-left: 5px;
   font-size: 14px;
   padding-right: 11px;
-}
-
-/*Button*/
-#btn .btn-block{
- font-family: Open Sans;
- font-weight: 500;
- font-size: 13px;
- background-color: #6255a5;
- width: 70px;
- height: 35px;
- border: 4px #6255a5;
- color: #fff;
- padding: 1px 2px 3px 2px;
- margin-right: -68px;
- margin-top: -8px;
- margin-bottom: 0px;
 }
 
 .dropdown-menu a{
@@ -152,7 +141,9 @@ body{
   line-height: 22px;
   font-weight: 700;
 }
-
+.button .btn-primary:hover{
+  opacity: 0.9;
+}
 .form-control::placeholder{
   font-family: Open Sans;
   font-size: 16px;

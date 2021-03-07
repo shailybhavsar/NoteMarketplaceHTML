@@ -1,0 +1,204 @@
+﻿@model IEnumerable<NotesMarketPlaceProject.Models.BuyerRequest>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+
+    <!--Important meta tags-->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!--Bootstrap CSS-->
+    <link href="~/Content/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+
+
+    <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+
+    <!--Custom CSS-->
+    <link href="~/Content/css/buyer_request.css" rel="stylesheet" />
+
+    <!--Custom CSS-->
+    <link href="~/Content/css/responsive_buyer_request.css" rel="stylesheet" />
+
+</head>
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="~/Content/images/User-Profile/logo.png" alt="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto text-right">
+                    <li class="nav-item"><a class="nav-link" href="search_notes.html">Search Notes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mysold_notes.html">Sell Your Notes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="buyer_request.html">Buyer Requests</a></li>
+                    <li class="nav-item"><a class="nav-link" href="FAQ.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <img src="~/Content/images/user-img.png" alt="user-1">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">My Profile</a>
+                            <a class="dropdown-item" href="#">My Download</a>
+                            <a class="dropdown-item" href="#">My Sold Notes</a>
+                            <a class="dropdown-item" href="#">My Rejected Notes</a>
+                            <a class="dropdown-item" href="#">Change Password</a>
+                            <a class="dropdown-item" href="#" id="log-out">Logout</a>
+                        </div>
+                    </li>
+                    <li class="nav-item" id="btn">
+                        <a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Logout</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Navbar Ends-->
+
+    <section class="downloads">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-12" id="buyer">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-12" id="heading">
+                            <h3>Buyer Requests</h3>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-12">
+                            <div class="row" id="search">
+                                <div class="col-md-8 col-sm-6 col-6">
+                                    <div class="form-group exampleInput" id="dataTables_filter">
+                                        <input class="form-control" id="exampleInput" placeholder="Search">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-6">
+                                    <button class="btn btn-primary" type="button" id="searchbtn">SEARCH</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table" id="buyerrequest" data-pagination="true">
+                            <thead>
+                                <tr class="tr">
+                                    <th>@Html.ActionLink("NOTE TITLE", "BuyerRequest")</th>
+                                    <th>@Html.ActionLink("CATEGORY", "BuyerRequest")</th>
+                                    <th>@Html.ActionLink("BUYER NAME", "BuyerRequest")</th>
+                                    @*<th>@Html.ActionLink("Sell Type", "BuyerRequest")</th>*@
+                                    <th>@Html.ActionLink("PRICE", "BuyerRequest")</th>
+                                    <th>@Html.ActionLink("DOWNLOAD DATE", "BuyerRequest")</th>
+                                    <th> </th>
+                                    <th> </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(m => item.sellertbl.Title)</td>
+                                        <td>@Html.DisplayFor(m => item.categorytbl.CategoryName)</td>
+                                        <td>@Html.DisplayFor(m => item.usertbl.EmailID)</td>
+                                        <td>@Html.DisplayFor(m => item.sellertbl.SellingPrice)</td>
+                                        <td>@Html.DisplayFor(m => item.sellertbl.CreatedDate)</td>
+                                        <td>
+                                            <img src="~/Content/images/downloads/eye.png" id="view-1" alt="view">
+                                        </td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <img src="~/Content/images/dots.png" class="dropimg" alt="view">
+                                                <div class="dropdown-content">
+                                                    <a href="#">Allow Download</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--JQuery JS-->
+    <script src="~/Scripts/js/jquery.js"></script>
+
+    <!--Bootstrap JS-->
+    <script type="text/javascript" src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+
+    @section  Scripts{
+        <script>
+            @*$(document).ready(function () {
+
+                var table = $('#buyerrequest').DataTable(
+                    {
+                        "pageLength": 5,
+                        "pagingType": "full_members",
+                        language: {
+                            paginate: {
+                                next: '<i class="fa fa-angle-right fa-2x"></i>',
+                                previous: '<i class="fa fa-angle-left fa-2x"></i>',
+                                first: false,
+                                last: false
+                            }
+                        },
+                        bFilter: false,
+                        ordering: false,
+                        searching: true,
+                        "dom": '<"top">rt<"bottom"p>'
+                    });
+                $('.dataTables_length').addClass('bs-select');
+            });
+        </script>*@
+        $(document).ready( function () {
+           var table =   $('#buyerrequest').DataTable({
+                "pageLength": 5,
+                "pagingType": "full_members",
+                "paging": false,
+                language: {
+                    paginate: {
+                        next: '<i class="fa fa-angle-right fa-2x"></i>',
+                        previous: '<i class="fa fa-angle-left fa-2x"></i>',
+                        first: false,
+                        last: false
+                    }
+                },
+                bFilter: true,
+                ordering: true,
+                searching: true,
+               "dom": '<"top">rt<"bottom"p>'
+               
+           });
+          
+            $('.dataTables_length').addClass('bs-select');
+
+            $("#searchbtn").click(function () {
+                var x = $("#exampleInput").val();
+                table.search(x).draw();
+            });
+        });
+    </script>
+    }
+</body>
+</html>
+

@@ -38,6 +38,10 @@ body{
   margin-left: 5px;
   font-size: 14px;
 }
+.navbar-light .navbar-nav .nav-link:hover{
+  color: #6255a5;
+  text-decoration: underline;
+}
 
 /*Button*/
 #btn .btn-block{
@@ -79,6 +83,10 @@ body{
   margin-left: 5px;
   font-size: 14px;
   padding-right: 11px;
+}
+.navbar-light .navbar-nav .nav-link:hover{
+  color: #6255a5;
+  text-decoration: underline;
 }
 
 /*Button*/
@@ -143,6 +151,9 @@ body{
   line-height: 22px;
   font-weight: 700;
 }
+.button .btn-primary:hover{
+  opacity: 0.9;
+}
 
 #search .search-note input{
   background-image: url("../images/search.jpg");
@@ -163,6 +174,10 @@ body{
   font-size: 18px;
   line-height: 22px;
   font-weight: 700;
+}
+
+#add-category .btn-primary:hover{
+  opacity: 0.9;
 }
 
 .form-control::placeholder{

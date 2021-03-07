@@ -1,14 +1,18 @@
+﻿@{
+    ViewBag.Title = "Add-Notes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Search Notes</title>
+	<title>Search Notes</title>
 
-    <!--Important meta tags-->
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
+	<!--Important meta tags-->
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
 
-    <!--Google Fonts-->
+	<!--Google Fonts-->
 	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 	<!--Bootstrap CSS-->
@@ -25,32 +29,31 @@
 	<!--Navbar-->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
 		<div class="container">
-		  		<a class="navbar-brand" href="#">
-		  			<img src="../images/logo.png" alt="logo" class="logo">
-		  		</a>
+			<a class="navbar-brand" href="#">
+				<img src="../images/logo.png" alt="logo" class="logo">
+			</a>
 
-	  			<button class="navbar-toggler" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+					data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+					aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-		  		
-				  	<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				    	<ul class="navbar-nav ml-auto text-right">
-				    		<li class="nav-item"><a class="nav-link" href="search_notes.html">Search Notes</a></li>
-				    		<li class="nav-item"><a class="nav-link" href="mysold_notes.html">Sell Your Notes</a></li>
-				    		<li class="nav-item"><a class="nav-link" href="FAQ.html">FAQ</a></li>
-				    		<li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
-					      	<li class="nav-item" id="btn">
-					        	<a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Login</button></a>
-					      	</li>
-				    	</ul>
-				    </div>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ml-auto text-right">
+					<li class="nav-item"><a class="nav-link" href="search_notes.html">Search Notes</a></li>
+					<li class="nav-item"><a class="nav-link" href="mysold_notes.html">Sell Your Notes</a></li>
+					<li class="nav-item"><a class="nav-link" href="FAQ.html">FAQ</a></li>
+					<li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+					<li class="nav-item" id="btn">
+						<a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Login</button></a>
+					</li>
+				</ul>
 			</div>
+		</div>
 	</nav>
 	<!--Navbar Ends-->
-	
 	<!--Background image-->
 	<section id="background-image">
 		<div class="container">
@@ -62,99 +65,97 @@
 		</div>
 	</section>
 	<!--Background image Ends-->
-
 	<!--Search And Filter Notes-->
 	<section id="description">
 		<div class="container">
 			<!--Heading-->
-				<div class="row">
-					<div class="col-md-12 col-sm-12 col-12">
-						<div class="heading">
-							<h3>Search And Filter Notes</h3>
-						</div>
+			<div class="row">
+				<div class="col-md-12 col-sm-12 col-12">
+					<div class="heading">
+						<h3>Search And Filter Notes</h3>
 					</div>
 				</div>
+			</div>
 
-				<form>
-					<div id="search-filter">
-						<div class="row" id="search">
-							<div class="col-md-12 col-sm-12 col-12">
-								<div class="search-here">
-								 	<input type="text" class="form-control" id="place-1" placeholder="Select type" style="height: 50px;">
-								</div>
+			<form>
+				<div id="search-filter">
+					<div class="row" id="search">
+						<div class="col-md-12 col-sm-12 col-12">
+							<div class="search-here">
+								<input type="text" class="form-control" id="place-1" placeholder="Select type" style="height: 50px;">
+							</div>
+						</div>
+					</div>
+
+
+					<!--Options based searching start-->
+					<div class="row" id="options">
+						<!--Option 1-->
+						<div class="col-md-2 col-sm-4 col-12">
+							<div class="form-group" id="option">
+								<select class="form-control custom-select" id="placeholder">
+									<option>Select Type</option>
+									<option>.</option>
+								</select>
 							</div>
 						</div>
 
-
-						<!--Options based searching start-->
-						<div class="row" id="options">
-								<!--Option 1-->
-								<div class="col-md-2 col-sm-4 col-12">
-									<div class="form-group" id="option">
-										<select class="form-control custom-select" id="placeholder">
-										    <option>Select Type</option>
-										    <option>.</option>
-										</select>
-									</div>
-								</div>
-
-								<!--Option 2-->
-								<div class="col-md-2 col-sm-4 col-12">
-									<div class="form-group" id="option">
-										<select class="form-control custom-select" id="placeholder">
-										    <option>Select Category</option>
-										    <option>.</option>
-										</select>
-									</div>
-								</div>
-
-								<!--Option 3-->
-								<div class="col-md-2 col-sm-4 col-12">
-									<div class="form-group" id="option">
-										<select class="form-control custom-select" id="placeholder">
-										    <option>Select University</option>
-										    <option>.</option>
-										</select>
-									</div>
-								</div>
-
-								<!--Option 4-->
-								<div class="col-md-2 col-sm-4 col-12">
-									<div class="form-group" id="option">
-										<select class="form-control custom-select" id="placeholder">
-										    <option>Select Course</option>
-										    <option>.</option>
-										</select>
-									</div>
-								</div>
-
-								<!--Option 5-->
-								<div class="col-md-2 col-sm-4 col-12">
-									<div class="form-group" id="option">
-										<select class="form-control custom-select" id="placeholder">
-										    <option>Select Country</option>
-										    <option>.</option>
-										</select>
-									</div>
-								</div>
-
-								<!--Option 6-->
-								<div class="col-md-2 col-sm-4 col-12">
-									<div class="form-group" id="option">
-										<select class="form-control custom-select" id="placeholder">
-										    <option>Select Rating</option>
-										    <option>.</option>
-										</select>
-									</div>
-								</div>
+						<!--Option 2-->
+						<div class="col-md-2 col-sm-4 col-12">
+							<div class="form-group" id="option">
+								<select class="form-control custom-select" id="placeholder">
+									<option>Select Category</option>
+									<option>.</option>
+								</select>
+							</div>
 						</div>
-						<!--Options based searching-->
+
+						<!--Option 3-->
+						<div class="col-md-2 col-sm-4 col-12">
+							<div class="form-group" id="option">
+								<select class="form-control custom-select" id="placeholder">
+									<option>Select University</option>
+									<option>.</option>
+								</select>
+							</div>
+						</div>
+
+						<!--Option 4-->
+						<div class="col-md-2 col-sm-4 col-12">
+							<div class="form-group" id="option">
+								<select class="form-control custom-select" id="placeholder">
+									<option>Select Course</option>
+									<option>.</option>
+								</select>
+							</div>
+						</div>
+
+						<!--Option 5-->
+						<div class="col-md-2 col-sm-4 col-12">
+							<div class="form-group" id="option">
+								<select class="form-control custom-select" id="placeholder">
+									<option>Select Country</option>
+									<option>.</option>
+								</select>
+							</div>
+						</div>
+
+						<!--Option 6-->
+						<div class="col-md-2 col-sm-4 col-12">
+							<div class="form-group" id="option">
+								<select class="form-control custom-select" id="placeholder">
+									<option>Select Rating</option>
+									<option>.</option>
+								</select>
+							</div>
+						</div>
 					</div>
-				</form>
+					<!--Options based searching-->
+				</div>
+			</form>
 		</div>
 	</section>
 	<!--Search And Filter Notes Ends-->
-
 	<!--Books filtering-->
 	<section id="books">
 		<div class="container">
@@ -171,420 +172,438 @@
 				<div class="card-group">
 					<div class="card-deck">
 						<div class="row">
-							
+
 							<!--Book1-->
 							<div class="col-lg-4 col-md-6 col-sm-12 col-12">
 								<div class="card">
 									<!--book 1-->
-								    <img class="card-img-top" src="../images/Search/1.jpg" alt="Card image cap">
-								    	<div class="card-body d-flex flex-column">
-								      		<h5 class="card-title">Computer Operating System - Final Exam Book With Paper Solution</h5>
-								      		<p class="card-text">
-								      			<div class="row">
-								      				<div class="col-md-2 col-sm-2 col-2">
-								      					<span id="img1"><img src="../images/Search/university.png" alt="university-img" class="img-fluid"></span>
-								      				</div>
-								      				<div class="col-md-10 col-sm-10 col-10">
-								      					<span id="text">University Of California</span>
-								      				</div>
-								      				<div class="col-md-2 col-sm-2 col-2">
-								      					<span id="img1"><img src="../images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
-								      				</div>
-								      				<div class="col-md-10 col-sm-10 col-10">
-								      					<span id="text">204 Pages</span>
-								      				</div>
-								      				<div class="col-md-2 col-sm-2 col-2">
-								      					<span id="img1"><img src="../images/Search/date.png" alt="date-img" class="img-fluid"></span>
-								      				</div>
-								      				<div class="col-md-10 col-sm-10 col-10">
-								      					<span id="text">Thu, Nov 26, 2020</span>
-								      				</div>
-								      				<div class="col-md-2 col-sm-2 col-2">
-								      					<span id="img1"><img src="../images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
-								      				</div>
-								      				<div class="col-md-10 col-sm-10 col-10">
-								      					<span id="text-imp">5 Users marked this note as inappropriate</span>
-								      				</div>
-								      			</div>
-								      		</p>
-								      		<p class="card-text"><small class="text-muted">
-								      			<img src="../images/star.png" alt="star" id="rate">
-								      			<img src="../images/star.png" alt="star" id="rate">
-								      			<img src="../images/star.png" alt="star" id="rate">
-								      			<img src="../images/star.png" alt="star" id="rate">
-								      			<img src="../images/star.png" alt="star" id="rate">
-								      			100 Reviews
-								      		</small></p>
-								    	</div>
+									<img class="card-img-top" src="../images/Search/1.jpg" alt="Card image cap">
+									<div class="card-body d-flex flex-column">
+										<h5 class="card-title">Computer Operating System - Final Exam Book With Paper Solution</h5>
+										<p class="card-text">
+											<div class="row">
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/university.png" alt="university-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">University Of California</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">204 Pages</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/date.png" alt="date-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">Thu, Nov 26, 2020</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text-imp">5 Users marked this note as inappropriate</span>
+												</div>
+											</div>
+										</p>
+										<p class="card-text">
+											<small class="text-muted">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												100 Reviews
+											</small>
+										</p>
+									</div>
 								</div>
 							</div>
-							 
-							 <!--Book 2--> 
-							 <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+
+							<!--Book 2-->
+							<div class="col-lg-4 col-md-6 col-sm-12 col-12">
 								<div class="card">
-							    <img class="card-img-top" src="../images/Search/2.jpg" alt="Card image cap">
-							    	<div class="card-body">
-							      		<h5 class="card-title">Computer Science</h5>
-							      		<p class="card-text">
-							      			<div class="row" id="card-deatail">
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/university.png" alt="university-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">University Of California</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">204 Pages</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/date.png" alt="date-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">Thu, Nov 26, 2020</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text-imp">5 Users marked this note as inappropriate</span>
-							      				</div>
-							      			</div>
-							      		</p>
-							      		<p class="card-text"><small class="text-muted">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star-white.png" alt="star" id="rate">
-							      			100 Reviews
-							      		</small></p>
-							    	</div>
+									<img class="card-img-top" src="../images/Search/2.jpg" alt="Card image cap">
+									<div class="card-body">
+										<h5 class="card-title">Computer Science</h5>
+										<p class="card-text">
+											<div class="row" id="card-deatail">
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/university.png" alt="university-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">University Of California</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">204 Pages</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/date.png" alt="date-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">Thu, Nov 26, 2020</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text-imp">5 Users marked this note as inappropriate</span>
+												</div>
+											</div>
+										</p>
+										<p class="card-text">
+											<small class="text-muted">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star-white.png" alt="star" id="rate">
+												100 Reviews
+											</small>
+										</p>
+									</div>
 								</div>
 							</div>
 
 							<!--Book 3-->
 							<div class="col-lg-4 col-md-6 col-sm-12 col-12">
 								<div class="card">
-							    <img class="card-img-top" src="../images/Search/3.jpg" alt="Card image cap">
-							    	<div class="card-body">
-							      		<h5 class="card-title">Basic Computer Enginnering Tech India Publication Series</h5>
-							      		<p class="card-text">
-							      			<div class="row">
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/university.png" alt="university-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">University Of California</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">204 Pages</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/date.png" alt="date-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">Thu, Nov 26, 2020</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text-imp">5 Users marked this note as inappropriate</span>
-							      				</div>
-							      			</div>
-							      		</p>
-							      		<p class="card-text"><small class="text-muted">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star-white.png" alt="star" id="rate">
-							      			<img src="../images/star-white.png" alt="star" id="rate">
-							      			100 Reviews
-							      		</small></p>
-							    	</div>
+									<img class="card-img-top" src="../images/Search/3.jpg" alt="Card image cap">
+									<div class="card-body">
+										<h5 class="card-title">Basic Computer Enginnering Tech India Publication Series</h5>
+										<p class="card-text">
+											<div class="row">
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/university.png" alt="university-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">University Of California</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">204 Pages</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/date.png" alt="date-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">Thu, Nov 26, 2020</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text-imp">5 Users marked this note as inappropriate</span>
+												</div>
+											</div>
+										</p>
+										<p class="card-text">
+											<small class="text-muted">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star-white.png" alt="star" id="rate">
+												<img src="../images/star-white.png" alt="star" id="rate">
+												100 Reviews
+											</small>
+										</p>
+									</div>
 								</div>
 							</div>
 
 							<!--Book 4-->
 							<div class="col-lg-4 col-md-6 col-sm-12 col-12">
 								<div class="card">
-							    <img class="card-img-top" src="../images/Search/4.jpg" alt="Card image cap">
-							    	<div class="card-body">
-							      		<h5 class="card-title">Computer Science Illuminated-Seventh Edition</h5>
-							      		<p class="card-text">
-							      			<div class="row">
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/university.png" alt="university-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">University Of California</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">204 Pages</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/date.png" alt="date-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">Thu, Nov 26, 2020</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text-imp">5 Users marked this note as inappropriate</span>
-							      				</div>
-							      			</div>
-							      		</p>
-							      		<p class="card-text"><small class="text-muted">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			100 Reviews
-							      		</small></p>
-							    	</div>
+									<img class="card-img-top" src="../images/Search/4.jpg" alt="Card image cap">
+									<div class="card-body">
+										<h5 class="card-title">Computer Science Illuminated-Seventh Edition</h5>
+										<p class="card-text">
+											<div class="row">
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/university.png" alt="university-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">University Of California</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">204 Pages</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/date.png" alt="date-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">Thu, Nov 26, 2020</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text-imp">5 Users marked this note as inappropriate</span>
+												</div>
+											</div>
+										</p>
+										<p class="card-text">
+											<small class="text-muted">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												100 Reviews
+											</small>
+										</p>
+									</div>
 								</div>
 							</div>
 
-							<!--Book 5--> 
+							<!--Book 5-->
 							<div class="col-lg-4 col-md-6 col-sm-12 col-12">
 								<div class="card">
-							    <img class="card-img-top" src="../images/Search/5.jpg" alt="Card image cap">
-							    	<div class="card-body">
-							      		<h5 class="card-title">The Principles of Computer Hardware - Oxford</h5>
-							      		<p class="card-text">
-							      			<div class="row">
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/university.png" alt="university-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">University Of California</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">204 Pages</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/date.png" alt="date-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">Thu, Nov 26, 2020</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text-imp">5 Users marked this note as inappropriate</span>
-							      				</div>
-							      			</div>
-							      		</p>
-							      		<p class="card-text"><small class="text-muted">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star-white.png" alt="star" id="rate">
-							      			100 Reviews
-							      		</small></p>
-							    	</div>
+									<img class="card-img-top" src="../images/Search/5.jpg" alt="Card image cap">
+									<div class="card-body">
+										<h5 class="card-title">The Principles of Computer Hardware - Oxford</h5>
+										<p class="card-text">
+											<div class="row">
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/university.png" alt="university-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">University Of California</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">204 Pages</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/date.png" alt="date-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">Thu, Nov 26, 2020</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text-imp">5 Users marked this note as inappropriate</span>
+												</div>
+											</div>
+										</p>
+										<p class="card-text">
+											<small class="text-muted">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star-white.png" alt="star" id="rate">
+												100 Reviews
+											</small>
+										</p>
+									</div>
 								</div>
 							</div>
 
 							<!--Book 6-->
 							<div class="col-lg-4 col-md-6 col-sm-12 col-12">
 								<div class="card">
-							    <img class="card-img-top" src="../images/Search/6.jpg" alt="Card image cap">
-							    	<div class="card-body">
-							      		<h5 class="card-title">The Computer Book</h5>
-							      		<p class="card-text">
-							      			<div class="row">
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/university.png" alt="university-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">University Of California</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">204 Pages</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/date.png" alt="date-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">Thu, Nov 26, 2020</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text-imp">5 Users marked this note as inappropriate</span>
-							      				</div>
-							      			</div>
-							      		</p>
-							      		<p class="card-text"><small class="text-muted">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star-white.png" alt="star" id="rate">
-							      			<img src="../images/star-white.png" alt="star" id="rate">
-							      			100 Reviews
-							      		</small></p>
-							    	</div>
+									<img class="card-img-top" src="../images/Search/6.jpg" alt="Card image cap">
+									<div class="card-body">
+										<h5 class="card-title">The Computer Book</h5>
+										<p class="card-text">
+											<div class="row">
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/university.png" alt="university-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">University Of California</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">204 Pages</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/date.png" alt="date-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">Thu, Nov 26, 2020</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text-imp">5 Users marked this note as inappropriate</span>
+												</div>
+											</div>
+										</p>
+										<p class="card-text">
+											<small class="text-muted">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star-white.png" alt="star" id="rate">
+												<img src="../images/star-white.png" alt="star" id="rate">
+												100 Reviews
+											</small>
+										</p>
+									</div>
 								</div>
 							</div>
 
 							<!--Book 7-->
 							<div class="col-lg-4 col-md-6 col-sm-12 col-12">
 								<div class="card">
-							    <img class="card-img-top" src="../images/Search/1.jpg" alt="Card image cap">
-							    	<div class="card-body">
-							      		<h5 class="card-title">Computer Operating System - Final Exam book With Paper Solution</h5>
-							      		<p class="card-text">
-							      			<div class="row">
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/university.png" alt="university-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">University Of California</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">204 Pages</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/date.png" alt="date-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">Thu, Nov 26, 2020</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text-imp">5 Users marked this note as inappropriate</span>
-							      				</div>
-							      			</div>
-							      		</p>
-							      		<p class="card-text"><small class="text-muted">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			100 Reviews
-							      		</small></p>
-							    	</div>
+									<img class="card-img-top" src="../images/Search/1.jpg" alt="Card image cap">
+									<div class="card-body">
+										<h5 class="card-title">Computer Operating System - Final Exam book With Paper Solution</h5>
+										<p class="card-text">
+											<div class="row">
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/university.png" alt="university-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">University Of California</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">204 Pages</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/date.png" alt="date-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">Thu, Nov 26, 2020</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text-imp">5 Users marked this note as inappropriate</span>
+												</div>
+											</div>
+										</p>
+										<p class="card-text">
+											<small class="text-muted">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												100 Reviews
+											</small>
+										</p>
+									</div>
 								</div>
 							</div>
-						
-							<!--Book 8--> 
+
+							<!--Book 8-->
 							<div class="col-lg-4 col-md-6 col-sm-12 col-12">
 								<div class="card">
-							    <img class="card-img-top" src="../images/Search/2.jpg" alt="Card image cap">
-							    	<div class="card-body">
-							      		<h5 class="card-title">Computer Science</h5>
-							      		<p class="card-text">
-							      			<div class="row">
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/university.png" alt="university-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">University Of California</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">204 Pages</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/date.png" alt="date-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">Thu, Nov 26, 2020</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text-imp">5 Users marked this note as inappropriate</span>
-							      				</div>
-							      			</div>
-							      		</p>
-							      		<p class="card-text"><small class="text-muted">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star-white.png" alt="star" id="rate">
-							      			100 Reviews
-							      		</small></p>
-							    	</div>
-							    </div>
+									<img class="card-img-top" src="../images/Search/2.jpg" alt="Card image cap">
+									<div class="card-body">
+										<h5 class="card-title">Computer Science</h5>
+										<p class="card-text">
+											<div class="row">
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/university.png" alt="university-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">University Of California</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">204 Pages</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/date.png" alt="date-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">Thu, Nov 26, 2020</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text-imp">5 Users marked this note as inappropriate</span>
+												</div>
+											</div>
+										</p>
+										<p class="card-text">
+											<small class="text-muted">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star-white.png" alt="star" id="rate">
+												100 Reviews
+											</small>
+										</p>
+									</div>
+								</div>
 							</div>
 
 							<!--Book 9-->
 							<div class="col-lg-4 col-md-6 col-sm-12 col-12">
 								<div class="card">
-							    <img class="card-img-top" src="../images/Search/3.jpg" alt="Card image cap">
-							    	<div class="card-body">
-							      		<h5 class="card-title">Basic Computer Engineering Tech India Publication Series</h5>
-							      		<p class="card-text">
-							      			<div class="row">
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/university.png" alt="university-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">University Of California</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">204 Pages</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/date.png" alt="date-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">Thu, Nov 26, 2020</span>
-							      				</div>
-							      				<div class="col-md-2 col-sm-2 col-2">
-							      					<span id="img1"><img src="../images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
-							      				</div>
-							      				<div class="col-md-10 col-sm-10 col-10">
-							      					<span id="text">5 Users marked this note as inappropriate</span>
-							      				</div>
-							      			</div>
-							      		</p>
-							      		<p class="card-text"><small class="text-muted">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star.png" alt="star" id="rate">
-							      			<img src="../images/star-white.png" alt="star" id="rate">
-							      			<img src="../images/star-white.png" alt="star" id="rate">
-							      			100 Reviews
-							      		</small></p>
-							    	</div>
-							    </div>
+									<img class="card-img-top" src="../images/Search/3.jpg" alt="Card image cap">
+									<div class="card-body">
+										<h5 class="card-title">Basic Computer Engineering Tech India Publication Series</h5>
+										<p class="card-text">
+											<div class="row">
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/university.png" alt="university-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">University Of California</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">204 Pages</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/date.png" alt="date-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">Thu, Nov 26, 2020</span>
+												</div>
+												<div class="col-md-2 col-sm-2 col-2">
+													<span id="img1"><img src="../images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
+												</div>
+												<div class="col-md-10 col-sm-10 col-10">
+													<span id="text">5 Users marked this note as inappropriate</span>
+												</div>
+											</div>
+										</p>
+										<p class="card-text">
+											<small class="text-muted">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star.png" alt="star" id="rate">
+												<img src="../images/star-white.png" alt="star" id="rate">
+												<img src="../images/star-white.png" alt="star" id="rate">
+												100 Reviews
+											</small>
+										</p>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -593,24 +612,23 @@
 			<!--books Ends-->
 
 		</div>
-		
+
 	</section>
 	<!--Books filtering ends-->
-
 	<!--Page Navigation Example-->
 	<div class="container" id="page-nav">
 		<div class="row">
 			<div class="col-md-12">
 				<nav aria-label="Page navigation example">
-				  <ul class="pagination">
-				    <li class="page-item" id="arrow"><a class="page-link" href="#" ><</a></li>
-				    <li class="page-item" id="num"><a class="page-link" href="#">1</a></li>
-				    <li class="page-item" id="num"><a class="page-link" href="#">2</a></li>
-				    <li class="page-item" id="num"><a class="page-link" href="#">3</a></li>
-				    <li class="page-item" id="num"><a class="page-link" href="#">4</a></li>
-				    <li class="page-item" id="num"><a class="page-link" href="#">5</a></li>
-				    <li class="page-item" id="arrow"><a class="page-link" href="#">></a></li>
-				  </ul>
+					<ul class="pagination">
+						<li class="page-item" id="arrow"><a class="page-link" href="#"><</a></li>
+						<li class="page-item" id="num"><a class="page-link" href="#">1</a></li>
+						<li class="page-item" id="num"><a class="page-link" href="#">2</a></li>
+						<li class="page-item" id="num"><a class="page-link" href="#">3</a></li>
+						<li class="page-item" id="num"><a class="page-link" href="#">4</a></li>
+						<li class="page-item" id="num"><a class="page-link" href="#">5</a></li>
+						<li class="page-item" id="arrow"><a class="page-link" href="#">></a></li>
+					</ul>
 				</nav>
 			</div>
 		</div>
@@ -625,9 +643,9 @@
 						Copyright &copy; Tatvasoft All rights reserved.
 					</p>
 				</div>
-			
+
 				<div class="col-md-6 col-sm-4 col-12 text-right" id="img">
-					<div class="social-list">	
+					<div class="social-list">
 						<a href="#"><img src="../images/facebook.png" alt="facebook-img"></a>
 						<a href="#"><img src="../images/twitter.png" alt="twitter-img"></a>
 						<a href="#"><img src="../images/linkedin.png" alt="linkedin-img"></a>
@@ -636,10 +654,8 @@
 
 			</div>
 		</div>
-	</footer>	
+	</footer>
 	<!--Footer Ends-->
-
-
 	<!--JQuery JS-->
 	<script type="text/javascript" src="../js/jquery.js"></script>
 

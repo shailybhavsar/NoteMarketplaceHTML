@@ -1,0 +1,125 @@
+﻿@model NotesMarketPlaceProject.Models.UserLogin
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!--Important meta tags-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no">
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!--Bootstrap CSS-->
+    <link href="~/Content/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+
+    <!--Custom CSS-->
+    <link href="~/Content/css/login.css" rel="stylesheet" />
+    <link href="~/Content/css/responsive_login.css" rel="stylesheet" />
+
+    <style>
+    .error{
+        color:red;
+
+    }
+    </style>
+</head>
+
+<body>
+    <section id="login">
+        <div class="content-box-lg">
+            <div class="row justify-content-center">
+                <div class="col-6 ml-auto mr-auto page-center">
+                    <div class="col-md-12 col-sm-12 col-12">
+                        <div class="img-logo">
+                            <img src="~/Content/images/pre-login/top-logo.png" alt="logo">
+                        </div>
+                    </div>
+                        
+                    @using (Html.BeginForm("Login", "NotesMarketPlace", FormMethod.Post))
+                     {
+                          @Html.AntiForgeryToken()
+                           {
+                                <div class="form-container">
+
+                                    <h1>Login</h1>
+                                    <p>Enter your email address and password to login</p>
+                                        <div class="row">
+
+                                        <!--Email-->
+                                        <div class="col-md-12 col-sm-12 col-12">
+                                            <div class="form-group e-mail">
+                                                @Html.Label("EmailID", "Email")
+                                                @Html.TextBoxFor(x => x.EmailID, new { @class = "form-control email-id", @id = "exampleInputEmail1", @placeholder = "notesmarketplace77@gmail.com" })
+                                                @Html.ValidationMessageFor(x => x.EmailID, "", new { @class = "error" })
+                                            </div>
+                                        </div>
+
+                                        <!--Password-->
+                                        <div class="col-md-12 col-sm-12 col-12">
+                                            <div class="form-group pwd">
+                                                <div class="row">
+                                                    <div class="col-md-6 col-sm-6 col-6">
+                                                        @Html.Label("Password","Password" , new {@class="password"})
+                                                    </div>
+                                                    
+                                                    <div class="col-md-6 col-sm-6 col-6 forgotpassword">
+                                                        <div class="float-right">
+                                                            @Html.ActionLink("Forgot Password?", "ForgotPassword", new { @class = "password float-right forgotpassword" })
+                                                        </div>                    
+                                                     </div>
+                                                </div>
+                                                @Html.PasswordFor(x => x.Password, new { @class = "form-control", @id = "password-field", @placeholder = "Enter Your Password" })
+                                                @Html.ValidationMessageFor(x => x.Password, "", new { @class = "error" })
+                                                <span toggle="#password-field" class="eye field-icon toggle-password"><img src="~/Content/images/pre-login/eye.png" alt="eye"></span>
+                                             </div>
+                                        </div>
+
+                                        <!--Check box-->
+                                        <div class="col-md-12 col-sm-12 col-12">
+                                            <div class="form-group form-check">
+                                                @Html.CheckBox("exampleCheck1", false, new { @class = "form-check-input" ,@id= "exampleCheck1" })
+                                                @Html.Label("Remember Me" , new { @class= "form-check-label" })
+                                            </div>
+                                        </div>
+
+                                        <!--Button-->
+                                        <div class="col-md-12 col-sm-12 col-12 end">
+                                            <button type="submit" class="btn btn-primary btn-block">LOGIN</button>
+                                            <p style="margin-top: 20px;">
+                                                Don't have an account?
+                                                <span>
+                                                    @Html.ActionLink("Sign Up", "Signup")
+                                                </span>
+                                            </p>
+                                        </div>
+                                        </div>
+                                </div>
+                            }
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--JQuery JS-->
+    <script type="text/javascript" src="~/Scripts/js/jquery.js"></script>
+
+    <!--Bootstrap JS-->
+    <script type="text/javascript" src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
+
+
+    <!--Custom JS-->
+    <script type="text/javascript" src="~/Scripts/js/login.js"></script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+</body>
+</html>
+
+
+

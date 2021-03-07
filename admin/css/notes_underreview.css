@@ -38,6 +38,10 @@ body{
   margin-left: 5px;
   font-size: 14px;
 }
+.navbar-light .navbar-nav .nav-link:hover{
+  color: #6255a5;
+  text-decoration: underline;
+}
 
 /*Button*/
 #btn .btn-block{
@@ -143,7 +147,10 @@ body{
   line-height: 22px;
   font-weight: 700;
 }
-
+.button .btn-primary:hover
+{
+  opacity: 0.9;
+}
 #search{
   margin-top: 40px;
 }
@@ -176,7 +183,9 @@ body{
   line-height: 22px;
   font-weight: 700;
 }
-
+#add-admin .btn-primary:hover{
+  opacity: 0.9;
+}
 .form-control::placeholder{
   font-family: Open Sans;
   font-size: 16px;
@@ -338,17 +347,24 @@ footer {
   border-color: transparent;
   width: 90px;
 }
-
+#approve:hover{
+  opacity: 0.9;
+}
 #reject{
   background-color: #ff3636;
   border-color: transparent;
   width: 90px;
 }
-
+#reject:hover{
+  opacity: 0.9;
+}
 #inreview{
   background-color: #cccccc;
   border-color: transparent;
   width: 90px;
+}
+#inreview:hover{
+  opacity: 0.9;
 }
 
 /*Modal*/
@@ -389,25 +405,4 @@ footer {
   margin-left: 50px;
   margin-top: 30px;
   margin-bottom: 30px;
-}
-#modal-btn1{
-  background-color: #ff3636;
-  color: #fff;
-  width: 150px;
-  height: 50px;
-  font-family: Open Sans;
-  font-size: 18px;
-  line-height: 22px;
-  border-color: transparent;
-}
-
-#modal-btn2{
-  background-color: #cccccc;
-  color: #fff;
-  width: 150px;
-  height: 50px;
-  font-family: Open Sans;
-  font-size: 18px;
-  line-height: 22px;
-  border-color: transparent;
 }

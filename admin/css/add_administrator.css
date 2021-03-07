@@ -38,6 +38,11 @@ body{
   font-size: 14px;
 }
 
+.navbar-light .navbar-nav .nav-link:hover{
+  color: #6255a5;
+  text-decoration: underline;
+}
+
 /*Button*/
 #btn .btn-block{
  font-family: Open Sans;
@@ -95,7 +100,10 @@ body{
   line-height: 20px;
   color: #8a8a8a;
 }
-
+.submit .btn:hover{
+  background-color: #6255a5;
+  opacity: 0.9;
+}
 #input{
   height: 50px;
   border-radius: 3px;

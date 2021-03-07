@@ -1,0 +1,244 @@
+﻿@model NotesMarketPlaceProject.Models.SearchNotes
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Notes</title>
+
+    <!--Important meta tags-->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/bootstrap/bootstrap.min.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/search_notes.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/responsive_search_notes.css">
+</head>
+
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="~/Content/images/logo.png" alt="logo" class="logo" />
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto text-right">
+                    <li class="nav-item"><a class="nav-link" href="search_notes.html">Search Notes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mysold_notes.html">Sell Your Notes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="FAQ.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+                    <li class="nav-item" id="btn">
+                        <a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Login</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Navbar Ends-->
+    <!--Background image-->
+    <section id="background-image">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2 id="title">Search Notes</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Background image Ends-->
+    <!--Search And Filter Notes-->
+    <section id="description">
+        <div class="container">
+            <!--Heading-->
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-12">
+                    <div class="heading">
+                        <h3>Search And Filter Notes</h3>
+                    </div>
+                </div>
+            </div>
+
+            <form>
+                <div id="search-filter">
+                    <div class="row" id="search">
+                        <div class="col-md-12 col-sm-12 col-12">
+                            <div class="search-here">
+                                <input type="text" class="form-control" id="place-1" placeholder="Select type" style="height: 50px;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Options based searching start-->
+                    <div class="row" id="options">
+                        <!--Option 1-->
+                        <div class="col-md-2 col-sm-4 col-12">
+                            <div class="form-group" id="option">
+                                @Html.LabelFor(m => m.TypeID, "")
+                                @Html.DropDownListFor(m => m.TypeID, new SelectList(Model.types, "TypeID", "TypeName"), "Select Type", new { @class = "form-control custom-select", @id = "exampleInput" })
+                            </div>
+                        </div>
+
+                        <!--Option 2-->
+                        <div class="col-md-2 col-sm-4 col-12">
+                            <div class="form-group" id="option">
+                                @Html.LabelFor(m => m.CategoryID, "")
+                                @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.categories, "CategoryID", "CategoryName"), "Select Category", new { @class = "form-control custom-select", @id = "exampleInput" })
+                            </div>
+                        </div>
+
+                        <!--Option 3-->
+                        <div class="col-md-2 col-sm-4 col-12">
+                            <div class="form-group" id="option">
+                                @Html.LabelFor(m => m.UniversityName, "")
+                                @Html.DropDownListFor(m => m.UniversityName, new SelectList(Model.univercities, "ID", "UniversityName"), "Select University", new { @class = "form-control custom-select", @id = "exampleInput" })
+                            </div>
+                        </div>
+
+                        <!--Option 4-->
+                        <div class="col-md-2 col-sm-4 col-12">
+                            <div class="form-group" id="option">
+                                @Html.LabelFor(m => m.Course, "")
+                                @Html.DropDownListFor(m => m.Course, new SelectList(Model.courses, "ID", "Course"), "Select Course", new { @class = "form-control custom-select", @id = "exampleInput" })
+
+                            </div>
+                        </div>
+
+                        <!--Option 5-->
+                        <div class="col-md-2 col-sm-4 col-12">
+                            <div class="form-group" id="option">
+                                @Html.LabelFor(m => m.CountryID, "")
+                                @Html.DropDownListFor(m => m.CountryID, new SelectList(Model.countries, "CountryID", "CountryName"), "Select Country", new { @class = "form-control custom-select", @id = "exampleInput" })
+
+                            </div>
+                        </div>
+
+                        <!--Option 6-->
+                        <div class="col-md-2 col-sm-4 col-12">
+                            <div class="form-group" id="option">
+                                <select class="form-control custom-select" id="placeholder">
+                                    <option>Select Rating</option>
+                                    <option>.</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Options based searching-->
+                </div>
+            </form>
+        </div>
+    </section>
+    <!--Search And Filter Notes Ends-->
+    <!--Books filtering-->
+    <section id="books">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-12">
+                    <div class="book-heading">
+                        <h3>Total 18 Notes</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!--books-->
+            <div class="container">
+                <div class="card-group">
+                    <div class="card-deck">
+                        <div class="row">
+                            @foreach (var item in Model.courses)
+                            {
+                                <!--Book1-->
+                                <div class="col-lg-4 col-md-6 col-sm-12 col-12">
+                                    <div class="card" id="Note_Details" onclick="window.location.href='@Url.Action("NoteDetails","NotesMarketPlace", new { id=item.ID})'">
+
+                                        @*<input type="hidden" id="pass_data_notedetails"  value="@item.ID"/>*@
+                                        <img class="card-img-top" src="~/Uploadimg/@item.DisplayPicture" alt="Card image cap">
+                                        <div class="card-body d-flex flex-column">
+                                            <h5 class="card-title" id="notedetails">@item.Title</h5>
+                                            <p class="card-text">
+                                                <div class="row">
+                                                    <div class="col-md-2 col-sm-2 col-2">
+                                                        <span id="img1"><img src="~/Content/images/Search/university.png" alt="university-img" class="img-fluid"></span>
+                                                    </div>
+                                                    <div class="col-md-10 col-sm-10 col-10">
+                                                        <span id="text">@Html.DisplayFor(m => item.UniversityName)</span>
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-2 col-2">
+                                                        <span id="img1"><img src="~/Content/images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
+                                                    </div>
+                                                    <div class="col-md-10 col-sm-10 col-10">
+                                                        <span id="text">@Html.DisplayFor(m => item.NumberOfPages)</span>
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-2 col-2">
+                                                        <span id="img1"><img src="~/Content/images/Search/date.png" alt="date-img" class="img-fluid"></span>
+                                                    </div>
+                                                    <div class="col-md-10 col-sm-10 col-10">
+                                                        <span id="text">@Html.DisplayFor(m => item.CreatedDate)</span>
+                                                    </div>
+                                                    <div class="col-md-2 col-sm-2 col-2">
+                                                        <span id="img1"><img src="~/Content/images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
+                                                    </div>
+                                                    <div class="col-md-10 col-sm-10 col-10">
+                                                        <span id="text-imp">5 Users marked this note as inappropriate</span>
+                                                    </div>
+                                                </div>
+                                            </p>
+                                            <p class="card-text">
+                                                <small class="text-muted">
+                                                    <img src="~/Content/images/star.png" alt="star" id="rate">
+                                                    <img src="~/Content/images/star.png" alt="star" id="rate">
+                                                    <img src="~/Content/images/star.png" alt="star" id="rate">
+                                                    <img src="~/Content/images/star.png" alt="star" id="rate">
+                                                    <img src="~/Content/images/star.png" alt="star" id="rate">
+                                                    100 Reviews
+                                                </small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    @Html.Partial("_Footer")
+    <!--JQuery JS-->
+    <script src="~/Scripts/js/jquery.js"></script>
+
+    <!--Bootstrap JS-->
+    <script type="text/javascript" src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
+
+    @section scripts {
+
+        <script>
+
+            $(document).ready(function () {
+
+                $("#notedetails").on("click", function () {
+                    var id = $("#pass_data_notedetails").val();
+                    alert("Hi");
+                    location.href = '/NotesMarketPlace/NoteDetails?id=' + id;
+                });
+            });
+        </script>
+    }
+</body>
+</html>

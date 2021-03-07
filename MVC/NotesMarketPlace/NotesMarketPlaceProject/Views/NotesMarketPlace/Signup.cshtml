@@ -1,0 +1,149 @@
+﻿@model NotesMarketPlaceProject.Models.RegisterUser
+
+@{
+    ViewBag.Title = "NotesMarketPlace";
+   
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <!--Important meta tags-->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0 ,user-scalable=no">
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!--Bootstrap CSS-->
+    <link href="~/Content/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/signup.css">
+
+    <!--Responsive CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/responsive_signup.css">
+
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="~/Content/css/font-awesome/css/font-awesome.min.css">
+
+
+</head>
+<body>
+
+    <section id="login">
+        <div class="content-box-lg">
+            <div class="row justify-content-center">
+                <div class="col-6 ml-auto mr-auto page-center">
+                    <div class="col-md-12 col-sm-12 col-12">
+                        <div class="img-logo">
+                            <img src="~/Content/images/pre-login/top-logo.png" alt="logo">
+                        </div>
+                    </div>
+                    @using (Html.BeginForm("Signup", "NotesMarketPlace", FormMethod.Post, new { Role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        {
+                            <div class="form-container">
+
+                                <h1>Create an Account</h1>
+                                <p>Enter your details to signup</p>
+                                <div class="row">
+
+                                    <div class="col-md-12 col-sm-12 col-12">
+                                        <div class="success text-center" style="display:none;">
+                                            <p><i class="fa fa-check circle"></i> Your account has been successfully created</p>
+                                        </div>
+                                    </div>
+
+                                    <!--First Name-->
+                                    <div class="col-md-12 col-sm-12 col-12">
+                                        <div class="form-group name">
+                                            @Html.Label("FirstName", "First Name*")
+                                            @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", @id = "exampleInputName", @placeholder = "Enter Your First Name", @value = "John", @style = "border: 1px solid #6255a5" })
+                                            @Html.ValidationMessageFor(x => x.FirstName, "", new { @style = "color:red" })
+                                        </div>
+                                    </div>
+
+                                    <!--Last Name-->
+                                    <div class="col-md-12 col-sm-12 col-12">
+                                        <div class="form-group name">
+                                            @Html.Label("LastName", "Last Name*")
+                                            @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", @id = "exampleInputName", @placeholder = "Enter Your Last Name" })
+                                            @Html.ValidationMessageFor(x => x.LastName, "", new { @style = "color:red" })
+                                        </div>
+                                    </div>
+
+                                    <!--Email-->
+                                    <div class="col-md-12 col-sm-12 col-12">
+                                        <div class="form-group e-mail">
+                                            @Html.Label("EmailID", "Email*")
+                                            @Html.TextBoxFor(x => x.EmailID, new { @class = "form-control", @id = "exampleInputEmail1", @placeholder = "Enter Your Email Address" })
+                                            @Html.ValidationMessageFor(x => x.EmailID, "", new { @style = "color:red" })
+                                            @Html.ValidationMessage("EmailExist", new { @style = "color:red" })
+                                        </div>
+                                    </div>
+
+                                    <!--Password-->
+                                    <div class="col-md-12 col-sm-12 col-12">
+                                        <div class="form-group pwd password">
+                                            @Html.Label("Password", "Password")
+                                            @Html.PasswordFor(x => x.Password, new { @class = "form-control password", @id = "password-field1", @placeholder = "Enter Your Password" })
+                                            @Html.ValidationMessageFor(x => x.Password, "", new { @style = "color:red" })
+                                            <span toggle="#password-field1" class="eye field-icon toggle-password"><img src="~/Content/images/pre-login/eye.png" alt="eye"></span>
+                                        </div>
+                                    </div>
+
+                                    <!--Confirm Password-->
+                                    <div class="col-md-12 col-sm-12 col-12">
+                                        <div class="form-group pwd password">
+                                            @Html.Label("Password", "Confirm Password")
+                                            @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control", @id = "password-field2", @placeholder = "Re-Enter Your Password" })
+                                            @Html.ValidationMessageFor(x => x.ConfirmPassword, "", new { @style = "color:red" })
+
+                                            <span toggle="#password-field2" class="eye field-icon toggle-password"><img src="~/Content/images/pre-login/eye.png" alt="eye"></span>
+                                        </div>
+                                    </div>
+
+                                    <!--Button-->
+                                    <div class="col-md-12 col-sm-12 col-12">
+                                        <button type="submit" class="btn btn-primary btn-block">SIGN UP</button>
+                                    </div>
+
+                                    <!--End-->
+                                    <div class="col-md-12 col-sm-12 col-12">
+                                        <div class="form-group end" style="margin-top: 10px;">
+                                            <p>Already have an account?<span>
+                                                 @Html.ActionLink("Login","Login")</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--JQuery JS-->
+    <script type="text/javascript" src="~/Scripts/js/jquery.js"></script>
+    <!--Bootstrap JS-->
+    <script type="text/javascript" src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
+    <!--Custom JS-->
+    <script type="text/javascript" src="~/Scripts/js/login.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+</body>
+</html>
+
+

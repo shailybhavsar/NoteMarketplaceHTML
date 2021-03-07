@@ -1,0 +1,384 @@
+﻿@model NotesMarketPlaceProject.Models.AddEditNotes
+@{    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <!--Custom CSS-->
+    <link href="~/Content/css/add_notes.css" rel="stylesheet" />
+
+    <!--Custom CSS-->
+    <link href="~/Content/css/responsive_add_notes.css" rel="stylesheet" />
+</head>
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="~/Content/images/Add-notes/logo.png" alt="logo" class="logo">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto text-right">
+                    <li class="nav-item"><a class="nav-link" href="search_notes.html">Search Notes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mysold_notes.html">Sell Your Notes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="buyer_request.html">Buyer Requests</a></li>
+                    <li class="nav-item"><a class="nav-link" href="FAQ.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"><img src="~/Content/images/Add-notes/user-img.png" alt="user-img"></a></li>
+                    <li class="nav-item" id="btn">
+                        <a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Logout</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Navbar Ends-->
+    <!--Background image-->
+    <section id="background-image">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-12 text-center">
+                    <h2 id="title">Add Notes</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Background image Ends-->
+
+    @using (@Html.BeginForm("UserAddNotes", "NotesMarketPlace", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <!--Basic Notes Details-->
+        <div class="container">
+            <div class="row">
+                <!--Left Part-->
+                <div class="col-md-12" id="heading">
+                    <h2>Basic Profile Details</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12 col-12">
+                            <!--Title-->
+                            
+                            <div class="form-group input">
+                                @Html.Label("Title", "Title*")
+                                @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your notes title" })
+                                @Html.ValidationMessageFor(m => m.Title, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-12">
+                            <div class="form-group input">
+                                <!--Profile Picture Image-->
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-12">
+                                        <label for="input">Profile Picture</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center add-border">
+
+                                    <label for="upload_image">
+                                        <img src="~/Content/images/Add-notes/upload-file.png" />
+                                        <p id="upload_image-filename">Upload a Picture</p>
+                                        <input type="file" id="upload_image" name="upload_image" style="display: none;">
+                                    </label>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-12">
+                            <!--Note Types-->
+                            <div class="form-group input" id="type">
+                                @Html.LabelFor(m => m.TypeID,"Type")
+                                @Html.DropDownListFor(m => m.TypeID, new SelectList(Model.types, "TypeID", "TypeName"), "Select Type", new { @class = "form-control custom-select" , @id = "exampleInput" })
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!--Left side ends
+                <!--Right Side Part-->
+                <div class="col-md-6">
+                    <div class="form-row">
+                        <!--Country-->
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group input" id="category">
+                                @Html.LabelFor(m => m.CategoryID,"Category")
+                                @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.categories, "CategoryID", "CategoryName"),"Select Category" ,new { @class = "form-control custom-select", @id = "exampleInput" })
+                                @Html.ValidationMessageFor(m => m.categories, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-12">
+                            <div class="form-group input">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-12">
+                                        <label for="input">Upload Notes</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center add-border">
+                                    <label for="upload_notes">
+                                        <img src="~/Content/images/Add-notes/upload-note.svg" />
+                                        <p id="upload_notes-filename">Upload Your Notes</p>
+                                        <input type="file" id="upload_notes" name="upload_notes" style="display: none;">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group input">
+                                @Html.Label("exampleInput", "Number Of Pages")
+                                @Html.TextBoxFor(m => m.NumberOfPages, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter number of note pages" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Right side part ends-->
+                <!--Description Part-->
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.Label("exampleFormControlTextarea1", "Description")
+                        @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @id = "exampleFormControlTextarea", style = "height: 150px;", @placeholder = "Enter Your Description" })
+                        @Html.ValidationMessageFor(m => m.Description, "", new { style = "color:red" })
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Basic Notes Details Ends-->
+
+        <!--Instituion Information-->
+        <div class="container">
+            <div class="row">
+                <!--Left Part-->
+                <div class="col-md-12" id="heading">
+                    <h2>Instituion Information</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12 col-12">
+                            <!--Country-->
+                            <div class="form-group input" id="country">
+                                <div class="form-group " id="country">
+                                    @Html.LabelFor(m => m.CountryID,"Country")
+                                    @Html.DropDownListFor(m => m.CountryID, new SelectList(Model.countries,"CountryID","CountryName"), "Select Your Country", new { @class = "form-control custom-select", @id = "exampleInput" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Right Part-->
+                <div class="col-md-6">
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12 col-12">
+                            <div class="form-group input">
+                                @Html.Label("exampleInput", "Instituion Name")
+                                @Html.TextBoxFor(m => m.UniversityName, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your Instituion Name" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Instituion Information ends-->
+
+        <!--Course Details-->
+        <div class="container">
+            <div class="row">
+                <!--Left Part-->
+                <div class="col-md-12" id="heading">
+                    <h2>Course Details</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group input">
+                                @Html.Label("exampleInput", "Course Name")
+                                @Html.TextBoxFor(m => m.Course, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your course name" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group input">
+                                @Html.Label("exampleInput", "Professor / Lecturer")
+                                @Html.TextBoxFor(m => m.Professor, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your professor name" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Right Part-->
+                <div class="col-md-6">
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group input">
+                                <label for="exampleInput">Course Code</label>
+                                <input type="text" class="form-control" id="exampleInput" placeholder="Enter your course code">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Course Details Ends-->
+
+        <!--Selling information-->
+        <div class="container">
+            <div class="row">
+                <!--Left Part-->
+                <div class="col-md-12" id="heading">
+                    <h2>Selling Information</h2>
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-12">
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12 col-12">
+                            @Html.Label("exampleInput", "Sell For*")
+                            <div id="radio-button">
+                                @Html.RadioButtonFor(m => m.sellfor,"Gender" ,"Free")
+                                @Html.Label("Free")
+                                @Html.RadioButtonFor(m => m.sellfor,"Gender","Paid")
+                                @Html.Label("Paid")
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-12">
+                            <div class="form-group e-mail">
+                                @Html.Label("exampleInputEmail1", "Sell Price*")
+                                @Html.TextBoxFor(m => m.SellingPrice, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your price", style = "margin-top: 10px;" })
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <!--Right Part-->
+                <div class="col-md-6 col-6 col-12">
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12 col-12">
+                            <div class="form-group input">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-12">
+                                        <label for="input">Note Preview</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center add-border">
+                                    <label for="upload_image1">
+                                        <img src="~/Content/images/Add-notes/upload-file.png" />
+                                        <p id="upload_image-filename1">Upload a File</p>
+                                        <input type="file" id="upload_image1" name="upload_image1" style="display: none;">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!--Button-->
+                <div class="col-md-12 col-sm-12 col-12">
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12 col-12">
+                            <div class="Button-class">
+                                <button type="submit" class="btn btn-primary">SAVE</button>
+                                <button type="submit" class="btn btn-primary" id="display_button" style="display:none;">PUBLISH</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Button Ends-->
+
+                
+            </div>
+        </div>
+    }
+    @Html.Partial("_Footer")
+    <!--JQuery JS-->
+    <script src="~/Scripts/js/jquery.js"></script>
+
+    <!--Bootstrap JS-->
+    <script src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
+
+    <script>
+        //For Profile Picture
+        var input_var = document.getElementById('upload_notes');
+        var infoArea = document.getElementById('upload_notes-filename');
+
+        //For Upload Notes
+        var input_img = document.getElementById('upload_image');
+        var infoAreaimg = document.getElementById('upload_image-filename');
+
+        //For Preview Notes
+        var input_img1 = document.getElementById('upload_image1');
+        var infoAreaimg1 = document.getElementById('upload_image-filename1');
+
+        if (input_var) {
+            input_var.addEventListener('change', showFileName);
+        }
+
+        if (input_img) {
+            input_img.addEventListener('change', showImgName);
+        }
+
+        if (input_img1) {
+            input_img1.addEventListener('change', showImgName1);
+        }
+
+        function showFileName(event) {
+
+            // the change event gives us the input it occurred in
+            var input_var = event.srcElement;
+
+            // the input has an array of files in the `files` property, each one has a name that you can use. We're just using the name here.
+            var fileName = input_var.files[0].name;
+
+            // use fileName however fits your app best, i.e. add it into a div
+            infoArea.textContent = 'Notes name: ' + fileName;
+        }
+        function showImgName(event) {
+
+            var input_img = event.srcElement;
+
+            var fileName = input_img.files[0].name;
+
+            infoAreaimg.textContent = 'Picture name: ' + fileName;
+        }
+        function showImgName1(event) {
+
+            var input_img1 = event.srcElement;
+
+            var fileName = input_img1.files[0].name;
+
+            infoAreaimg1.textContent = 'Picture name: ' + fileName;
+        }
+
+        //function confirmation_btn() {
+
+        //}
+    </script>
+
+    <!--Custom JS-->
+    <!--<script src="~/Scripts/js/ChangeFilename.js"></script>-->
+
+    @Scripts.Render("~/bundles/jqueryval");
+
+    @Html.ValidationMessage("error");
+</body>
+</html>
+

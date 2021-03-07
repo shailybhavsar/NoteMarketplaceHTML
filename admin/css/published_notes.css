@@ -38,6 +38,10 @@ body{
   margin-left: 5px;
   font-size: 14px;
 }
+.navbar-light .navbar-nav .nav-link:hover{
+  color: #6255a5;
+  text-decoration: underline;
+}
 
 /*Button*/
 #btn .btn-block{
@@ -143,7 +147,9 @@ body{
   line-height: 22px;
   font-weight: 700;
 }
-
+.button .btn-primary:hover{
+  opacity: 0.9;
+}
 #search{
   margin-top: 40px;
 }
@@ -176,7 +182,9 @@ body{
   line-height: 22px;
   font-weight: 700;
 }
-
+#add-admin .btn-primary:hover{
+  opacity: 0.9;
+}
 .form-control::placeholder{
   font-family: Open Sans;
   font-size: 16px;

@@ -38,6 +38,10 @@ body{
   margin-left: 5px;
   font-size: 14px;
 }
+.navbar-light .navbar-nav .nav-link:hover{
+  color: #6255a5;
+  text-decoration: underline;
+}
 
 /*Button*/
 #btn .btn-block{
@@ -81,21 +85,7 @@ body{
   padding-right: 11px;
 }
 
-/*Button*/
-#btn .btn-block{
- font-family: Open Sans;
- font-weight: 500;
- font-size: 13px;
- background-color: #6255a5;
- width: 70px;
- height: 35px;
- border: 4px #6255a5;
- color: #fff;
- padding: 1px 2px 3px 2px;
- margin-right: -68px;
- margin-top: -8px;
- margin-bottom: 0px;
-}
+
 
 .dropdown-menu a{
   font-size: 16px;
@@ -167,6 +157,10 @@ body{
   margin-top: 30px;
   margin-bottom: 60px;
   border:3px transparent;
+}
+
+.submit .btn:hover{
+  opacity: 0.9;
 }
 
 footer {

@@ -1,0 +1,141 @@
+﻿@model NotesMarketPlaceProject.Models.SearchNotes
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Note Details</title>
+
+    <!--Important meta tags-->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/bootstrap/bootstrap.min.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/note_details.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/responsive_note_details.css">
+</head>
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="~/Content/images/logo.png" alt="logo" class="logo">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto text-right">
+                    <li class="nav-item"><a class="nav-link" href="search_notes.html">Search Notes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mysold_notes.html">Sell Your Notes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="buyer_request.html">Buyer Requests</a></li>
+                    <li class="nav-item"><a class="nav-link" href="FAQ.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+
+                    <li class="nav-item"><a class="nav-link" href="#"><img src="~/Content/images/Add-notes/user-img.png" alt="user-img"></a></li>
+                    <li class="nav-item" id="btn">
+                        <a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Logout</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Navbar Ends-->
+    <!--Notes Details-->
+    <div class="container" id="padding">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-12">
+                <!--Part 1-->
+                <div class="row">
+                    <!--Left Part-->
+                    <div class="col-lg-7 col-md-7 col-sm-12" id="note-details">
+                        <!--Heading-->
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12 col-12" id="heading-left">
+                                <h3>Notes Details</h3>
+                                <img class="card-img-top" src="~/Uploadimg/@Model.DisplayPicture" alt="Card image cap" id="">
+                            </div>
+                            <div class="col-md-6 col-sm-12 col-12" id="heading-right">
+                                <h2></h2>
+                                <h6>@Model.Title</h6>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur et expedita placeat, debitis amet impedit fugit natus?</p>
+                                <button type="button" class="btn btn-primary" id="download-btn" data-toggle="modal" data-target="#exampleModal">DOWNLOAD / $15</button>
+                            </div>
+
+                            <!--Modal-->
+                        </div>
+                    </div>
+                </div>
+
+                <!--Right Part-->
+                <div class="col-lg-5 col-md-5 col-sm-12" id="note-review">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-6"><span id="type">Institution:</span></div>
+                        <div class="col-md-6 col-sm-6 col-6 text-right">
+                            <span id="value">
+                                @Model.UniversityName
+                            </span>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-6"><span id="type">Country:</span></div>
+                        <div class="col-md-6 col-sm-6 col-6 text-right">
+                            <span id="value">
+                                @Model.CountryName
+                            </span>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-6"><span id="type">Course Name:</span></div>
+                        <div class="col-md-6 col-sm-6 col-6 text-right">
+                            <span id="value">
+                                @Model.Course
+                            </span>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-6"><span id="type">Course Code:</span></div>
+                        <div class="col-md-6 col-sm-6 col-6 text-right">
+                            <span id="value">@Model.CourseCode</span></div>
+                        <div class="col-md-6 col-sm-6 col-6"><span id="type">Proffessor:</span></div>
+                        <div class="col-md-6 col-sm-6 col-6 text-right">
+                            <span id="value">
+                               @Model.Professor
+                            </span>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-6"><span id="type">Number Of Pages:</span></div>
+                        <div class="col-md-6 col-sm-6 col-6 text-right"><span id="value">@Model.NumberOfPages</span></div>
+                        <div class="col-md-6 col-sm-6 col-6"><span id="type">Approoved date:</span></div>
+                        <div class="col-md-6 col-sm-6 col-6 text-right">
+                            <span id="value">
+                                @Model.CreatedDate
+                            </span>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-6"><span id="type">Rating:</span></div>
+                        <div class="col-md-6 col-sm-6 col-6 text-right">
+                            <span id="value" class="rate">
+                                <img src="~/Content/images/star.png" alt="star">
+                                <img src="~/Content/images/star.png" alt="star">
+                                <img src="~/Content/images/star.png" alt="star">
+                                <img src="~/Content/images/star.png" alt="star">
+                                <img src="~/Content/images/star-white.png" alt="star">
+                                100 Reviews
+                            </span>
+                        </div>
+                        <div class="col-md-12 col-sm-12 col-12" id="special-note">
+                            <p>5 Users marked this note as inappropriate.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
