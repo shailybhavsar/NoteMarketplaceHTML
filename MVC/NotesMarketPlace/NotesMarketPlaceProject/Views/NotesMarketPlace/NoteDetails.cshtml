@@ -65,11 +65,11 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-12 col-12" id="heading-left">
                                 <h3>Notes Details</h3>
-                                <img class="card-img-top" src="~/Uploadimg/@Model.DisplayPicture" alt="Card image cap" id="">
+                                <img class="card-img-top" src="~/Uploadimg/@Model.Singlenote.DisplayPicture" alt="Card image cap" id="">
                             </div>
                             <div class="col-md-6 col-sm-12 col-12" id="heading-right">
                                 <h2></h2>
-                                <h6>@Model.Title</h6>
+                                <h6>@Model.Singlenote.Title</h6>
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur et expedita placeat, debitis amet impedit fugit natus?</p>
                                 <button type="button" class="btn btn-primary" id="download-btn" data-toggle="modal" data-target="#exampleModal">DOWNLOAD / $15</button>
                             </div>
@@ -85,28 +85,28 @@
                         <div class="col-md-6 col-sm-6 col-6"><span id="type">Institution:</span></div>
                         <div class="col-md-6 col-sm-6 col-6 text-right">
                             <span id="value">
-                                @Model.UniversityName
+                                @Model.Singlenote.UniversityName
                             </span>
                         </div>
                         <div class="col-md-6 col-sm-6 col-6"><span id="type">Country:</span></div>
                         <div class="col-md-6 col-sm-6 col-6 text-right">
                             <span id="value">
-                                @Model.CountryName
+                                @Model.Singlenote.Country
                             </span>
                         </div>
                         <div class="col-md-6 col-sm-6 col-6"><span id="type">Course Name:</span></div>
                         <div class="col-md-6 col-sm-6 col-6 text-right">
                             <span id="value">
-                                @Model.Course
+                                @Model.Singlenote.Course
                             </span>
                         </div>
                         <div class="col-md-6 col-sm-6 col-6"><span id="type">Course Code:</span></div>
                         <div class="col-md-6 col-sm-6 col-6 text-right">
-                            <span id="value">@Model.CourseCode</span></div>
+                            <span id="value">@Model.Singlenote.CourseCode</span></div>
                         <div class="col-md-6 col-sm-6 col-6"><span id="type">Proffessor:</span></div>
                         <div class="col-md-6 col-sm-6 col-6 text-right">
                             <span id="value">
-                               @Model.Professor
+                               @Model.Singlenote.Professor
                             </span>
                         </div>
                         <div class="col-md-6 col-sm-6 col-6"><span id="type">Number Of Pages:</span></div>
@@ -114,7 +114,7 @@
                         <div class="col-md-6 col-sm-6 col-6"><span id="type">Approoved date:</span></div>
                         <div class="col-md-6 col-sm-6 col-6 text-right">
                             <span id="value">
-                                @Model.CreatedDate
+                                @Model.Singlenote.CreatedDate
                             </span>
                         </div>
                         <div class="col-md-6 col-sm-6 col-6"><span id="type">Rating:</span></div>

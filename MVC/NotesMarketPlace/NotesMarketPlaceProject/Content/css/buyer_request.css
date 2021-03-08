@@ -292,6 +292,8 @@ footer {
   padding-right: 10px;
 }
 
-.th , td{
-	border-top : none !important;
+/*Datatable class*/
+table.dataTable thead .sorting,
+table.dataTable thead .sorting_asc{
+	background:none;
 }

@@ -21,7 +21,7 @@ namespace NotesMarketPlaceProject.Models
         public string CountryName { get; set; }
         public string CourseCode { get; set; }
         public string Professor { get; set; }
-
+        public SellerNote Singlenote { get; set; }
         public IEnumerable<NoteType> types { get; set; }
         public IEnumerable<NoteCategory> categories { get; set; }
         public IEnumerable<SellerNote> univercities { get; set; }

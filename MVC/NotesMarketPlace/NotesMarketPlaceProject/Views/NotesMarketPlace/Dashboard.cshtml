@@ -1,14 +1,8 @@
-﻿@model IEnumerable<NotesMarketPlaceProject.Models.GetSellerNotesData>
-
+﻿@model NotesMarketPlaceProject.ViewModel.DashboardViewModel
 <!DOCTYPE html>
 <html>
 <head>
     <title>Dashboard</title>
-
-    <!--Important meta tags-->
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
 
     <!--Google Fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -24,6 +18,7 @@
 
     <!--Custom datatable-->
     <link href="~/Content/css/datatable/bootstarp_4_datatable.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -151,19 +146,16 @@
                     </div>
 
                     <div class="col-md-6 col-sm-6 col-12">
-                        @using (Html.BeginForm())
-                        {
-                            <div class="row" id="search">
-                                <div class="col-md-6 col-sm-6 col-6">
-                                    <div class="form-group input">
-                                        @Html.TextBox("Search_data", ViewBag.filtervalue as string, new { @class = "form-control", @id = "exampleInput", @placeholder = "Search", @type = "search" })
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-6">
-                                    <button type="submit" class="btn btn-primary">SEARCH</button>
+                        <div class="row" id="search">
+                            <div class="col-md-6 col-sm-6 col-6">
+                                <div class="form-group exampleInput" id="dataTables_filter">
+                                    <input class="form-control" id="exampleInput" placeholder="Search">
                                 </div>
                             </div>
-                        }
+                            <div class="col-md-4 col-sm-6 col-6">
+                                <button class="btn btn-primary" type="button" id="searchbtn">SEARCH</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -171,20 +163,20 @@
                 <div class="row" id="table-1">
                     <div class="col-md-12">
                         <div class="table-responsive">
-                            @*@Html.BeginForm("Dashboard", "NotesMarketPlace", FormMethod.Get)*@
-                            <table class="table" id="buyerrequest">
+                            <table class="table" id="dashboard_table" data-pagination="true">
                                 <thead>
                                     <tr class="th_table">
-                                        <th>@Html.ActionLink("Added Date", "Dashboard", new { Sorting_Order = ViewBag.SortingDate, style = "color:#6255a5;" })</th>
-                                        <th>@Html.ActionLink("Title", "Dashboard", new { Sorting_Order = ViewBag.SortingTitle, style = "color:#6255a5;" })</th>
-                                        <th>@Html.ActionLink("Category", "Dashboard", new { Sorting_Order = ViewBag.SortingCategory, style = "color:#6255a5;" })</th>
-                                        <th>@Html.ActionLink("Status", "Dashboard", new { Sorting_Order = ViewBag.SortingStatus })</th>
+                                        <th>ADDED DATE</th>
+                                        <th>TITLE</th>
+                                        <th>CATEGORY</th>
+                                        <th>STATUS</th>
                                         <th>  </th>
                                     </tr>
 
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model)
+
+                                    @foreach (var item in Model.inprogress)
                                     {
                                         <tr>
                                             <td>@Html.DisplayFor(m => item.titlelist.CreatedDate)</td>
@@ -242,32 +234,40 @@
     <!--Bootstrap JS-->
     <script type="text/javascript" src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
 
-    <!--Script For Datatable-->
+    <!--Bootstrap JS-->
+    <script type="text/javascript" src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>*@
 
-    <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
-    <script src="~/Scripts/DataTables/dataTables.bootstrap.min.js"></script>
+    @*@section  Scripts{
+        <script>
+            $(document).ready(function () {
+                var table = $('#dashboard_table').DataTable({
+                    "pageLength": 5,
+                    "pagingType": "full_members",
+                    "paging": false,
+                    language: {
+                        paginate: {
+                            next: '<i class="fa fa-angle-right fa-2x"></i>',
+                            previous: '<i class="fa fa-angle-left fa-2x"></i>',
+                            first: false,
+                            last: false
+                        }
+                    },
+                    bFilter: true,
+                    ordering: true,
+                    searching: true,
+                    "dom": '<"top">rt<"bottom"p>'
+                });
 
+                $('.dataTables_length').addClass('bs-select');
 
-    @*<script>
-            document.ready(function () {
-                var table = $('#buyerrequest').DataTable(
-                    {
-                        "pageLength": 5,
-                        "pagingType": "full_members",
-                        language: {
-                            paginate: {
-                                next: '<i class="fa fa-angle-right fa-2x"></i>',
-                                previous: '<i class="fa fa-angle-left fa-2x"></i>',
-                                first: false,
-                                last: false
-                            }
-                        },
-                        bFilter: false,
-                        ordering: false,
-                        searching: true,
-                        "dom": '<"top"i>rt<"bottom"flp><"clear">'
-                    });
+                $("#searchbtn").click(function () {
+                    var x = $("#exampleInput").val();
+                    table.search(x).draw();
+                });
             });
-        </script>*@
+        </script>
+    }*@
 </body>
-</html>
+</html >

@@ -15,8 +15,9 @@
     <!--Bootstrap CSS-->
     <link href="~/Content/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
 
-
-    <link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <!--Datatable CSS-->
+    @*<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />*@
+    <link href="~/Content/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
 
     <!--Custom CSS-->
     <link href="~/Content/css/buyer_request.css" rel="stylesheet" />
@@ -99,12 +100,12 @@
                         <table class="table" id="buyerrequest" data-pagination="true">
                             <thead>
                                 <tr class="tr">
-                                    <th>@Html.ActionLink("NOTE TITLE", "BuyerRequest")</th>
-                                    <th>@Html.ActionLink("CATEGORY", "BuyerRequest")</th>
-                                    <th>@Html.ActionLink("BUYER NAME", "BuyerRequest")</th>
+                                    <th>NOTE TITLE</th>
+                                    <th>CATEGORY</th>
+                                    <th>BUYER NAME</th>
                                     @*<th>@Html.ActionLink("Sell Type", "BuyerRequest")</th>*@
-                                    <th>@Html.ActionLink("PRICE", "BuyerRequest")</th>
-                                    <th>@Html.ActionLink("DOWNLOAD DATE", "BuyerRequest")</th>
+                                    <th>PRICE</th>
+                                    <th>DOWNLOAD DATE</th>
                                     <th> </th>
                                     <th> </th>
                                 </tr>
@@ -186,8 +187,7 @@
                 bFilter: true,
                 ordering: true,
                 searching: true,
-               "dom": '<"top">rt<"bottom"p>'
-               
+               "dom": '<"top">rt<"bottom"p>' 
            });
           
             $('.dataTables_length').addClass('bs-select');
