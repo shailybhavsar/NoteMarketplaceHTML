@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="NotesMarketPlaceTablesModel1StoreContainer" CdmEntityContainer="NotesMarketPlaceTablesEntities">
+  <EntityContainerMapping StorageEntityContainer="NotesMarketPlaceTablesModelStoreContainer" CdmEntityContainer="NotesMarketPlaceTablesEntities1">
     <EntitySetMapping Name="Countries">
-      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel1.Country">
+      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel.Country">
         <MappingFragment StoreEntitySet="Country">
           <ScalarProperty Name="CountryID" ColumnName="CountryID" />
           <ScalarProperty Name="CountryName" ColumnName="CountryName" />
@@ -16,7 +16,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Downloads">
-      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel1.Download">
+      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel.Download">
         <MappingFragment StoreEntitySet="Downloads">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NoteID" ColumnName="NoteID" />
@@ -38,7 +38,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="NameTables">
-      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel1.NameTable">
+      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel.NameTable">
         <MappingFragment StoreEntitySet="NameTable">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -46,7 +46,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="NoteCategories">
-      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel1.NoteCategory">
+      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel.NoteCategory">
         <MappingFragment StoreEntitySet="NoteCategories">
           <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -61,7 +61,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="NoteTypes">
-      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel1.NoteType">
+      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel.NoteType">
         <MappingFragment StoreEntitySet="NoteTypes">
           <ScalarProperty Name="TypeID" ColumnName="TypeID" />
           <ScalarProperty Name="TypeName" ColumnName="TypeName" />
@@ -75,7 +75,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ReferenceDatas">
-      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel1.ReferenceData">
+      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel.ReferenceData">
         <MappingFragment StoreEntitySet="ReferenceData">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Value" ColumnName="Value" />
@@ -90,7 +90,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SellerNotes">
-      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel1.SellerNote">
+      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel.SellerNote">
         <MappingFragment StoreEntitySet="SellerNotes">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="SellerID" ColumnName="SellerID" />
@@ -121,7 +121,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SellerNotesAttachments">
-      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel1.SellerNotesAttachment">
+      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel.SellerNotesAttachment">
         <MappingFragment StoreEntitySet="SellerNotesAttachments">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NoteID" ColumnName="NoteID" />
@@ -136,7 +136,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SellerNotesReportedIssues">
-      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel1.SellerNotesReportedIssue">
+      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel.SellerNotesReportedIssue">
         <MappingFragment StoreEntitySet="SellerNotesReportedIssues">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NoteID" ColumnName="NoteID" />
@@ -151,7 +151,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SellerNotesReviews">
-      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel1.SellerNotesReview">
+      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel.SellerNotesReview">
         <MappingFragment StoreEntitySet="SellerNotesReviews">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="NoteID" ColumnName="NoteID" />
@@ -168,7 +168,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SystemConfigurations">
-      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel1.SystemConfiguration">
+      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel.SystemConfiguration">
         <MappingFragment StoreEntitySet="SystemConfiguration">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Key" ColumnName="Key" />
@@ -182,7 +182,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserProfiles">
-      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel1.UserProfile">
+      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel.UserProfile">
         <MappingFragment StoreEntitySet="UserProfile">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -208,7 +208,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserRoles">
-      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel1.UserRole">
+      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel.UserRole">
         <MappingFragment StoreEntitySet="UserRoles">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -222,7 +222,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel1.User">
+      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel.User">
         <MappingFragment StoreEntitySet="Users">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="RoleID" ColumnName="RoleID" />

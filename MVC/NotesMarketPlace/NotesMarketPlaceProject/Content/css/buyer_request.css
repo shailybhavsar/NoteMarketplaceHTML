@@ -42,6 +42,7 @@ body{
 /*Button*/
 #btn .btn-block{
  font-family: Open Sans;
+ width:150px;
  font-weight: 500;
  font-size: 13px;
  background-color: #6255a5;
@@ -102,7 +103,7 @@ body{
 	background-image: url("../images/downloads/search.jpg");
 	background-repeat: no-repeat;
 	padding-top: 10px;
-	padding-left: 18px;
+	padding-left: 25px;
 	background-position-x: 2%;
 	background-position-y: 58%;
 }
@@ -120,6 +121,7 @@ body{
 {
 	background-color: #6255a5;
 	height: 50px;
+	/*width:150px;*/
 	border-radius: 3px;
 	border-color: transparent;
 	color: #fff;
@@ -168,9 +170,6 @@ body{
 
 }
 
-
-
-
 .table td{
 	font-family: Open Sans;
 	font-size: 16px;
@@ -206,29 +205,38 @@ td:nth-child(2){
   background-color: #fff;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
-  left: -120px;
+  left: 0;
   margin-top: -10px;
   width: 230px;
 }
+.dropdown:hover .dropdown-content {
+	display: block;
+}
 
-.dropdown:hover .dropdown-content {display: block;}
+.dropdown:hover .dropbtn {
+	background-color: red;
+}
 
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown-item a {
+	color: black;
+	padding: 6px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
 
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+a.dropdown-item:hover {
+	background-color: #6255a5 !important;
+	color: #fff !important;
 }
 
 /*================================================
                 Pagianation
 ==================================================*/
-#page-nav{
-  text-align: center;
-  margin-top: 50px;
-  margin-bottom: 30px;
+#page-nav {
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 30px;
 }
 
 #num a{
@@ -264,11 +272,6 @@ td:nth-child(2){
   margin-left: 10px;
 }
 
-.pagination{
-  display: flex;
-  justify-content: center;
-}
-
 footer {
   width: 100%;
   bottom: 0;
@@ -296,4 +299,265 @@ footer {
 table.dataTable thead .sorting,
 table.dataTable thead .sorting_asc{
 	background:none;
+}
+
+table.dataTable thead .sorting_desc{
+	background:none;
+}
+
+.pagination {
+	display: flex!important;
+	justify-content: center!important;
+}
+
+.pagination .paginate_button{
+	color:black!important;
+}
+
+.dataTables_info{
+	display:none;
+}
+
+.table.dataTable thead th{
+	border-bottom:none !important;
+}
+table.dataTable tfoot th{
+	border-top:0;
+}
+
+table.dataTable thead .sorting {
+	background: none !important;
+}
+
+table.dataTable thead .sorting_asc {
+	background: none !important;
+}
+
+
+
+table.dataTable thead th, table.dataTable thead td {
+	padding: 10px 18px;
+	border-bottom: none;
+}
+
+table.dataTable.no-footer {
+	border-bottom: 1px solid #dee2e6;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+	background: none !important;
+	background-color: #6255a5 !important;
+	border-radius: 50% !important;
+	color: white !important;
+	font-family: "open sans",sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 20px;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+	display: table;
+	width: 100%;
+	text-align: center;
+	margin-top: 10px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+		background: none;
+		background-color: white;
+		color: #333 !important;
+		border-radius: 50%;
+		border: 1px solid white;
+		font-family: "open sans",sans-serif;
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 20px;
+		outline: none;
+}
+
+.dataTables_wrapper .dataTables_info {
+	display: none;
+}
+
+button#dropdownMenuButton {
+	background: none;
+	border: none;
+}
+
+button#dropdownMenuButton:active {
+	background: none;
+	border: none;
+}
+
+/*Stars*/
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+fieldset, label {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	margin: 20px;
+}
+
+h1 {
+	font-size: 1.5em;
+	margin: 10px;
+}
+
+/****** Style Star Rating Widget *****/
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+fieldset, label {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	margin: 20px;
+}
+
+h1 {
+	font-size: 1.5em;
+	margin: 10px;
+}
+/*Modal*/
+.modal-body .review h3 {
+	margin-top: 20px;
+	font-family: Open Sans;
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 28px;
+	color: #6255a5;
+	margin-left: 50px;
+	margin-bottom: -25px;
+}
+
+.modal-body .review-img {
+	margin-top: 40px;
+	margin-left: 50px;
+}
+.modal-body .review-img img {
+	margin-right: 30px;
+	width: 45px;
+	height: 45px;
+
+}
+
+.modal-body textarea {
+	margin-left: 50px;
+	height: 135px;
+	width: 360px;
+}
+
+.modal-body label {
+	margin-top: 60px;
+	margin-left: 0px;
+	font-family: Open Sans;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	color: #333333;
+}
+
+.comments::placeholder {
+	font-family: Open Sans;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 20px;
+	color: #8a8a8a;
+}
+
+.submit-btn {
+	margin-left: 50px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+#modal-btn {
+	background-color: #6255a5;
+	color: #fff;
+	width: 150px;
+	height: 50px;
+	font-family: Open Sans;
+	font-size: 18px;
+	line-height: 22px;
+	border-color: transparent;
+}
+/****** Style Star Rating Widget *****/
+
+.rating {
+	border: none;
+	float: left;
+	margin-left: 50px;
+	margin-bottom: 30px;
+}
+
+.rating > input {
+	display: none;
+}
+
+.rating > label:before {
+	margin: 5px;
+	font-size: 1.25em;
+	font-family: FontAwesome;
+	display: inline-block;
+	content: "\f005";
+}
+
+.rating > .half:before {
+	content: "\f089";
+	position: absolute;
+}
+
+.rating > label {
+	color: #ddd;
+	float: right;
+	font-size: 30px;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label {
+	color: #FFD700;
+}
+
+/* hover previous stars in list */
+rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label {
+	color: #FFED85;
+}
+
+.comments label {
+	margin-left: -220px;
+	margin-top: 140px;
+	margin-bottom:10px;
+}
+/*Mark as an inappropriate*/
+textarea#exampleFormControlTextarea {
+	margin-left: 0px;
+	width: 100%;
+}
+div#report {
+	margin-top: -50px;
+}
+
+.modal-title {
+	margin-bottom: 0;
+	line-height: 1.5;
+	color: #6255a5;
+	font-size: 28px;
+	font-weight: 600;
+}
+a {
+	color: #6255a5;
+	text-decoration: none;
+}
+a:hover {
+	color: #6255a5;
 }

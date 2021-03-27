@@ -223,3 +223,14 @@ footer {
   height: 50px;
   border-radius: 3px; 
 }
+#datepicker{
+    height: 50px;
+    border-radius: 3px;
+}
+
+a.dropdown-item:hover {
+    background-color: #6255a5 !important;
+    color: #fff !important;
+}
+
+

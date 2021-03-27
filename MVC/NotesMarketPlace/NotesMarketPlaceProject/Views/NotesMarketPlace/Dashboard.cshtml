@@ -10,24 +10,24 @@
     <!--Bootstrap CSS-->
     <link href="~/Content/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
 
+    <!--Datatable CSS-->
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
     <!--Custom CSS-->
     <link rel="stylesheet" type="text/css" href="~/Content/css/dashboard.css">
 
     <!--Custom CSS-->
     <link href="~/Content/css/responsive_dashboard.css" rel="stylesheet" />
 
-    <!--Custom datatable-->
-    <link href="~/Content/css/datatable/bootstarp_4_datatable.css" rel="stylesheet" />
-
 </head>
-
 <body>
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="~/Content/images/User-Profile/logo.png" alt="logo">
+                <img src="~/Content/images/logo.png" alt="logo" class="logo" />
             </a>
+            
             <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -36,23 +36,23 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto text-right">
-                    <li class="nav-item"><a class="nav-link" href="search_notes.html">Search Notes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="mysold_notes.html">Sell Your Notes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="buyer_request.html">Buyer Requests</a></li>
-                    <li class="nav-item"><a class="nav-link" href="FAQ.html">FAQ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+                    <li class="nav-item"><a href="@Url.Action("SearchNotes", "NotesMarketPlace")" class="nav-link">Search Notes</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Dashboard", "NotesMarketPlace")" class="nav-link">Sell Your Notes</a></li>
+                    <li class="nav-item"><a href="@Url.Action("BuyerRequest", "NotesMarketPlace")" class="nav-link">Buyer Requests</a></li>
+                    <li class="nav-item"><a href="@Url.Action("FAQ", "NotesMarketPlace")" class="nav-link">FAQ</a></li>
+                    <li class="nav-item"><a href="@Url.Action("ContactUs", "NotesMarketPlace")" class="nav-link">Contact Us</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            <img src="~/Content/images/user-img.png" alt="user-1">
+                            <img src="@Url.Action("UserPhoto", "NotesMarketPlace" )" alt="logo">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">My Profile</a>
-                            <a class="dropdown-item" href="#">My Download</a>
-                            <a class="dropdown-item" href="#">My Sold Notes</a>
-                            <a class="dropdown-item" href="#">My Rejected Notes</a>
-                            <a class="dropdown-item" href="#">Change Password</a>
-                            <a class="dropdown-item" href="#" id="log-out">Logout</a>
+                            <a href="@Url.Action("EditProfile", "NotesMarketPlace")" class="dropdown-item">My Profile</a>
+                            <a href="@Url.Action("DownloadNotes", "NotesMarketPlace")" class="dropdown-item">My Download</a>
+                            <a href="@Url.Action("SoldNotes", "NotesMarketPlace")" class="dropdown-item">My Sold Notes</a>
+                            <a href="@Url.Action("RejectedNotes", "NotesMarketPlace")" class="dropdown-item">My Rejected Notes</a>
+                            <a href="@Url.Action("Changepassword", "NotesMarketPlace")" class="dropdown-item">Change Password</a>
+                            <a class="dropdown-item" id="log-out">Logout</a>
                         </div>
                     </li>
                     <li class="nav-item" id="btn">
@@ -101,7 +101,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 text-center">
-                                        <h1 class="dashboard-heading">100</h1>
+                                        <h1 class="dashboard-heading">@ViewBag.countsoldnote</h1>
                                         <p class="dashboard-text">Number Of Notes Sold</p>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 text-center">
@@ -116,7 +116,7 @@
                     <div class="col-lg-2 col-md-4 col-sm-4">
                         <div class="card dashboard-card mx-auto">
                             <div class="card-body text-center">
-                                <h1 class="dashboard-heading">38</h1>
+                                <h1 class="dashboard-heading">@ViewBag.countdownloadnotes</h1>
                                 <p class="dashboard-text">My Downloads</p>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                     <div class="col-lg-2 col-md-4 col-sm-4">
                         <div class="card dashboard-card mx-auto">
                             <div class="card-body text-center">
-                                <h1 class="dashboard-heading">12</h1>
+                                <h1 class="dashboard-heading">@ViewBag.countrejectednotes</h1>
                                 <p class="dashboard-text">My Rejected Notes</p>
                             </div>
                         </div>
@@ -132,7 +132,7 @@
                     <div class="col-lg-2 col-md-4 col-sm-4">
                         <div class="card dashboard-card mx-auto">
                             <div class="card-body text-center">
-                                <h1 class="dashboard-heading">102</h1>
+                                <h1 class="dashboard-heading">@ViewBag.countbuyerrequest</h1>
                                 <p class="dashboard-text">Buyer Requests</p>
                             </div>
                         </div>
@@ -147,127 +147,190 @@
 
                     <div class="col-md-6 col-sm-6 col-12">
                         <div class="row" id="search">
-                            <div class="col-md-6 col-sm-6 col-6">
-                                <div class="form-group exampleInput" id="dataTables_filter">
-                                    <input class="form-control" id="exampleInput" placeholder="Search">
+                            <div class="col-md-8  col-sm-6 col-6">
+                                <div class="form-group exampleInput">
+                                    <input type="text" class="form-control" id="exampleInput1" placeholder="Search">
                                 </div>
                             </div>
-                            <div class="col-md-4 col-sm-6 col-6">
-                                <button class="btn btn-primary" type="button" id="searchbtn">SEARCH</button>
+                            <div class="col-md-4  col-sm-6 col-6">
+                                <button class="btn btn-primary" id="searchbtn1">SEARCH</button>
                             </div>
                         </div>
                     </div>
                 </div>
+            
+            
 
-                <!--Table 1-->
-                <div class="row" id="table-1">
-                    <div class="col-md-12">
-                        <div class="table-responsive">
-                            <table class="table" id="dashboard_table" data-pagination="true">
-                                <thead>
-                                    <tr class="th_table">
-                                        <th>ADDED DATE</th>
-                                        <th>TITLE</th>
-                                        <th>CATEGORY</th>
-                                        <th>STATUS</th>
-                                        <th>  </th>
-                                    </tr>
+            <!--Table 1-->
+            <div class="row" id="table-1">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table" id="dashboard_table1" data-pagination="true">
+                            <thead>
+                                <tr class="th_table">
+                                    <th>ADDED DATE</th>
+                                    <th>TITLE</th>
+                                    <th>CATEGORY</th>
+                                    <th>STATUS</th>
+                                    <th>ACTIONS</th>
+                                </tr>
 
-                                </thead>
-                                <tbody>
+                            </thead>
+                            <tbody>
 
-                                    @foreach (var item in Model.inprogress)
+                                @foreach (var item in Model.inprogress)
+                                {
+                                <tr>
+                                    <td>@Html.DisplayFor(m => item.titlelist.CreatedDate)</td>
+                                    <td><a href="@Url.Action("NoteDetails", "NotesMarketPlace", new { id = item.titlelist.ID })">@Html.DisplayFor(m => item.titlelist.Title)</a></td>
+                                    
+                                    <td>@Html.DisplayFor(m => item.categorylist.CategoryName)</td>
+                                    <td>@Html.DisplayFor(m => item.statuslist.DataValue)</td>
+
+                                    @if (item.statuslist.DataValue == "Draft")
                                     {
-                                        <tr>
-                                            <td>@Html.DisplayFor(m => item.titlelist.CreatedDate)</td>
-                                            <td>@Html.DisplayFor(m => item.titlelist.Title)</td>
-                                            <td>@Html.DisplayFor(m => item.categorylist.CategoryName)</td>
-                                            <td>@Html.DisplayFor(m => item.statuslist.DataValue)</td>
-
-                                            @if (item.statuslist.DataValue == "Draft")
-                                            {
-                                                <td>
-                                                    <img src="~/Content/images/Dashboard/edit.png" id="view-1" alt="edit" />
-                                                    <img src="~/Content/images/delete.png" id="view-1" alt="delete">
-                                                </td>
-                                            }
-                                            else
-                                            {
-                                                <td>
-                                                    <img src="~/Content/images/Dashboard/eye.png" alt="review">
-                                                </td>
-                                            }
-                                        </tr>
+                                        <td>
+                                            <a href="@Url.Action("DashboardEditNote", "NotesMarketPlace", new { id = item.titlelist.ID })"><img src="~/Content/images/Dashboard/edit.png" id="view-1" alt="edit" /></a>
+                                            <a href="@Url.Action("DeleteNotes", "NotesMarketPlace", new { id = item.titlelist.ID })"><img src="~/Content/images/delete.png" class="deletenote" alt="delete" onclick="chk()"></a>
+                                        </td>
                                     }
-                                </tbody>
-                            </table>
-                        </div>
+                                    else
+                                    {
+                                        <td>
+                                            <img src="~/Content/images/Dashboard/eye.png" id="view-1" alt="view" onclick="window.location.href='@Url.Action("NoteDetails","NotesMarketPlace", new { id=item.titlelist.ID})'">
+                                        </td>
+                                    }
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+            </div>
 
-                <div class="container">
-                    <div class="row" id="page-nav">
-                        <div class="col-md-12">
-                            <nav aria-label="Page navigation example">
-                                @*<ul class="pagination">*@
-                                @*@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-                                    @Html.PagedListPager(Model, Page_No => Url.Action("Dashboard",new { Page_No, Sorting_Order = ViewBag.CurrentSortOrder, Filter_Value = ViewBag.FilterValue ,@class= "page-item" }))-->
-                                    <li class="page-item" id="arrow"><a class="page-link" href="#"><</a></li>
-                                    <-->li class="page-item" id="num"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item" id="num"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item" id="num"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item" id="num"><a class="page-link" href="#">4</a></li>
-                                    <li class="page-item" id="num"><a class="page-link" href="#">5</a></li>
-                                    <li class="page-item" id="arrow"><a class="page-link" href="#">></a></li>*@
 
-                            </nav>
+            <!--Part 4-->
+            <div class="row" id="published">
+                <div class="col-md-6 col-sm-6 col-12" id="heading">
+                    <h3>Published Notes</h3>
+                </div>
+
+                <div class="col-md-6 col-sm-6 col-12">
+                    <div class="row" id="search">
+                        <div class="col-md-8  col-sm-6 col-6">
+                            <div class="form-group exampleInput">
+                                <input type="text" class="form-control" id="exampleInput2" placeholder="Search">
+                            </div>
+                        </div>
+                        <div class="col-md-4  col-sm-6 col-6">
+                            <button class="btn btn-primary" id="searchbtn2">SEARCH</button>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!--Table 2-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table" id="dashboard_table2" data-pagination="true">
+                            <thead>
+                                <tr class="tr">
+                                    <th>ADDED DATE</th>
+                                    <th>TITLE</th>
+                                    <th>CATEGORY</th>
+                                    <th>SELL TYPE</th>
+                                    <th>PRICE</th>
+                                    <th>ACTIONS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.published)
+                                {
+                                    <tr>
+                                        <td>@item.titlelist1.CreatedDate</td>
+                                        <td><a href="@Url.Action("NoteDetails", "NotesMarketPlace", new { id = item.titlelist1.ID })">@item.titlelist1.Title</a></td>
+                                        <td>@item.categorylist.CategoryName</td>
+
+                                        @if (item.titlelist1.IsPaid == false)
+                                        {
+                                            <td>Free</td>
+                                        }
+                                        else
+                                        {
+                                            <td>Paid</td>
+                                        }
+                                        <td>$@item.titlelist1.SellingPrice</td>
+                                        <td><img src="~/Content/images/Dashboard/eye.png" alt="review"></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            </div>
         </div>
     </div>
+    
     @Html.Partial("_Footer")
     <!--JQuery JS-->
     <script src="~/Scripts/js/jquery.js"></script>
 
     <!--Bootstrap JS-->
     <script type="text/javascript" src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
 
-    <!--Bootstrap JS-->
-    <script type="text/javascript" src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
-    @*<script type="text/javascript" src="~/Scripts/DataTables/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>*@
-
-    @*@section  Scripts{
+    @section  Scripts{
         <script>
             $(document).ready(function () {
-                var table = $('#dashboard_table').DataTable({
-                    "pageLength": 5,
-                    "pagingType": "full_members",
-                    "paging": false,
+                $.noConflict();
+
+                var table = $('#dashboard_table1').DataTable({
+                    'sDom': '"top"i',
+                    "iDisplayLength": 5,
                     language: {
                         paginate: {
-                            next: '<i class="fa fa-angle-right fa-2x"></i>',
-                            previous: '<i class="fa fa-angle-left fa-2x"></i>',
+                            next: '<i class="fa fa-angle-right fa-1x"></i>',
+                            previous: '<i class="fa fa-angle-left fa-1x"></i>',
                             first: false,
                             last: false
                         }
-                    },
-                    bFilter: true,
-                    ordering: true,
-                    searching: true,
-                    "dom": '<"top">rt<"bottom"p>'
+                    }
+                });
+                var table1 = $('#dashboard_table2').DataTable({
+                    'sDom': '"top"i',
+                    "iDisplayLength": 5,
+                    language: {
+                        paginate: {
+                            next: '<i class="fa fa-angle-right fa-1x"></i>',
+                            previous: '<i class="fa fa-angle-left fa-1x"></i>',
+                            first: false,
+                            last: false
+                        }
+                    }
                 });
 
-                $('.dataTables_length').addClass('bs-select');
-
-                $("#searchbtn").click(function () {
-                    var x = $("#exampleInput").val();
+                $("#searchbtn1").click(function () {
+                    var x = $("#exampleInput1").val();
                     table.search(x).draw();
                 });
+
+                $("#searchbtn2").click(function () {
+                    var x = $("#exampleInput2").val();
+                    table1.search(x).draw();
+                });
             });
+
+            function chk() {
+                if (confirm("Are you sure ,you want to delete this note??")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         </script>
-    }*@
+    }
 </body>
 </html >

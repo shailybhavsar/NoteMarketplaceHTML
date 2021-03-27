@@ -15,16 +15,17 @@
     <!--Bootstrap CSS-->
     <link href="~/Content/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
 
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="~/Content/css/font-awesome/css/font-awesome.min.css">
+
     <!--Datatable CSS-->
-    @*<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css" rel="stylesheet" />*@
-    <link href="~/Content/DataTables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
 
     <!--Custom CSS-->
     <link href="~/Content/css/buyer_request.css" rel="stylesheet" />
 
     <!--Custom CSS-->
     <link href="~/Content/css/responsive_buyer_request.css" rel="stylesheet" />
-
 </head>
 <body>
     <!--Navbar-->
@@ -41,23 +42,23 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto text-right">
-                    <li class="nav-item"><a class="nav-link" href="search_notes.html">Search Notes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="mysold_notes.html">Sell Your Notes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="buyer_request.html">Buyer Requests</a></li>
-                    <li class="nav-item"><a class="nav-link" href="FAQ.html">FAQ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
+                    <li class="nav-item"><a href="@Url.Action("SearchNotes", "NotesMarketPlace")" class="nav-link">Search Notes</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Dashboard", "NotesMarketPlace")" class="nav-link">Sell Your Notes</a></li>
+                    <li class="nav-item"><a href="@Url.Action("BuyerRequest", "NotesMarketPlace")" class="nav-link">Buyer Requests</a></li>
+                    <li class="nav-item"><a href="@Url.Action("FAQ", "NotesMarketPlace")" class="nav-link">FAQ</a></li>
+                    <li class="nav-item"><a href="@Url.Action("ContactUs", "NotesMarketPlace")" class="nav-link">Contact Us</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            <img src="~/Content/images/user-img.png" alt="user-1">
+                            <img src="@Url.Action("UserPhoto", "NotesMarketPlace" )" alt="logo">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">My Profile</a>
-                            <a class="dropdown-item" href="#">My Download</a>
-                            <a class="dropdown-item" href="#">My Sold Notes</a>
-                            <a class="dropdown-item" href="#">My Rejected Notes</a>
-                            <a class="dropdown-item" href="#">Change Password</a>
-                            <a class="dropdown-item" href="#" id="log-out">Logout</a>
+                            <a href="@Url.Action("EditProfile", "NotesMarketPlace")" class="dropdown-item">My Profile</a>
+                            <a href="@Url.Action("DownloadNotes", "NotesMarketPlace")" class="dropdown-item">My Download</a>
+                            <a href="@Url.Action("SoldNotes", "NotesMarketPlace")" class="dropdown-item">My Sold Notes</a>
+                            <a href="@Url.Action("RejectedNotes", "NotesMarketPlace")" class="dropdown-item">My Rejected Notes</a>
+                            <a href="@Url.Action("Changepassword", "NotesMarketPlace")" class="dropdown-item">Change Password</a>
+                            <a class="dropdown-item" id="log-out">Logout</a>
                         </div>
                     </li>
                     <li class="nav-item" id="btn">
@@ -100,10 +101,12 @@
                         <table class="table" id="buyerrequest" data-pagination="true">
                             <thead>
                                 <tr class="tr">
+                                    <th>SR NO.</th>
                                     <th>NOTE TITLE</th>
                                     <th>CATEGORY</th>
-                                    <th>BUYER NAME</th>
-                                    @*<th>@Html.ActionLink("Sell Type", "BuyerRequest")</th>*@
+                                    <th>BUYER</th>
+                                    <th>PHONE NO.</th>
+                                    <th>SELL TYPE</th>
                                     <th>PRICE</th>
                                     <th>DOWNLOAD DATE</th>
                                     <th> </th>
@@ -111,22 +114,41 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @{ int i = 0;}
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td>@Html.DisplayFor(m => item.sellertbl.Title)</td>
-                                        <td>@Html.DisplayFor(m => item.categorytbl.CategoryName)</td>
+                                        <td>@(i+=1)</td>
+                                        <td><a href="@Url.Action("NoteDetails", "NotesMarketPlace", new { id = item.downloadtbl.NoteID })">@Html.DisplayFor(m => item.downloadtbl.NoteTitle)</a></td>
+                                        <td>@Html.DisplayFor(m => item.downloadtbl.NoteCategory)</td>
                                         <td>@Html.DisplayFor(m => item.usertbl.EmailID)</td>
-                                        <td>@Html.DisplayFor(m => item.sellertbl.SellingPrice)</td>
-                                        <td>@Html.DisplayFor(m => item.sellertbl.CreatedDate)</td>
+                                        <td>@Html.DisplayFor(m => item.userprofiletbl.PhoneNumber)</td>
+                                        @if (item.downloadtbl.IsPaid == false)
+                                        {
+                                            <td>Free</td>
+                                        }
+                                        else
+                                        {
+                                            <td>Paid</td>
+                                        }
+                                        @if (item.downloadtbl.IsPaid == true)
+                                        {
+                                            <td>$@item.downloadtbl.PurchasedPrice</td>
+                                        }
+                                        else
+                                        {
+                                            <td>$0</td>
+                                        }
+                                        <td>@item.downloadtbl.CreatedDate</td>
                                         <td>
-                                            <img src="~/Content/images/downloads/eye.png" id="view-1" alt="view">
+                                            <img src="~/Content/images/downloads/eye.png" id="view-1" alt="view" onclick="window.location.href='@Url.Action("NoteDetails","NotesMarketPlace", new { id=item.downloadtbl.NoteID})'">
                                         </td>
                                         <td>
                                             <div class="dropdown">
-                                                <img src="~/Content/images/dots.png" class="dropimg" alt="view">
-                                                <div class="dropdown-content">
-                                                    <a href="#">Allow Download</a>
+                                                <img src="~/Content/images/dots.png" class="dropimg" alt="view" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a href="@Url.Action("Updatedownloadtbl", "NotesMarketPlace", new { id = item.downloadtbl.ID })">Allow Download</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -139,65 +161,42 @@
             </div>
         </div>
     </section>
+    <br />
+    <br />
+    @Html.Partial("_Footer")
     <!--JQuery JS-->
     <script src="~/Scripts/js/jquery.js"></script>
 
     <!--Bootstrap JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script type="text/javascript" src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Scripts/DataTables/jquery.dataTables.js"></script>
     <script type="text/javascript" src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
 
     @section  Scripts{
         <script>
-            @*$(document).ready(function () {
-
-                var table = $('#buyerrequest').DataTable(
-                    {
-                        "pageLength": 5,
-                        "pagingType": "full_members",
-                        language: {
-                            paginate: {
-                                next: '<i class="fa fa-angle-right fa-2x"></i>',
-                                previous: '<i class="fa fa-angle-left fa-2x"></i>',
-                                first: false,
-                                last: false
-                            }
-                        },
-                        bFilter: false,
-                        ordering: false,
-                        searching: true,
-                        "dom": '<"top">rt<"bottom"p>'
-                    });
-                $('.dataTables_length').addClass('bs-select');
-            });
-        </script>*@
-        $(document).ready( function () {
-           var table =   $('#buyerrequest').DataTable({
-                "pageLength": 5,
-                "pagingType": "full_members",
-                "paging": false,
-                language: {
-                    paginate: {
-                        next: '<i class="fa fa-angle-right fa-2x"></i>',
-                        previous: '<i class="fa fa-angle-left fa-2x"></i>',
-                        first: false,
-                        last: false
+            $(document).ready(function () {
+                $.noConflict();
+                var table = $('#buyerrequest').DataTable({
+                    'sDom': '"top"i',
+                    "iDisplayLength": 10,
+                    language: {
+                        paginate: {
+                            next: '<i class="fa fa-angle-right fa-1x"></i>',
+                            previous: '<i class="fa fa-angle-left fa-1x"></i>',
+                            first: false,
+                            last: false
+                        }
                     }
-                },
-                bFilter: true,
-                ordering: true,
-                searching: true,
-               "dom": '<"top">rt<"bottom"p>' 
-           });
-          
-            $('.dataTables_length').addClass('bs-select');
 
-            $("#searchbtn").click(function () {
-                var x = $("#exampleInput").val();
-                table.search(x).draw();
+                });
+
+                $("#searchbtn").click(function () {
+                    var x = $("#exampleInput").val();
+                    table.search(x).draw();
+                });
             });
-        });
-    </script>
+        </script>
     }
 </body>
 </html>

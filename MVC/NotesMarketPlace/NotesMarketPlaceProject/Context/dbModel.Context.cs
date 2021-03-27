@@ -13,10 +13,10 @@ namespace NotesMarketPlaceProject.Context
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class NotesMarketPlaceTablesEntities : DbContext
+    public partial class NotesMarketPlaceTablesEntities1 : DbContext
     {
-        public NotesMarketPlaceTablesEntities()
-            : base("name=NotesMarketPlaceTablesEntities")
+        public NotesMarketPlaceTablesEntities1()
+            : base("name=NotesMarketPlaceTablesEntities1")
         {
         }
     

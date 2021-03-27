@@ -1,0 +1,326 @@
+﻿@model NotesMarketPlaceProject.Models.UserProfileModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+
+    <!--Important meta tags-->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/bootstrap/bootstrap.min.css" />
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/userprofile.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/responsive_userprofile.css">
+
+    <!--Date CSS-->
+    <link href="~/Content/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="~/Content/images/User-Profile/logo.png" alt="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto text-right">
+                    <li class="nav-item"><a href="@Url.Action("SearchNotes", "NotesMarketPlace")" class="nav-link">Search Notes</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Dashboard", "NotesMarketPlace")" class="nav-link">Sell Your Notes</a></li>
+                    <li class="nav-item"><a href="@Url.Action("BuyerRequest", "NotesMarketPlace")" class="nav-link">Buyer Requests</a></li>
+                    <li class="nav-item"><a href="@Url.Action("FAQ", "NotesMarketPlace")" class="nav-link">FAQ</a></li>
+                    <li class="nav-item"><a href="@Url.Action("ContactUs", "NotesMarketPlace")" class="nav-link">Contact Us</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <img src="@Url.Action("UserPhoto", "NotesMarketPlace" )" alt="logo">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a href="@Url.Action("EditProfile", "NotesMarketPlace")" class="dropdown-item">My Profile</a>
+                            <a href="@Url.Action("DownloadNotes", "NotesMarketPlace")" class="dropdown-item">My Download</a>
+                            <a href="@Url.Action("SoldNotes", "NotesMarketPlace")" class="dropdown-item">My Sold Notes</a>
+                            <a href="@Url.Action("RejectedNotes", "NotesMarketPlace")" class="dropdown-item">My Rejected Notes</a>
+                            <a href="@Url.Action("Changepassword", "NotesMarketPlace")" class="dropdown-item">Change Password</a>
+                            <a class="dropdown-item" id="log-out">Logout</a>
+                        </div>
+                    </li>
+                    <li class="nav-item" id="btn">
+                        <a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Logout</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Navbar Ends-->
+    <!--Background image-->
+    <section id="background-image">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2 id="title">User Profile</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Background image Ends-->
+    @using (Html.BeginForm("EditProfile", "NotesMarketPlace", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <!--Basic Profile Details-->
+        <div class="container">
+            <div class="row">
+                <!--Left Part-->
+                <div class="col-md-12" id="heading">
+                    <h2>Basic Profile Details</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group input">
+                                @Html.LabelFor(m => m.FirstName, "First Name*")
+                                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @id = "exampleInput", placeholder = "Enter your first name" })
+                                @Html.ValidationMessageFor(m => m.FirstName, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group input">
+                                @Html.LabelFor(m => m.EmailID, "Email*")
+                                @Html.TextBoxFor(m => m.EmailID, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your email address", @readonly = "true" })
+                                @Html.ValidationMessageFor(m => m.EmailID, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-12">
+                            <div class="form-group input" id="gender">
+                                @Html.LabelFor(m => m.Gender, "Gender")
+                                @Html.DropDownList("Gender", ViewBag.refdataobj as SelectList, "Select your gender", new { @class = "form-control custom-select", @id = "exampleInput" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-12">
+                            <div class="form-group input">
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-12">
+                                        <label for="input">Profile Picture</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 text-center add-border">
+                                    <label for="upload">
+                                        <img src="~/Content/images/User-Profile/upload.png" />
+                                        @if (Model.ProfilePicture == null)
+                                        {
+                                            <p id="upload_picture">Upload a Picture</p>
+                                        }
+                                        else
+                                        {
+                                            <p id="upload_picture">@Html.DisplayFor(m=>m.ProfilePicture)</p>
+                                        }
+                                        <input type="file" id="upload" name="upload" style="display: none;">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Left side ends-->
+                <!--Right Side Part-->
+                <div class="col-md-6">
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group input">
+                                @Html.LabelFor(m => m.LastName, "Last Name*")
+                                @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your last name" })
+                                @Html.ValidationMessageFor(m => m.LastName, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group input" @*id="cal-photo"*@>
+                                @Html.LabelFor(m => m.DOB, "Date Of Birth")
+                                @Html.TextBoxFor(m => m.DOB, new { @class = "form-control"@*, @id = "datepicker"*@,type = "date",@placeholder = "Enter your date of birth"})
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group input" id="phone-no">
+                                @Html.LabelFor(m => m.PhoneNumberCountryCOde, "Phone Number")
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-3 col-5">
+                                        @Html.DropDownListFor(m => m.PhoneNumberCountryCOde, (IEnumerable<SelectListItem>)ViewBag.countryobj1, new { @class = "form-control custom-select", @id = "exampleInput", @placeholder = "Enter your phone number" })
+                                    </div>
+                                    <div class="col-md-9 col-sm-9 col-7">
+                                        @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your phone number" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Right side part ends-->
+            </div>
+        </div>
+        <!--Basic Profile Details Ends-->
+        <!--Address Details-->
+        <div class="container">
+            <div class="row">
+                <!--Left Part-->
+                <div class="col-md-12" id="heading">
+                    <h2>Address Details</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group input">
+                                @Html.LabelFor(m => m.AddressLine1, "Address Line 1*")
+                                @Html.TextBoxFor(m => m.AddressLine1, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your address" })
+                                @Html.ValidationMessageFor(m => m.AddressLine1, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group input">
+                                @Html.LabelFor(m => m.City, "City*")
+                                @Html.TextBoxFor(m => m.City, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your city" })
+                                @Html.ValidationMessageFor(m => m.City, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="form-group e-mail">
+                                @Html.LabelFor(m => m.ZipCode, "Zipcode*")
+                                @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your zipcode" })
+                                @Html.ValidationMessageFor(m => m.ZipCode, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+                <!--Left side ends-->
+                <!--Left Part Ends-->
+                <!--Right Part-->
+                <div class="col-md-6">
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12 col-12">
+                            <div class="form-group input">
+                                @Html.LabelFor(m => m.AddressLine2, "Address Line 2")
+                                @Html.TextBoxFor(m => m.AddressLine2, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your address" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-12">
+                            <div class="form-group input">
+                                @Html.LabelFor(m => m.State, "State*")
+                                @Html.TextBoxFor(m => m.State, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your state" })
+                                @Html.ValidationMessageFor(m => m.State, "", new { @style = "color:red" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 col-sm-12 col-12">
+                            <div class="form-group input" id="country">
+                                @Html.LabelFor(m => m.Country)
+                                @*@Html.DropDownListFor(m=>m.Country, new SelectList(Model.countries,"CountryID","CountryName"),"Select your contry",new {@class = "form-control", @id = "exampleInput"})*@
+                                @Html.DropDownListFor(m => m.Country, ViewBag.countryobj as SelectList, "Select your country", new { @class = "form-control custom-select", @id = "exampleInput" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Right Part ends-->
+
+            </div>
+        </div>
+        <!--Address Details Ends-->
+        <!--University and clg info-->
+        <div class="container">
+            <div class="row">
+                <!--Left Part-->
+                <div class="col-md-12" id="heading">
+                    <h2>University and College Information</h2>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12 col-12">
+                            <div class="form-group input">
+                                @Html.LabelFor(m => m.University, "University")
+                                @Html.TextBoxFor(m => m.University, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your university" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Left side ends-->
+                <!--Left Part Ends-->
+                <!--Right Part-->
+                <div class="col-md-6">
+                    <div class="form-row">
+                        <div class="col-md-12 col-sm-12 col-12">
+                            <div class="form-group input">
+                                @Html.LabelFor(m => m.College, "College")
+                                @Html.TextBoxFor(m => m.College, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your college" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Right Part ends-->
+            </div>
+        </div>
+        <!--University and clg info ends-->
+        <!--Button-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary btn-block">UPDATE</button>
+                </div>
+            </div>
+        </div>
+        <!--Button Ends-->
+    }
+    <!--JQuery JS-->
+    <script src="~/Scripts/js/jquery.js"></script>
+
+    <!--Bootstrap JS-->
+    <script type="text/javascript" src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
+
+    <!--Date JS-->
+    <script src="~/Scripts/js/bootstrap-datepicker.min.js"></script>
+
+    <script>
+        var input_var = document.getElementById('upload');
+        var infoArea = document.getElementById('upload_picture');
+
+        if (input_var) {
+            input_var.addEventListener('change', showImgName);
+        }
+        function showImgName(event) {
+
+            var input_var = event.srcElement;
+
+            var fileName = input_var.files[0].name;
+
+            infoArea.textContent = 'Img name: ' + fileName;
+        }
+
+        var $j = jQuery.noConflict();
+         $j("#datepicker").datepicker();
+
+    </script>
+    @Scripts.Render("~/bundles/jqueryval");
+    @Html.ValidationMessage("error");
+
+</body>
+</html>

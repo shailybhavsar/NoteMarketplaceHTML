@@ -11,5 +11,7 @@ namespace NotesMarketPlaceProject.ViewModel
         public IEnumerable<GetSellerNotesData> inprogress { get; set; }
         public IEnumerable<GetSellerNotesData> published { get; set; }
         public string seacrhdraft { get; set; }
+        //public dynamic ViewBag { get; }
+
     }
 }

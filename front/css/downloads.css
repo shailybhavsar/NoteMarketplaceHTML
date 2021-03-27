@@ -279,13 +279,14 @@ footer {
 
 /*Modal*/
 .modal-body .review h3{
-  margin-top: 30px;
+  margin-top: 20px;
   font-family: Open Sans;
   font-size: 24px;
   font-weight: 600;
   line-height: 28px;
   color: #6255a5;
   margin-left: 50px;
+  margin-bottom:  -25px;
 }
 
 .modal-body .review-img{
@@ -307,7 +308,7 @@ footer {
 
 .modal-body label{
   margin-top: 60px;
-  margin-left: 50px;
+  margin-left: 0px;
   font-family: Open Sans;
   font-size: 16px;
   font-weight: 400;
@@ -336,4 +337,63 @@ footer {
   font-size: 18px;
   line-height: 22px;
   border-color: transparent;
+}
+
+/*Stars*/
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+h1 { font-size: 1.5em; margin: 10px; }
+
+/****** Style Star Rating Widget *****/
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+fieldset, label { margin: 0; padding: 0; }
+body{ margin: 20px; }
+h1 { font-size: 1.5em; margin: 10px; }
+
+/****** Style Star Rating Widget *****/
+
+.rating { 
+  border: none;
+  float: left;
+  margin-left: 50px;
+  margin-bottom: 30px;
+}
+
+.rating > input { display: none; } 
+.rating > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating > label { 
+  color: #ddd; 
+ float: right; 
+ font-size: 30px;
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating > input:checked ~ label, /* show gold star when clicked */
+.rating:not(:checked) > label:hover, /* hover current star */
+.rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating > input:checked + label:hover, /* hover current star when changing rating */
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+.comments label {
+    margin-left: -220px;
+    margin-top: 140px;
 }

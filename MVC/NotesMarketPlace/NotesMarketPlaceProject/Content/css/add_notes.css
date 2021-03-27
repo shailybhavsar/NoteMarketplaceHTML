@@ -242,3 +242,7 @@ footer {
   padding-left: 8px;
   padding-right: 10px;
 }
+a.dropdown-item:hover {
+    background-color: #6255a5 !important;
+    color: #fff !important;
+}

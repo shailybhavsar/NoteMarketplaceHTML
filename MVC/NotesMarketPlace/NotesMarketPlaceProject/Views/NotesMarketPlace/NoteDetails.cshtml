@@ -26,7 +26,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="~/Content/images/logo.png" alt="logo" class="logo">
+                <img src="~/Content/images/logo.png" alt="logo" class="logo" />
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -38,21 +38,19 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto text-right">
-                    <li class="nav-item"><a class="nav-link" href="search_notes.html">Search Notes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="mysold_notes.html">Sell Your Notes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="buyer_request.html">Buyer Requests</a></li>
-                    <li class="nav-item"><a class="nav-link" href="FAQ.html">FAQ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
-
-                    <li class="nav-item"><a class="nav-link" href="#"><img src="~/Content/images/Add-notes/user-img.png" alt="user-img"></a></li>
+                    <li class="nav-item"><a href="@Url.Action("SearchNotes", "NotesMarketPlace")" class="nav-link">Search Notes</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Dashboard", "NotesMarketPlace")" class="nav-link">Sell Your Notes</a></li>
+                    <li class="nav-item"><a href="@Url.Action("FAQ", "NotesMarketPlace")" class="nav-link">FAQ</a></li>
+                    <li class="nav-item"><a href="@Url.Action("ContactUs", "NotesMarketPlace")" class="nav-link">Contact Us</a></li>
                     <li class="nav-item" id="btn">
-                        <a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Logout</button></a>
+                        <a href="@Url.Action("Login", "NotesMarketPlace")" class="nav-link"><button type="submit" class="btn btn-primary btn-block">Login</button></a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     <!--Navbar Ends-->
+
     <!--Notes Details-->
     <div class="container" id="padding">
         <div class="row">
@@ -61,6 +59,11 @@
                 <div class="row">
                     <!--Left Part-->
                     <div class="col-lg-7 col-md-7 col-sm-12" id="note-details">
+
+                        <!--Hidden value-->
+                            <input type="hidden" name="ID" id="hidden_id" value=@Model.Singlenote.ID>
+                        <!--Hidden value ends-->
+
                         <!--Heading-->
                         <div class="row">
                             <div class="col-md-6 col-sm-12 col-12" id="heading-left">
@@ -70,72 +73,280 @@
                             <div class="col-md-6 col-sm-12 col-12" id="heading-right">
                                 <h2></h2>
                                 <h6>@Model.Singlenote.Title</h6>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur et expedita placeat, debitis amet impedit fugit natus?</p>
-                                <button type="button" class="btn btn-primary" id="download-btn" data-toggle="modal" data-target="#exampleModal">DOWNLOAD / $15</button>
+                                <p>@Model.Singlenote.Description</p>
+
+                                @if (Session["ID"] != null)
+                                {
+                                    if (Model.Singlenote.IsPaid == false)
+                                    {
+                                        <button type="button" class="btn btn-primary" id="download-btn" onclick="window.location.href='@Url.Action("DownloadPdf", "NotesMarketPlace", new { id = Model.Singlenote.ID })'">DOWNLOAD</button>
+                                    }
+                                    else
+                                    {
+                                        <button type="button" class="btn btn-primary" id="download-btn1" @*data-toggle="modal" data-target="#exampleModal"*@>DOWNLOAD / $@Model.Singlenote.SellingPrice</button>
+                                    }
+                                }
+                                else
+                                {
+                                    if (Model.Singlenote.IsPaid == false)
+                                    {
+                                        <button type="button" class="btn btn-primary" id="download-btn2">DOWNLOAD</button>
+                                    }
+                                    else
+                                    {
+                                        <button type="button" class="btn btn-primary" id="download-btn2">DOWNLOAD / $@Model.Singlenote.SellingPrice</button>
+                                    }
+                                }
                             </div>
 
                             <!--Modal-->
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <button type="button" class="close text-right" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            <div class="heading text-center">
+                                                <div class="heading text-center">
+                                                    <img src="~/Content/images/Notes Details/SUCCESS.png" alt="success">
+                                                    <h3>Thank you for purchasing!</h3>
+                                                </div>
+                                                <div class="text text-left">
+                                                    <div class="head-text">
+                                                        <p>Dear @ViewBag.BuyerName,</p>
+                                                    </div>
+                                                    <div class="content-text">
+                                                        <p>As this is paid-you need to pay to seller @ViewBag.SellerName offline. We will send him an email that you want to download this note.He may contact you further for payment process completion.</p>
+                                                        <p>Incase,you have urgency,<br>Please contact us on +9195377345959.</p>
+                                                        <p>Once he receives the payment and acknowledge us -selected notes you can see over my downloads tab for download.</p>
+                                                        <p>Have a good day</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Modal Ends-->
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!--Right Part-->
-                <div class="col-lg-5 col-md-5 col-sm-12" id="note-review">
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6 col-6"><span id="type">Institution:</span></div>
-                        <div class="col-md-6 col-sm-6 col-6 text-right">
-                            <span id="value">
-                                @Model.Singlenote.UniversityName
-                            </span>
+                    <!--Right Part-->
+                    <div class="col-lg-5 col-md-5 col-sm-12" id="note-review">
+                        <div class="row">
+                            @if (Model.Singlenote.UniversityName != null)
+                            {
+                                <div class="col-md-6 col-sm-6 col-6"><span id="type">Institution:</span></div>
+                                <div class="col-md-6 col-sm-6 col-6 text-right">
+                                    <span id="value">
+                                        @Model.Singlenote.UniversityName
+                                    </span>
+                                </div>
+                            }
+                            @if (Model.CountryName != null)
+                            {
+                                <div class="col-md-6 col-sm-6 col-6"><span id="type">Country:</span></div>
+                                <div class="col-md-6 col-sm-6 col-6 text-right">
+                                    <span id="value">
+                                        @Model.CountryName
+                                    </span>
+                                </div>
+                            }
+                            @if (Model.Singlenote.Course != null)
+                            {
+                                <div class="col-md-6 col-sm-6 col-6"><span id="type">Course Name:</span></div>
+                                <div class="col-md-6 col-sm-6 col-6 text-right">
+                                    <span id="value">
+                                        @Model.Singlenote.Course
+                                    </span>
+                                </div>
+                            }
+                            @if (Model.Singlenote.CourseCode != null)
+                            {
+                                <div class="col-md-6 col-sm-6 col-6"><span id="type">Course Code:</span></div>
+                                <div class="col-md-6 col-sm-6 col-6 text-right">
+                                    <span id="value">@Model.Singlenote.CourseCode</span>
+                                </div>
+                            }
+                            @if(Model.Singlenote.Professor!=null)
+                            { 
+                                <div class="col-md-6 col-sm-6 col-6"><span id="type">Proffessor:</span></div>
+                                <div class="col-md-6 col-sm-6 col-6 text-right">
+                                    <span id="value">
+                                        @Model.Singlenote.Professor
+                                    </span>
+                                </div>
+                            }
+                            @if (Model.Singlenote.NumberOfPages != null)
+                            {
+                                <div class="col-md-6 col-sm-6 col-6"><span id="type">Number Of Pages:</span></div>
+                                <div class="col-md-6 col-sm-6 col-6 text-right">
+                                    <span id="value">
+                                        @Model.Singlenote.NumberOfPages
+                                    </span>
+                                </div>
+                            }
+                            @if (Model.Singlenote.PublishedDate != null)
+                            {
+                                <div class="col-md-6 col-sm-6 col-6"><span id="type">Approoved date:</span></div>
+                                <div class="col-md-6 col-sm-6 col-6 text-right">
+                                    <span id="value">
+                                        @Model.Singlenote.PublishedDate
+                                    </span>
+                                </div>
+                            }
+                            <div class="col-md-6 col-sm-6 col-6"><span id="type">Rating:</span></div>
+                            <div class="col-md-6 col-sm-6 col-6 text-right">
+                                <span id="value" class="rate">
+                                    @{ decimal j = @ViewBag.Rating;}
+                                    @for(decimal i=0;i<j;i++)
+                                    {
+                                        <img src="~/Content/images/star.png" alt="star">
+                                    }
+                                    @for(decimal i=j;i<5;i++)
+                                    {
+                                        <img src="~/Content/images/star-white.png" alt="star">
+                                    }
+                                    @ViewBag.Numberofratings Reviews
+                                </span>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-12" id="special-note">
+                                <p>@ViewBag.ReprtIssue Users marked this note as inappropriate.</p>
+                            </div>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-6"><span id="type">Country:</span></div>
-                        <div class="col-md-6 col-sm-6 col-6 text-right">
-                            <span id="value">
-                                @Model.Singlenote.Country
-                            </span>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-6"><span id="type">Course Name:</span></div>
-                        <div class="col-md-6 col-sm-6 col-6 text-right">
-                            <span id="value">
-                                @Model.Singlenote.Course
-                            </span>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-6"><span id="type">Course Code:</span></div>
-                        <div class="col-md-6 col-sm-6 col-6 text-right">
-                            <span id="value">@Model.Singlenote.CourseCode</span></div>
-                        <div class="col-md-6 col-sm-6 col-6"><span id="type">Proffessor:</span></div>
-                        <div class="col-md-6 col-sm-6 col-6 text-right">
-                            <span id="value">
-                               @Model.Singlenote.Professor
-                            </span>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-6"><span id="type">Number Of Pages:</span></div>
-                        <div class="col-md-6 col-sm-6 col-6 text-right"><span id="value">@Model.NumberOfPages</span></div>
-                        <div class="col-md-6 col-sm-6 col-6"><span id="type">Approoved date:</span></div>
-                        <div class="col-md-6 col-sm-6 col-6 text-right">
-                            <span id="value">
-                                @Model.Singlenote.CreatedDate
-                            </span>
-                        </div>
-                        <div class="col-md-6 col-sm-6 col-6"><span id="type">Rating:</span></div>
-                        <div class="col-md-6 col-sm-6 col-6 text-right">
-                            <span id="value" class="rate">
-                                <img src="~/Content/images/star.png" alt="star">
-                                <img src="~/Content/images/star.png" alt="star">
-                                <img src="~/Content/images/star.png" alt="star">
-                                <img src="~/Content/images/star.png" alt="star">
-                                <img src="~/Content/images/star-white.png" alt="star">
-                                100 Reviews
-                            </span>
-                        </div>
-                        <div class="col-md-12 col-sm-12 col-12" id="special-note">
-                            <p>5 Users marked this note as inappropriate.</p>
-                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+        <div class="container">
+            <div class="row">
+                <div id="line">
+                </div>
+            </div>
+        </div>
+
+        <!--Part 2-->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 col-sm-12 col-12" id="notes-preview">
+                    <!--Left Part-->
+                    <div class="col-md-12 col-sm-12 col-12" id="heading">
+                        <h3>Notes Preview </h3>
+                    </div>
+
+                    <!--PDF-->
+
+                    <div id="Iframe-Cicis-Menu-To-Go" class="set-margin-cicis-menu-to-go set-padding-cicis-menu-to-go set-border-cicis-menu-to-go set-box-shadow-cicis-menu-to-go center-block-horiz">
+                        <div class="responsive-wrapper responsive-wrapper-padding-bottom-90pct" style="-webkit-overflow-scrolling: touch; overflow: auto;">
+                            <iframe src="~/Uploadimg/@Model.Singlenote.NotesPreview">
+                                <p style="font-size: 110%;">
+                                    <em>
+                                        <strong>ERROR: </strong>
+                                        An &#105;frame should be displayed here but your browser version does not support &#105;frames.
+                                    </em> Please update your browser to its most recent version and try again, or access the file <a href="../images/sample.pdf">with this link.</a>
+                                </p>
+                            </iframe>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-7 col-sm-12 col-12" id="customer-review">
+                    <!--Right Part-->
+                    <div class="col-md-12 col-sm-12 col-12" id="heading">
+                        <h3>Customer Review </h3>
+                    </div>
+                    <div class="col-md-12 col-sm-12 col-12" id="customer-review-box">
+
+                        @foreach (var item in @ViewBag.Reviewtable)
+                        {
+                        <div class="col-md-12 col-sm-12 col-12 reviewer-1">
+                            <div class="row">
+                                <div class="col-md-3 col-sm-3 col-3 img-fluid" id="img">
+                                    <img src="~/Uploadprofileimg/@item.userprofiledata.ProfilePicture">
+                                </div>
+                                <div class="col-md-9 col-sm-9 col-9 reviewer-3" id="text">
+                                    <div class="row">
+                                        <h4>@item.userdata.FirstName</h4>
+                                    </div>
+                                    <div class="row">
+                                        <div class="rate" id="rating">
+
+                                            @for (decimal i = 0; i < item.reviewdata.Ratings; i++)
+                                            {
+                                                <img src="~/Content/images/star.png" alt="star">
+                                            }
+                                            @for (decimal i = item.reviewdata.Ratings; i < 5; i++)
+                                            {
+                                                <img src="~/Content/images/star-white.png" alt="star">
+                                            }
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <p>@item.reviewdata.Comments</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div id="line1">
+                                </div>
+                            </div>
+                        </div>
+                        }
+                        </div>
+                </div>
+            </div>
+        </div>
+        <!--Part 2 Ends-->
+    </div>
+    @Html.Partial("_Footer")
+
+    <!--JQuery JS-->
+    <script src="~/Scripts/js/jquery.js"></script>
+
+    <!--Bootstrap JS-->
+    <script src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
+
+    <script>
+        $('#download-btn1').click(function () {
+            if (confirm("Are you sure you want to download this Paid note??")) {
+                //hidden_id is the id of input type=hidden.
+                //window.location.href = '@Url.Action("DownloadPaidPdf", "NotesMarketPlace")?id=' + $('#hidden_id').val();
+                $(this).attr('data-toggle', 'modal').attr('data-target', '#exampleModal');
+                $.ajax({
+                    type: "POST",
+                    //"/NotesMarketPlace/FilterNotes?search_item=" + search_item,
+                    url: '/NotesMarketPlace/DownloadPaidPdf?id=' + $('#hidden_id').val(),
+                    //data: { 'paidnotes': 'paidnotes' },
+                    dataType: "text",
+                    success: function (res) {
+                        //alert("Hiii");
+                    },
+                    error: function (err) {
+                        alert("yeah same page ajax not succeed");
+                    },
+                });
+                return true;
+            }
+            else {
+                return false;
+                @*window.location.href='@Url.Action("NoteDetails", "NotesMarketPlace")';*@
+            }
+        });
+        $('#download-btn2').click(function () {
+            if (confirm("Please Sign in/Register to download this note.")) {
+               window.location.href='@Url.Action("Login", "NotesMarketPlace")';
+            }
+            else {
+                window.location.href='@Url.Action("NoteDetails", "NotesMarketPlace")';
+            }
+        });
+    </script>
+
 </body>
 </html>
 

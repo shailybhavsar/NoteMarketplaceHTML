@@ -1,10 +1,12 @@
 ﻿@model NotesMarketPlaceProject.Models.AddEditNotes
 @{    
-    Layout = "~/Views/Shared/_Layout.cshtml";
+//Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <!DOCTYPE html>
 <html>
 <head>
+    
     <!--Bootstrap CSS-->
     <link rel="stylesheet" type="text/css" href="~/Content/css/bootstrap/bootstrap.min.css">
 
@@ -31,12 +33,25 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto text-right">
-                    <li class="nav-item"><a class="nav-link" href="search_notes.html">Search Notes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="mysold_notes.html">Sell Your Notes</a></li>
-                    <li class="nav-item"><a class="nav-link" href="buyer_request.html">Buyer Requests</a></li>
-                    <li class="nav-item"><a class="nav-link" href="FAQ.html">FAQ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contactus.html">Contact Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"><img src="~/Content/images/Add-notes/user-img.png" alt="user-img"></a></li>
+                    <li class="nav-item"><a href="@Url.Action("SearchNotes", "NotesMarketPlace")" class="nav-link">Search Notes</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Dashboard", "NotesMarketPlace")" class="nav-link">Sell Your Notes</a></li>
+                    <li class="nav-item"><a href="@Url.Action("BuyerRequest", "NotesMarketPlace")" class="nav-link">Buyer Requests</a></li>
+                    <li class="nav-item"><a href="@Url.Action("FAQ", "NotesMarketPlace")" class="nav-link">FAQ</a></li>
+                    <li class="nav-item"><a href="@Url.Action("ContactUs", "NotesMarketPlace")" class="nav-link">Contact Us</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <img src="@Url.Action("UserPhoto", "NotesMarketPlace" )" alt="logo">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a href="@Url.Action("EditProfile", "NotesMarketPlace")" class="dropdown-item">My Profile</a>
+                            <a href="@Url.Action("DownloadNotes", "NotesMarketPlace")" class="dropdown-item">My Download</a>
+                            <a href="@Url.Action("SoldNotes", "NotesMarketPlace")" class="dropdown-item">My Sold Notes</a>
+                            <a href="@Url.Action("RejectedNotes", "NotesMarketPlace")" class="dropdown-item">My Rejected Notes</a>
+                            <a href="@Url.Action("Changepassword", "NotesMarketPlace")" class="dropdown-item">Change Password</a>
+                            <a class="dropdown-item" id="log-out">Logout</a>
+                        </div>
+                    </li>
                     <li class="nav-item" id="btn">
                         <a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Logout</button></a>
                     </li>
@@ -57,8 +72,11 @@
     </section>
     <!--Background image Ends-->
 
+    <h1></h1>
+
     @using (@Html.BeginForm("UserAddNotes", "NotesMarketPlace", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
+
         @Html.AntiForgeryToken()
         <!--Basic Notes Details-->
         <div class="container">
@@ -71,7 +89,7 @@
                     <div class="form-row">
                         <div class="col-md-12 col-sm-12 col-12">
                             <!--Title-->
-                            
+
                             <div class="form-group input">
                                 @Html.Label("Title", "Title*")
                                 @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your notes title" })
@@ -84,26 +102,30 @@
                                 <!--Profile Picture Image-->
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12 col-12">
+                                        @*@Html.Label("Profile Picture", "Profile Picture")*@
                                         <label for="input">Profile Picture</label>
                                     </div>
                                 </div>
                                 <div class="col-md-12 text-center add-border">
-
                                     <label for="upload_image">
                                         <img src="~/Content/images/Add-notes/upload-file.png" />
                                         <p id="upload_image-filename">Upload a Picture</p>
-                                        <input type="file" id="upload_image" name="upload_image" style="display: none;">
+                                        <input type="file" id="upload_image" name="upload_image" style="display: none;" accept="image/*">
+
+                                        @*@Html.TextBoxFor(m => m.DisplayPicture, new { @class = "form-control", @type = "file", @id = "upload_image", @name = "upload_image", @style = "display: none;" accept = "image/*" })*@
                                     </label>
 
                                 </div>
                             </div>
+                            <!--Added-->
+                            
                         </div>
 
                         <div class="col-md-12 col-sm-12 col-12">
                             <!--Note Types-->
                             <div class="form-group input" id="type">
-                                @Html.LabelFor(m => m.TypeID,"Type")
-                                @Html.DropDownListFor(m => m.TypeID, new SelectList(Model.types, "TypeID", "TypeName"), "Select Type", new { @class = "form-control custom-select" , @id = "exampleInput" })
+                                @Html.LabelFor(m => m.TypeID, "Type")
+                                @Html.DropDownListFor(m => m.TypeID, new SelectList(Model.types, "TypeID", "TypeName"), "Select Type", new { @class = "form-control custom-select", @id = "exampleInput" })
                             </div>
                         </div>
 
@@ -116,9 +138,9 @@
                         <!--Country-->
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group input" id="category">
-                                @Html.LabelFor(m => m.CategoryID,"Category")
-                                @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.categories, "CategoryID", "CategoryName"),"Select Category" ,new { @class = "form-control custom-select", @id = "exampleInput" })
-                                @Html.ValidationMessageFor(m => m.categories, "", new { @style = "color:red" })
+                                @Html.LabelFor(m => m.CategoryID, "Category")
+                                @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.categories, "CategoryID", "CategoryName"), "Select Category", new { @class = "form-control custom-select", @id = "exampleInput" })
+                                @Html.ValidationMessageFor(m => m.CategoryID, "", new { @style = "color:red" })
                             </div>
                         </div>
 
@@ -133,7 +155,9 @@
                                     <label for="upload_notes">
                                         <img src="~/Content/images/Add-notes/upload-note.svg" />
                                         <p id="upload_notes-filename">Upload Your Notes</p>
-                                        <input type="file" id="upload_notes" name="upload_notes" style="display: none;">
+                                        @*@Html.TextBoxFor(m => m.FileName, new { @class = "checkfile", type = "file", @id = "upload_notes", @name = "upload_notes", @style = "display: none;" , @accept = ".pdf" })*@
+                                        <input type="file" id="upload_notes" name="upload_notes" style="display: none;" data-val="true" data-val-required="File is required" accept=".pdf">
+                                        @*@Html.ValidationMessageFor(m => m.FileName, "", new { @style = "color:red;" })*@
                                     </label>
                                 </div>
                             </div>
@@ -175,8 +199,8 @@
                             <!--Country-->
                             <div class="form-group input" id="country">
                                 <div class="form-group " id="country">
-                                    @Html.LabelFor(m => m.CountryID,"Country")
-                                    @Html.DropDownListFor(m => m.CountryID, new SelectList(Model.countries,"CountryID","CountryName"), "Select Your Country", new { @class = "form-control custom-select", @id = "exampleInput" })
+                                    @Html.LabelFor(m => m.CountryID, "Country")
+                                    @Html.DropDownListFor(m => m.CountryID, new SelectList(Model.countries, "CountryID", "CountryName"), "Select Your Country", new { @class = "form-control custom-select", @id = "exampleInput" })
                                 </div>
                             </div>
                         </div>
@@ -228,8 +252,8 @@
                     <div class="form-row">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group input">
-                                <label for="exampleInput">Course Code</label>
-                                <input type="text" class="form-control" id="exampleInput" placeholder="Enter your course code">
+                                @Html.Label("exampleInput", "Course Code")
+                                @Html.TextBoxFor(m => m.CourseCode, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter Your Course Code" })
                             </div>
                         </div>
                     </div>
@@ -251,12 +275,13 @@
                         <div class="col-md-12 col-sm-12 col-12">
                             @Html.Label("exampleInput", "Sell For*")
                             <div id="radio-button">
-                                @Html.RadioButtonFor(m => m.sellfor,"Gender" ,"Free")
-                                @Html.Label("Free")
-                                @Html.RadioButtonFor(m => m.sellfor,"Gender","Paid")
-                                @Html.Label("Paid")
+                                @Html.RadioButtonFor(m => m.IsPaid, false, "Free")
+                                @Html.Label("free", "Free")
+                                @Html.RadioButtonFor(m => m.IsPaid, true, "Paid")
+                                @Html.Label("paid", "Paid")
                             </div>
                         </div>
+
 
                         <div class="col-md-12 col-sm-12 col-12">
                             <div class="form-group e-mail">
@@ -276,6 +301,7 @@
                             <div class="form-group input">
                                 <div class="row">
                                     <div class="col-md-12 col-sm-12 col-12">
+                                        @*@Html.Label("Note Preview", "Note Preview")*@
                                         <label for="input">Note Preview</label>
                                     </div>
                                 </div>
@@ -283,7 +309,9 @@
                                     <label for="upload_image1">
                                         <img src="~/Content/images/Add-notes/upload-file.png" />
                                         <p id="upload_image-filename1">Upload a File</p>
-                                        <input type="file" id="upload_image1" name="upload_image1" style="display: none;">
+                                        <input type="file" id="upload_image1" name="upload_image1" style="display: none;" accept=".pdf">
+                                        @*Html.TextBoxFor(x => x.Preview, new { @type = "file", @name = "upload_image1", @id = "upload_image1", @style = "display: none;" ,@accept=".pdf" })*@
+                                        @*@Html.ValidationMessageFor(x=>x.Preview,"",new { @style="color:red;"})*@
                                     </label>
                                 </div>
                             </div>
@@ -291,30 +319,33 @@
                     </div>
                 </div>
 
-
                 <!--Button-->
                 <div class="col-md-12 col-sm-12 col-12">
                     <div class="form-row">
                         <div class="col-md-12 col-sm-12 col-12">
                             <div class="Button-class">
                                 <button type="submit" class="btn btn-primary">SAVE</button>
-                                <button type="submit" class="btn btn-primary" id="display_button" style="display:none;">PUBLISH</button>
+                                <button type="button" class="btn btn-primary" id="display_button" onclick="window.location.href='@Url.Action("NoteDetails","NotesMarketPlace")'">PUBLISH</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!--Button Ends-->
-
-                
             </div>
         </div>
     }
+
     @Html.Partial("_Footer")
     <!--JQuery JS-->
     <script src="~/Scripts/js/jquery.js"></script>
 
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
     <!--Bootstrap JS-->
     <script src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
+
+
 
     <script>
         //For Profile Picture
@@ -368,18 +399,20 @@
 
             infoAreaimg1.textContent = 'Picture name: ' + fileName;
         }
+        $('#display_button').click(function () {
+            if (confirm("Publishing this note will send note to administrator for review, once administrator review and approve then this note will be published toportal. Press yes to continue.")) {
+               window.location.href='@Url.Action("Publishnote", "NotesMarketPlace")';
+            }
+            else {
+                window.location.href='@Url.Action("UserAddNotes", "NotesMarketPlace")';
+            }
+        });
 
-        //function confirmation_btn() {
-
-        //}
     </script>
-
-    <!--Custom JS-->
-    <!--<script src="~/Scripts/js/ChangeFilename.js"></script>-->
-
-    @Scripts.Render("~/bundles/jqueryval");
-
-    @Html.ValidationMessage("error");
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Html.ValidationMessage("error")
 </body>
 </html>
 

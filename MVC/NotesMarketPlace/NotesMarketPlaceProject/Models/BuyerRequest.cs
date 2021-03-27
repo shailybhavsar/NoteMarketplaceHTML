@@ -7,10 +7,9 @@ using NotesMarketPlaceProject.Context;
 namespace NotesMarketPlaceProject.Models
 {
     public class BuyerRequest
-    {
-        public SellerNote sellertbl { get; set; }
-        public NoteCategory categorytbl { get; set; }
+    { 
         public User usertbl { get; set; }
-        public ReferenceData reftbl { get; set; }
+        public Download downloadtbl { get; set; }
+        public UserProfile userprofiletbl { get; set; }
     }
 }

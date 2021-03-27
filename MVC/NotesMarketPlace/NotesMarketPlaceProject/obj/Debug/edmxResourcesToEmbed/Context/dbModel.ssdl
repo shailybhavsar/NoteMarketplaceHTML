@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="NotesMarketPlaceTablesModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="NotesMarketPlaceTablesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Country">
     <Key>
       <PropertyRef Name="CountryID" />
@@ -180,7 +180,7 @@
     <Property Name="SecondaryEmailAddress" Type="varchar" MaxLength="100" />
     <Property Name="PhoneNumberCountryCOde" Type="varchar" MaxLength="5" Nullable="false" />
     <Property Name="PhoneNumber" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="ProfilePicture" Type="varbinary" MaxLength="500" />
+    <Property Name="ProfilePicture" Type="varchar" MaxLength="500" />
     <Property Name="AddressLine1" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="AddressLine2" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
@@ -728,7 +728,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="NotesMarketPlaceTablesModel1StoreContainer">
+  <EntityContainer Name="NotesMarketPlaceTablesModelStoreContainer">
     <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Downloads" EntityType="Self.Downloads" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NameTable" EntityType="Self.NameTable" Schema="dbo" store:Type="Tables" />

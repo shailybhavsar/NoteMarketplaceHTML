@@ -4,15 +4,22 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using NotesMarketPlaceProject.Helper_Code;
 
 namespace NotesMarketPlaceProject.Models
 {
     public class AddEditNotes
     {
+        public int SellerID { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please Enter Title")]
         public string Title { get; set; }
         public string CategoryName { get; set; }
+
+
+        //Added
+        //[AllowExtensionsAttribute(ErrorMessage = "Please select only Supported Files .png | .jpg | .jpeg",Extensions ="jpg,png,jpeg")]
         public string DisplayPicture { get; set; }
+        //public HttpPostedFileBase DisplayPicture { get; set; }
 
         //public IEnumerable<int> TypeName { get; set; }
         public IEnumerable<string> TypeName { get; set; }
@@ -29,11 +36,9 @@ namespace NotesMarketPlaceProject.Models
         public string sellfor { get; set; }
         public decimal SellingPrice { get; set; }
         public string NotesPreview { get; set; }
-
         public string FileName { get; set; }
-
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "Please Upload Your Notes")]
         public string FilePath { get; set; }
+        public string Preview { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please Select Category")]
         public int CategoryID { get; set; }
@@ -47,5 +52,10 @@ namespace NotesMarketPlaceProject.Models
         public IEnumerable<NoteType> types { get; set; }
         public IEnumerable<NoteCategory> categories { get; set;} 
         public IEnumerable<Country> countries { get; set; }
+
+        
+        //Dashboard edit view 
+        public SellerNote sellernoteobj { get; set; }
+        public SellerNotesAttachment selllernoteattachobj { get; set; }
     }
 }

@@ -1,0 +1,179 @@
+﻿@model IEnumerable<NotesMarketPlaceProject.Models.RejectedNotes>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+
+    <!--Important meta tags-->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!--Bootstrap CSS-->
+    <link href="~/Content/css/bootstrap/bootstrap.min.css" rel="stylesheet" />
+
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="~/Content/css/font-awesome/css/font-awesome.min.css">
+
+    <!--Datatable CSS-->
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <!--Custom CSS-->
+    <link href="~/Content/css/buyer_request.css" rel="stylesheet" />
+
+    <!--Custom CSS-->
+    <link href="~/Content/css/responsive_buyer_request.css" rel="stylesheet" />
+</head>
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="~/Content/images/User-Profile/logo.png" alt="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto text-right">
+                    <li class="nav-item"><a href="@Url.Action("SearchNotes", "NotesMarketPlace")" class="nav-link">Search Notes</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Dashboard", "NotesMarketPlace")" class="nav-link">Sell Your Notes</a></li>
+                    <li class="nav-item"><a href="@Url.Action("BuyerRequest", "NotesMarketPlace")" class="nav-link">Buyer Requests</a></li>
+                    <li class="nav-item"><a href="@Url.Action("FAQ", "NotesMarketPlace")" class="nav-link">FAQ</a></li>
+                    <li class="nav-item"><a href="@Url.Action("ContactUs", "NotesMarketPlace")" class="nav-link">Contact Us</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <img src="@Url.Action("UserPhoto", "NotesMarketPlace" )" alt="logo">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a href="@Url.Action("EditProfile", "NotesMarketPlace")" class="dropdown-item">My Profile</a>
+                            <a href="@Url.Action("DownloadNotes", "NotesMarketPlace")" class="dropdown-item">My Download</a>
+                            <a href="@Url.Action("SoldNotes", "NotesMarketPlace")" class="dropdown-item">My Sold Notes</a>
+                            <a href="@Url.Action("RejectedNotes", "NotesMarketPlace")" class="dropdown-item">My Rejected Notes</a>
+                            <a href="@Url.Action("Changepassword", "NotesMarketPlace")" class="dropdown-item">Change Password</a>
+                            <a class="dropdown-item" id="log-out">Logout</a>
+                        </div>
+                    </li>
+                    <li class="nav-item" id="btn">
+                        <a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Logout</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Navbar Ends-->
+
+    <section class="downloads">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-12" id="buyer">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6 col-12" id="heading">
+                            <h3>Buyer Requests</h3>
+                        </div>
+
+                        <div class="col-md-6 col-sm-6 col-12">
+                            <div class="row" id="search">
+                                <div class="col-md-8 col-sm-6 col-6">
+                                    <div class="form-group exampleInput" id="dataTables_filter">
+                                        <input class="form-control" id="exampleInput" placeholder="Search">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-sm-6 col-6">
+                                    <button class="btn btn-primary" type="button" id="searchbtn">SEARCH</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table" id="buyerrequest" data-pagination="true">
+                            <thead>
+                                <tr class="tr">
+                                    <th>SR NO.</th>
+                                    <th>NOTE TITLE</th>
+                                    <th>CATEGORY</th>
+                                    <th>REMARKS</th>
+                                    <th>CLONE</th>
+                                    <th> </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ int i = 0;}
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@(i+=1)</td>
+                                        <td><a href="@Url.Action("NoteDetails", "NotesMarketPlace", new { id = item.sellernote.ID })">@Html.DisplayFor(m => item.sellernote.Title)</a></td>
+                                        <td>@Html.DisplayFor(m => item.notecattbl.CategoryName)</td>
+                                        <td>@Html.DisplayFor(m => item.sellernote.AdminRemarks)</td>
+                                        <td>Clone</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <img src="~/Content/images/dots.png" class="dropimg" alt="view" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a href="@Url.Action("DownloadPdf", "NotesMarketPlace", new { id = item.sellernote.ID })">Download Note</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <br />
+    <br />
+    @Html.Partial("_Footer")
+    <!--JQuery JS-->
+    <script src="~/Scripts/js/jquery.js"></script>
+
+    <!--Bootstrap JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+
+    @section  Scripts{
+        <script>
+            $(document).ready(function () {
+                $.noConflict();
+                var table = $('#buyerrequest').DataTable({
+                    'sDom': '"top"i',
+                    "iDisplayLength": 10,
+                    language: {
+                        paginate: {
+                            next: '<i class="fa fa-angle-right fa-1x"></i>',
+                            previous: '<i class="fa fa-angle-left fa-1x"></i>',
+                            first: false,
+                            last: false
+                        }
+                    }
+
+                });
+
+                $("#searchbtn").click(function () {
+                    var x = $("#exampleInput").val();
+                    table.search(x).draw();
+                });
+            });
+        </script>
+    }
+</body>
+</html>
+

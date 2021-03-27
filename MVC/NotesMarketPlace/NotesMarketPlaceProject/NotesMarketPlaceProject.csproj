@@ -196,17 +196,25 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper_Code\AllowExtensionsAttribute.cs" />
     <Compile Include="Models\AddEditNotes.cs" />
     <Compile Include="Models\BuyerRequest.cs" />
+    <Compile Include="Models\ChangepasswordModel.cs" />
     <Compile Include="Models\ContactUs.cs" />
+    <Compile Include="Models\DownloadnNotesModel.cs" />
     <Compile Include="Models\GetSellerNotesData.cs" />
     <Compile Include="Models\gmail.cs" />
     <Compile Include="Models\RegisterUser.cs" />
+    <Compile Include="Models\RejectedNotes.cs" />
     <Compile Include="Models\SearchNotes.cs" />
+    <Compile Include="Models\SoldNotesModel.cs" />
     <Compile Include="Models\UserAddNotes.cs" />
     <Compile Include="Models\UserLogin.cs" />
+    <Compile Include="Models\UserProfileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\DashboardViewModel.cs" />
+    <Compile Include="ViewModel\DownloadViewModel.cs" />
+    <Compile Include="ViewModel\SearchNoteViewmodel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -214,6 +222,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\add_notes.css" />
+    <Content Include="Content\css\bootstrap-datepicker.min.css" />
     <Content Include="Content\css\bootstrap\bootstrap-grid.css" />
     <Content Include="Content\css\bootstrap\bootstrap-grid.min.css" />
     <Content Include="Content\css\bootstrap\bootstrap-reboot.css" />
@@ -528,6 +537,9 @@
     <Content Include="Content\images\pre-login\Thumbs.db" />
     <Content Include="Content\images\sample.pdf" />
     <Content Include="Content\images\User-Profile\Thumbs.db" />
+    <Content Include="Content\DataTables\css\semanticui.scss" />
+    <Content Include="Content\DataTables\css\mixins.scss" />
+    <Content Include="Content\DataTables\css\common.scss" />
     <EntityDeploy Include="Context\dbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>dbModel.Designer.cs</LastGenOutput>
@@ -535,9 +547,6 @@
     <Content Include="Context\dbModel.edmx.diagram">
       <DependentUpon>dbModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\DataTables\css\semanticui.scss" />
-    <Content Include="Content\DataTables\css\mixins.scss" />
-    <Content Include="Content\DataTables\css\common.scss" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -620,10 +629,13 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\js\bootstrap.datatable.min.js" />
     <Content Include="Scripts\js\bootstrap\bootstrap.bundle.js" />
     <Content Include="Scripts\js\bootstrap\bootstrap.bundle.min.js" />
@@ -669,10 +681,19 @@
     <Content Include="Views\NotesMarketPlace\BuyerRequest.cshtml" />
     <Content Include="Views\NotesMarketPlace\SearchNotes.cshtml" />
     <Content Include="Views\NotesMarketPlace\NoteDetails.cshtml" />
+    <Content Include="Views\NotesMarketPlace\UserProfile.cshtml" />
+    <Content Include="Views\NotesMarketPlace\Changepassword.cshtml" />
+    <Content Include="Views\NotesMarketPlace\DownloadNotes.cshtml" />
+    <Content Include="Views\NotesMarketPlace\SoldNotes.cshtml" />
+    <Content Include="Views\NotesMarketPlace\DashboardEditNote.cshtml" />
+    <Content Include="Views\NotesMarketPlace\EditProfile.cshtml" />
+    <Content Include="Views\NotesMarketPlace\FAQ.cshtml" />
+    <Content Include="Views\NotesMarketPlace\RejectedNotes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Uploadimg\" />
+    <Folder Include="Uploadprofileimg\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
