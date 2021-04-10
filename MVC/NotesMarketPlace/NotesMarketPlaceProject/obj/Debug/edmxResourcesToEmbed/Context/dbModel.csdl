@@ -43,19 +43,11 @@
     <NavigationProperty Name="User3" Relationship="Self.FK_Downloads_Users3" FromRole="Downloads" ToRole="Users" />
     <NavigationProperty Name="SellerNotesReportedIssues" Relationship="Self.FK_SellerNotesReportedIssues_Downloads" FromRole="Downloads" ToRole="SellerNotesReportedIssues" />
   </EntityType>
-  <EntityType Name="NameTable">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
   <EntityType Name="NoteCategory">
     <Key>
       <PropertyRef Name="CategoryID" />
     </Key>
     <Property Name="CategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserID" Type="Int32" Nullable="false" />
     <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="CreatedDate" Type="DateTime" Precision="3" />
@@ -63,9 +55,8 @@
     <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
     <Property Name="ModifiedBy" Type="Int32" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="User" Relationship="Self.FK_AddCategory_Users" FromRole="NoteCategories" ToRole="Users" />
-    <NavigationProperty Name="User1" Relationship="Self.FK_NoteCategories_Users" FromRole="NoteCategories" ToRole="Users" />
-    <NavigationProperty Name="User2" Relationship="Self.FK_NoteCategories_Users1" FromRole="NoteCategories" ToRole="Users" />
+    <NavigationProperty Name="User" Relationship="Self.FK_NoteCategories_Users" FromRole="NoteCategories" ToRole="Users" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_NoteCategories_Users1" FromRole="NoteCategories" ToRole="Users" />
     <NavigationProperty Name="SellerNotes" Relationship="Self.FK_SellerNotes_NoteCategories" FromRole="NoteCategories" ToRole="SellerNotes" />
   </EntityType>
   <EntityType Name="NoteType">
@@ -281,9 +272,8 @@
     <NavigationProperty Name="Downloads1" Relationship="Self.FK_Downloads_Users1" FromRole="Users" ToRole="Downloads" />
     <NavigationProperty Name="Downloads2" Relationship="Self.FK_Downloads_Users2" FromRole="Users" ToRole="Downloads" />
     <NavigationProperty Name="Downloads3" Relationship="Self.FK_Downloads_Users3" FromRole="Users" ToRole="Downloads" />
-    <NavigationProperty Name="NoteCategories" Relationship="Self.FK_AddCategory_Users" FromRole="Users" ToRole="NoteCategories" />
-    <NavigationProperty Name="NoteCategories1" Relationship="Self.FK_NoteCategories_Users" FromRole="Users" ToRole="NoteCategories" />
-    <NavigationProperty Name="NoteCategories2" Relationship="Self.FK_NoteCategories_Users1" FromRole="Users" ToRole="NoteCategories" />
+    <NavigationProperty Name="NoteCategories" Relationship="Self.FK_NoteCategories_Users" FromRole="Users" ToRole="NoteCategories" />
+    <NavigationProperty Name="NoteCategories1" Relationship="Self.FK_NoteCategories_Users1" FromRole="Users" ToRole="NoteCategories" />
     <NavigationProperty Name="NoteTypes" Relationship="Self.FK_NoteTypes_Users" FromRole="Users" ToRole="NoteTypes" />
     <NavigationProperty Name="NoteTypes1" Relationship="Self.FK_NoteTypes_Users1" FromRole="Users" ToRole="NoteTypes" />
     <NavigationProperty Name="ReferenceDatas" Relationship="Self.FK_ReferenceData_Users" FromRole="Users" ToRole="ReferenceData" />
@@ -413,18 +403,6 @@
       </Principal>
       <Dependent Role="SellerNotesReportedIssues">
         <PropertyRef Name="AgainstDownloadID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_AddCategory_Users">
-    <End Role="Users" Type="Self.User" Multiplicity="1" />
-    <End Role="NoteCategories" Type="Self.NoteCategory" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="NoteCategories">
-        <PropertyRef Name="UserID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -812,10 +790,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="NotesMarketPlaceTablesEntities1" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="NotesMarketPlaceTablesEntities2" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Countries" EntityType="Self.Country" />
     <EntitySet Name="Downloads" EntityType="Self.Download" />
-    <EntitySet Name="NameTables" EntityType="Self.NameTable" />
     <EntitySet Name="NoteCategories" EntityType="Self.NoteCategory" />
     <EntitySet Name="NoteTypes" EntityType="Self.NoteType" />
     <EntitySet Name="ReferenceDatas" EntityType="Self.ReferenceData" />
@@ -862,10 +839,6 @@
     <AssociationSet Name="FK_SellerNotesReportedIssues_Downloads" Association="Self.FK_SellerNotesReportedIssues_Downloads">
       <End Role="Downloads" EntitySet="Downloads" />
       <End Role="SellerNotesReportedIssues" EntitySet="SellerNotesReportedIssues" />
-    </AssociationSet>
-    <AssociationSet Name="FK_AddCategory_Users" Association="Self.FK_AddCategory_Users">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="NoteCategories" EntitySet="NoteCategories" />
     </AssociationSet>
     <AssociationSet Name="FK_NoteCategories_Users" Association="Self.FK_NoteCategories_Users">
       <End Role="Users" EntitySet="Users" />
@@ -995,5 +968,33 @@
       <End Role="UserRoles" EntitySet="UserRoles" />
       <End Role="Users" EntitySet="Users" />
     </AssociationSet>
+    <FunctionImport Name="NewGetSellerNotesDetails" ReturnType="Collection(NotesMarketPlaceTablesModel.NewGetSellerNotesDetails_Result)">
+      <Parameter Name="FK_Type" Mode="In" Type="Int32" />
+      <Parameter Name="FK_Category" Mode="In" Type="Int32" />
+      <Parameter Name="FK_Country" Mode="In" Type="Int32" />
+      <Parameter Name="FK_University" Mode="In" Type="String" />
+      <Parameter Name="FK_Course" Mode="In" Type="String" />
+      <Parameter Name="FK_Rating" Mode="In" Type="Decimal" />
+      <Parameter Name="PageSize" Mode="In" Type="Int32" />
+      <Parameter Name="PageNumber" Mode="In" Type="Int32" />
+      <Parameter Name="Search" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="NewGetSellerNotesDetails_Result">
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="Int32" Name="SellerID" Nullable="false" />
+    <Property Type="String" Name="DisplayPicture" Nullable="true" MaxLength="500" />
+    <Property Type="String" Name="Title" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="Category" Nullable="false" />
+    <Property Type="Int32" Name="Country" Nullable="true" />
+    <Property Type="DateTime" Name="CreatedDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="UniversityName" Nullable="true" MaxLength="200" />
+    <Property Type="Int32" Name="NumberOfPages" Nullable="true" />
+    <Property Type="DateTime" Name="PublishedDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="CountyName" Nullable="true" MaxLength="100" />
+    <Property Type="Int32" Name="TotalCount" Nullable="true" />
+    <Property Type="Int32" Name="Report" Nullable="true" />
+    <Property Type="Decimal" Name="Rating" Nullable="true" Precision="38" Scale="6" />
+    <Property Type="Int32" Name="TotalRating" Nullable="true" />
+  </ComplexType>
 </Schema>

@@ -6,7 +6,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    
+    <!--Important meta tags-->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <!--Bootstrap CSS-->
     <link rel="stylesheet" type="text/css" href="~/Content/css/bootstrap/bootstrap.min.css">
 
@@ -49,11 +56,12 @@
                             <a href="@Url.Action("SoldNotes", "NotesMarketPlace")" class="dropdown-item">My Sold Notes</a>
                             <a href="@Url.Action("RejectedNotes", "NotesMarketPlace")" class="dropdown-item">My Rejected Notes</a>
                             <a href="@Url.Action("Changepassword", "NotesMarketPlace")" class="dropdown-item">Change Password</a>
-                            <a class="dropdown-item" id="log-out">Logout</a>
+                            <a class="dropdown-item" id="log-out" onclick="logout()">Logout</a>
                         </div>
                     </li>
                     <li class="nav-item" id="btn">
-                        <a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Logout</button></a>
+                        <a href="@Url.Action("Logout", "NotesMarketPlace")" class="nav-link"><button type="submit" class="btn btn-primary btn-block" onclick="return logoutcall()">Logout</button></a>
+
                     </li>
                 </ul>
             </div>
@@ -109,7 +117,14 @@
                                 <div class="col-md-12 text-center add-border">
                                     <label for="upload_image">
                                         <img src="~/Content/images/Add-notes/upload-file.png" />
-                                        <p id="upload_image-filename">Upload a Picture</p>
+                                        @if (Model.DisplayPicture == null)
+                                        {
+                                            <p id="upload_image-filename">Upload a Picture</p>
+                                        }
+                                        else
+                                        {
+                                            <p id="upload_image-filename">@Model.DisplayPicture</p>
+                                        }
                                         <input type="file" id="upload_image" name="upload_image" style="display: none;" accept="image/*">
 
                                         @*@Html.TextBoxFor(m => m.DisplayPicture, new { @class = "form-control", @type = "file", @id = "upload_image", @name = "upload_image", @style = "display: none;" accept = "image/*" })*@
@@ -154,10 +169,17 @@
                                 <div class="col-md-12 text-center add-border">
                                     <label for="upload_notes">
                                         <img src="~/Content/images/Add-notes/upload-note.svg" />
-                                        <p id="upload_notes-filename">Upload Your Notes</p>
-                                        @*@Html.TextBoxFor(m => m.FileName, new { @class = "checkfile", type = "file", @id = "upload_notes", @name = "upload_notes", @style = "display: none;" , @accept = ".pdf" })*@
-                                        <input type="file" id="upload_notes" name="upload_notes" style="display: none;" data-val="true" data-val-required="File is required" accept=".pdf">
-                                        @*@Html.ValidationMessageFor(m => m.FileName, "", new { @style = "color:red;" })*@
+                                        @if (Model.FileName == null)
+                                        {
+                                            <p id="upload_notes-filename">Upload Your Notes</p>
+                                        }
+                                        else
+                                        {
+                                            <p id="upload_notes-filename">@Model.FileName</p>
+                                        }
+                                        @Html.TextBoxFor(m => m.upload_notes, new { @class = "checkfile", type = "file", @id = "upload_notes", @name = "upload_notes", @style = "display: none;", @accept = ".pdf" })
+                                        <!----<input type="file" id="upload_notes" name="upload_notes" style="display: none;" data-val="true" data-val-required="File is required" accept=".pdf"--><!--@*AllowMultiple="true"*@--> <!--multiple="multiple">-->
+                                        @Html.ValidationMessageFor(m => m.upload_notes, "", new { @style = "color:red;" })
                                     </label>
                                 </div>
                             </div>
@@ -282,14 +304,24 @@
                             </div>
                         </div>
 
-
-                        <div class="col-md-12 col-sm-12 col-12">
-                            <div class="form-group e-mail">
-                                @Html.Label("exampleInputEmail1", "Sell Price*")
-                                @Html.TextBoxFor(m => m.SellingPrice, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your price", style = "margin-top: 10px;" })
+                        
+                            <div class="col-md-12 col-sm-12 col-12">
+                                <div class="form-group e-mail" id="selling_price" style="display:none">
+                                    @Html.Label("exampleInputEmail1", "Sell Price*")
+                                    @Html.TextBoxFor(m => m.SellingPrice, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your price", style = "margin-top: 10px;" })
+                                </div>
                             </div>
-                        </div>
+                        
 
+                        @if (Model.SellingPrice!=0)
+                        {
+                            <div class="col-md-12 col-sm-12 col-12">
+                                <div class="form-group e-mail">
+                                    @Html.Label("exampleInputEmail1", "Sell Price*")
+                                    @Html.TextBoxFor(m => m.SellingPrice, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your price", style = "margin-top: 10px;" })
+                                </div>
+                            </div>
+                        }
 
                     </div>
                 </div>
@@ -308,7 +340,14 @@
                                 <div class="col-md-12 text-center add-border">
                                     <label for="upload_image1">
                                         <img src="~/Content/images/Add-notes/upload-file.png" />
-                                        <p id="upload_image-filename1">Upload a File</p>
+                                        @if (Model.NotesPreview == null)
+                                        {
+                                            <p id="upload_image-filename1">Upload a File</p>
+                                        }
+                                        else
+                                        {
+                                            <p id="upload_image-filename1">@Model.NotesPreview</p>
+                                        }
                                         <input type="file" id="upload_image1" name="upload_image1" style="display: none;" accept=".pdf">
                                         @*Html.TextBoxFor(x => x.Preview, new { @type = "file", @name = "upload_image1", @id = "upload_image1", @style = "display: none;" ,@accept=".pdf" })*@
                                         @*@Html.ValidationMessageFor(x=>x.Preview,"",new { @style="color:red;"})*@
@@ -325,7 +364,10 @@
                         <div class="col-md-12 col-sm-12 col-12">
                             <div class="Button-class">
                                 <button type="submit" class="btn btn-primary">SAVE</button>
-                                <button type="button" class="btn btn-primary" id="display_button" onclick="window.location.href='@Url.Action("NoteDetails","NotesMarketPlace")'">PUBLISH</button>
+                                @if ((string)TempData["displaypublish"] == "Displaymsg")
+                                {
+                                    <button type="button" class="btn btn-primary" id="display_button" onclick="window.location.href='@Url.Action("Publishnote", "NotesMarketPlace")'">PUBLISH</button>
+                                }
                             </div>
                         </div>
                     </div>
@@ -345,9 +387,22 @@
     <!--Bootstrap JS-->
     <script src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
 
-
-
     <script>
+        $(document).ready(function () {
+            $('input[type=radio][name="IsPaid"]').on('change',function () {
+                var a = $(this).val();
+                if (a == "True") {
+                    //alert(a);
+                    $('#upload_image1').prop("required", true);
+                    document.getElementById("selling_price").style.display = "block";
+                }
+                else {
+                    //alert(a)
+                    $('#upload_image1').prop("required", false);
+                    document.getElementById("selling_price").style.display = "none";
+                }
+            });
+        });
         //For Profile Picture
         var input_var = document.getElementById('upload_notes');
         var infoArea = document.getElementById('upload_notes-filename');
@@ -374,7 +429,7 @@
 
         function showFileName(event) {
 
-            // the change event gives us the input it occurred in
+             //the change event gives us the input it occurred in
             var input_var = event.srcElement;
 
             // the input has an array of files in the `files` property, each one has a name that you can use. We're just using the name here.
@@ -407,6 +462,21 @@
                 window.location.href='@Url.Action("UserAddNotes", "NotesMarketPlace")';
             }
         });
+        function logoutcall() {
+            if (confirm("Are you sure ,you want to Logout??")) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        function logout() {
+            if (confirm("Are you sure ,you want to Logout??")) {
+                window.location.href = '@Url.Action("Logout", "NotesMarketPlace")';
+            }
+            else {
+                window.location.href = '@Url.Action("UserAddNotes", "NotesMarketPlace")';
+            }
+        }
 
     </script>
     @Scripts.Render("~/bundles/jquery")

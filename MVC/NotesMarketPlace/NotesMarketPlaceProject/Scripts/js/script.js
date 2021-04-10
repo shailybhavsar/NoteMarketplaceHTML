@@ -19,7 +19,7 @@ $(function () {
           
           //dark logo
 
-          $("#top-logo img").attr("src", "../images/home/logo.png");
+          $("#top-logo img").attr("src", "/Content/images/home/logo.png");
           $("ul#home-list > li > a > button").css({"background-color":"#6255a5"});
           $("ul#home-list > li > a > button").css({"color":"#fff"});          
 
@@ -27,7 +27,7 @@ $(function () {
           $("#navbar").removeClass("bg-light");
           $("ul#home-list > li > a").css("color","#fff");
           // normal logo
-          $("#top-logo img").attr("src", "../images/home/top-logo.png");
+          $("#top-logo img").attr("src", "/Content/images/home/top-logo.png");
           $("ul#home-list > li > a > button").css({"background-color":"#fff"});
           $("ul#home-list > li > a > button").css({"color":"#6255a5"});          
       }

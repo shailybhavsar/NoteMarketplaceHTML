@@ -60,11 +60,11 @@
                             <a href="@Url.Action("SoldNotes", "NotesMarketPlace")" class="dropdown-item">My Sold Notes</a>
                             <a href="@Url.Action("RejectedNotes", "NotesMarketPlace")" class="dropdown-item">My Rejected Notes</a>
                             <a href="@Url.Action("Changepassword", "NotesMarketPlace")" class="dropdown-item">Change Password</a>
-                            <a class="dropdown-item" id="log-out">Logout</a>
+                            <a class="dropdown-item" id="log-out" onclick="logout()">Logout</a>
                         </div>
                     </li>
                     <li class="nav-item" id="btn">
-                        <a href="@Url.Action("Logout", "NotesMarketPlace")" class="nav-link"><button type="submit" class="btn btn-primary btn-block" onclick="logoutcall()">Logout</button></a>
+                        <a href="@Url.Action("Logout", "NotesMarketPlace")" class="nav-link"><button type="submit" class="btn btn-primary btn-block" onclick="return logoutcall()">Logout</button></a>
                     </li>
                 </ul>
             </div>
@@ -166,26 +166,17 @@
                                                                             <h3>Add Review</h3>
                                                                         </div>
                                                                         <fieldset class="rating">
-                                                                            @Html.RadioButtonFor(m => m.Ratings, 5, new { @id = $"star5-{i}" })<label class="full" for="star5-@i" title="Pretty good -5 stars"></label>
-                                                                            @Html.RadioButtonFor(m => m.Ratings, 4.5, new { @id = $"star4half-{i}" })<label class="half" for="star4half-@item.downloadtbl.ID" title="Pretty good - 4.5 stars"></label>
-
-                                                                            @Html.RadioButtonFor(m => m.Ratings, 4, new { @id = $"star4-{i}" })<label class="full" for="star4-@i" title="Pretty good - 4 stars"></label>
-                                                                            @Html.RadioButtonFor(m => m.Ratings, 3.5, new { @id = $"star3half-{i}" })<label class="half" for="star3half-@i" title="Meh - 3.5 stars"></label>
-
-                                                                            @Html.RadioButtonFor(m => m.Ratings, 3, new { @id = $"star3-{i}" })<label class="full" for="star3-@i" title="Meh - 3 stars"></label>
-                                                                            @Html.RadioButtonFor(m => m.Ratings, 2.5, new { @id = $"star2half-{i}" })<label class="half" for="star2half-@i" title="Kinda bad - 2.5 stars"></label>
-
-                                                                            @Html.RadioButtonFor(m => m.Ratings, 2, new { @id = $"star2-{i}" })<label class="full" for="star2-@i" title="Kinda bad - 2 stars"></label>
-                                                                            @Html.RadioButtonFor(m => m.Ratings, 1.5, new { @id = $"star1half-{i}" })<label class="half" for="star1half-@i" title="Meh - 1.5 stars"></label>
-
-                                                                            @Html.RadioButtonFor(m => m.Ratings, 1, new { @id = $"star1-{i}" })<label class="full" for="star1-@i" title="Sucks big time - 1 star"></label>
-                                                                            @Html.RadioButtonFor(m => m.Ratings, 0.5, new { @id = $"half-{i}" })<label class="half" for="half-@i" title="Sucks big time - 0.5 stars"></label>
-
+                                                                            
+                                                                            <input type="radio" id="star5-@i" name="rating" value="5"/><label class="full" for="star5-@i" title="Pretty good -5 stars"></label>
+                                                                            <input type="radio" id="star4-@i" name="rating" value="4" /><label class="full" for="star4-@i" title="Pretty good - 4 stars"></label>
+                                                                            <input type="radio" id="star3-@i" name="rating" value="3" /><label class="full" for="star3-@i" title="Meh - 3 stars"></label>
+                                                                            <input type="radio" id="star2-@i" name="rating" value="2" /><label class="full" for="star2-@i" title="Kinda bad - 2 stars"></label>
+                                                                            <input type="radio" id="star1-@i" name="rating" value="1" /><label class="full" for="star1-@i" title="Sucks big time - 1 star"></label>
                                                                         </fieldset>
+                                                                       
                                                                         <div class="comments">
-                                                                            @Html.LabelFor(m => m.Comments, "Comments")
-                                                                            @Html.TextAreaFor(m => m.Comments, new { @class = "form-control", @placeholder = "Comments.." })
-                                                                            @Html.ValidationMessageFor(m => m.Comments, "", new { @style = "color:red" })
+                                                                            <label>Comments</label>
+                                                                            <textarea class="form-control" placeholder="Comments.." name="comments" required></textarea>
                                                                         </div>
                                                                         <div class="submit-btn">
                                                                             <button type="submit" id="modal-btn">SUBMIT</button>
@@ -214,9 +205,9 @@
                                                                         @Html.Label("NoteTitle", "Note Title")
                                                                         @Html.TextBoxFor(m => item.downloadtbl.NoteTitle, new { @class = "form-control", @id = "exampleInput", @readonly = "true" })
 
-                                                                        @Html.Label("Remarks", "Remarks")
-                                                                        @Html.TextAreaFor(m => m.Remarks, new { @class = "form-control", @id = "exampleFormControlTextarea" })
-                                                                        @Html.ValidationMessageFor(m => m.Remarks, "", new { @style = "color:red;" })
+                                                                        <label>Remarks</label>
+                                                                        <textarea class="form-control" id="exampleFormControlTextarea" placeholder="Write Remarks.." name="remark" required></textarea>
+                                                                
                                                                     </div>
 
                                                                     <div class="modal-footer">
@@ -284,15 +275,22 @@
                         return false;
                     }
                 });
-
-                function logoutcall() {
-                    if (confirm("Are you sure ,you want to Logout??")) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
             });
+            function logoutcall() {
+                if (confirm("Are you sure ,you want to Logout??")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            function logout() {
+            if (confirm("Are you sure ,you want to Logout??")) {
+                window.location.href = '@Url.Action("Logout", "NotesMarketPlace")';
+            }
+            else {
+                window.location.href = '@Url.Action("DownloadNotes", "NotesMarketPlace")';
+            }
+        }
         </script>
     }
     @Scripts.Render("~/bundles/jqueryval")

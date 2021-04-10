@@ -85,6 +85,7 @@ C:\Users\HP\Desktop\NotesMarketPlace\NotesMarketPlaceProject\obj\Debug\NotesMark
 C:\Users\HP\Desktop\NotesMarketPlace\NotesMarketPlaceProject\obj\Debug\NotesMarketPlaceProject.csproj.CopyComplete
 C:\Users\HP\Desktop\NotesMarketPlace\NotesMarketPlaceProject\obj\Debug\NotesMarketPlaceProject.dll
 C:\Users\HP\Desktop\NotesMarketPlace\NotesMarketPlaceProject\obj\Debug\NotesMarketPlaceProject.pdb
+D:\Tatvasoft\Project3_tatvasoft\MVC\NotesMarketPlace\NotesMarketPlaceProject\obj\Debug\NotesMarketPlaceProject.csproj.CoreCompileInputs.cache
 D:\Tatvasoft\Project3_tatvasoft\MVC\NotesMarketPlace\NotesMarketPlaceProject\bin\NotesMarketPlaceProject.dll.config
 D:\Tatvasoft\Project3_tatvasoft\MVC\NotesMarketPlace\NotesMarketPlaceProject\bin\NotesMarketPlaceProject.dll
 D:\Tatvasoft\Project3_tatvasoft\MVC\NotesMarketPlace\NotesMarketPlaceProject\bin\NotesMarketPlaceProject.pdb
@@ -167,8 +168,7 @@ D:\Tatvasoft\Project3_tatvasoft\MVC\NotesMarketPlace\NotesMarketPlaceProject\bin
 D:\Tatvasoft\Project3_tatvasoft\MVC\NotesMarketPlace\NotesMarketPlaceProject\bin\Newtonsoft.Json.xml
 D:\Tatvasoft\Project3_tatvasoft\MVC\NotesMarketPlace\NotesMarketPlaceProject\bin\Antlr3.Runtime.pdb
 D:\Tatvasoft\Project3_tatvasoft\MVC\NotesMarketPlace\NotesMarketPlaceProject\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-D:\Tatvasoft\Project3_tatvasoft\MVC\NotesMarketPlace\NotesMarketPlaceProject\obj\Debug\NotesMarketPlaceProject.csprojAssemblyReference.cache
-D:\Tatvasoft\Project3_tatvasoft\MVC\NotesMarketPlace\NotesMarketPlaceProject\obj\Debug\NotesMarketPlaceProject.csproj.CoreCompileInputs.cache
 D:\Tatvasoft\Project3_tatvasoft\MVC\NotesMarketPlace\NotesMarketPlaceProject\obj\Debug\NotesMarketPlaceProject.csproj.CopyComplete
 D:\Tatvasoft\Project3_tatvasoft\MVC\NotesMarketPlace\NotesMarketPlaceProject\obj\Debug\NotesMarketPlaceProject.dll
 D:\Tatvasoft\Project3_tatvasoft\MVC\NotesMarketPlace\NotesMarketPlaceProject\obj\Debug\NotesMarketPlaceProject.pdb
+D:\Tatvasoft\Project3_tatvasoft\MVC\NotesMarketPlace\NotesMarketPlaceProject\obj\Debug\NotesMarketPlaceProject.csprojAssemblyReference.cache

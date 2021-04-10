@@ -1,0 +1,222 @@
+﻿@model NotesMarketPlaceProject.Models.MyProfile
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Profile</title>
+
+    <!--Important meta tags-->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/bootstrap/bootstrap.min.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/Admin/my_profile.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/Admin/responsive_my_profile.css">
+</head>
+<body>
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Dashboard","Admin")">
+                <img src="~/Content/images/logo.png" alt="logo" class="logo">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto text-right">
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Dashboard","Admin")">Dashboard</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdown-1" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Notes
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown-1">
+                            <a class="dropdown-item" href="@Url.Action("NotesUnderReview","Admin")">Notes Under Review</a>
+                            <a class="dropdown-item" href="@Url.Action("PublishedNotesByAdmin","Admin")">Published Notes</a>
+                            <a class="dropdown-item" href="@Url.Action("DownloadedNotes","Admin")">Downloaded Notes</a>
+                            <a class="dropdown-item" href="@Url.Action("RejectedNotes","Admin")">Rejected Notes</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Members","Admin")">Members</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="" id="navbarDropdown-2" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Reports
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown-2">
+                            <a class="dropdown-item" href="@Url.Action("SpamReports","Admin")">Spam Reports</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdown-2" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Settings
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown-1">
+                            <a class="dropdown-item" href="@Url.Action("ManageSystemConfiguration","Admin")">Manage System Configuration</a>
+                            <a class="dropdown-item" href="@Url.Action("ManageAdmin","Admin")">Manage Administrator</a>
+                            <a class="dropdown-item" href="@Url.Action("ManageCategory","Admin")">Manage Category</a>
+                            <a class="dropdown-item" href="@Url.Action("ManageType","Admin")">Manage Type</a>
+                            <a class="dropdown-item" href="@Url.Action("ManageCountry","Admin")">Manage Countries</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <img src="@Url.Action("UserPhoto", "Admin")" alt="logo">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="@Url.Action("UpdateProfile","Admin")">Update Profile</a>
+                            <a class="dropdown-item" href="@Url.Action("Changepassword","NotesMarketPlace")">Change Password</a>
+                            <a class="dropdown-item" id="logout" onclick="logout()">Logout</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item" id="btn">
+                        <a class="nav-link" href="@Url.Action("Logout","NotesMarketPlace")"><button type="submit" class="btn btn-primary btn-block" onclick="return logoutcall()">Logout</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Navbar Ends-->
+    <!--My Profile-->
+    <section id="my-profile">
+        <div class="container">
+            <div class="form-row">
+                <div class="col-md-6">
+                    <!--Heading-->
+                    <div class="heading">
+                        <h3>My Profile</h3>
+                    </div>
+
+                    <!--Details-->
+                    @using (Html.BeginForm("UpdateProfile", "Admin", FormMethod.Post))
+                    {
+                        <!--Details-->
+                        <div class="form-group input">
+                            @Html.LabelFor(s => s.FirstName, "First Name*")
+                            @Html.TextBoxFor(s => s.FirstName, new { @class = "form-control", @id = "input", @placeholder = "Enter your first name", @value = "John" })
+                            @Html.ValidationMessageFor(s => s.FirstName, "", new { @style = "color:red;" })
+                        </div>
+
+                        <div class="form-group input">
+                            @Html.LabelFor(s => s.LastName, "Last Name*")
+                            @Html.TextBoxFor(s => s.LastName, new { @class = "form-control", @id = "input", @placeholder = "Enter your last name" })
+                            @Html.ValidationMessageFor(s => s.LastName, "", new { @style = "color:red;" })
+                        </div>
+
+                        <div class="form-group input">
+                            @Html.LabelFor(s => s.Email, "Email*")
+                            @Html.TextBoxFor(s => s.Email, new { @class = "form-control", @id = "input", @placeholder = "Enter your email address", @readonly = "true" })
+                            @Html.ValidationMessageFor(s => s.Email, "", new { @style = "color:red;" })
+                        </div>
+
+                        <div class="row form-group input">
+                            <div class="col-md-12 col-sm-12 col-12">
+                                @Html.LabelFor(s => s.PhoneNumberCountryCOde, "Phone Number")
+                                <div class="row">
+
+                                    <div class="col-md-3 col-sm-3 col-3">
+                                        @Html.DropDownList("PhoneNumberCountryCOde", (IEnumerable<SelectListItem>)ViewBag.countrycode, new { @class = "form-control custom-select", @id = "input" })
+                                    </div>
+                                    <div class="col-md-9 col-md-9 col-9">
+                                        @Html.TextBoxFor(s => s.phonenumber, new { @class = "form-control", @id = "input", @placeholder = "Enter your phone number" })
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group input">
+                            @Html.LabelFor(s => s.secondaryemail, "Email*")
+                            @Html.TextBoxFor(s => s.secondaryemail, new { @class = "form-control", @id = "input", @placeholder = "Enter your email address" })
+                        </div>
+
+                        <div class="form-group input">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    <label for="input">Profile Picture</label>
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center add-border">
+                                <label for="upload">
+                                    <img src="~/Content/images/User-Profile/upload.png" />
+                                    <p id="upload_picture">Upload a Picture</p>
+                                    <input type="file" id="upload" name="upload" style="display: none;" accept="image/*">
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 submit">
+                                <button type="submit" class="btn btn-primary" style="width: 115px;">SUBMIT</button>
+                            </div>
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--My Profile Ends-->
+    @Html.Partial("_FooterAdmin")
+
+    <!--JQuery JS-->
+    <script src="~/Scripts/js/jquery.js"></script>
+
+    <!--Bootstrap JS-->
+    <script type="text/javascript" src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
+
+    <script>
+        var input_var = document.getElementById('upload');
+        var infoArea = document.getElementById('upload_picture');
+
+        if (input_var) {
+            input_var.addEventListener('change', showImgName);
+        }
+        function showImgName(event) {
+
+            var input_var = event.srcElement;
+
+            var fileName = input_var.files[0].name;
+
+            infoArea.textContent = 'Img name: ' + fileName;
+        }
+        function logoutcall() {
+
+                    if (confirm("Are you sure ,you want to Logout??")) {
+                        return true;
+                    } else {
+
+                        return false;
+                    }
+                }
+                function logout() {
+
+                    if (confirm("Are you sure ,you want to Logout??")) {
+                        window.location.href = '@Url.Action("Logout", "NotesMarketPlace")';
+                    }
+                    else {
+                        window.location.href = '@Url.Action("UpdateProfile", "Admin")';
+                    }
+                }
+    </script>
+
+</body>
+</html>

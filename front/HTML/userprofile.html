@@ -19,6 +19,9 @@
 
 	<!--Custom CSS-->
 	<link rel="stylesheet" type="text/css" href="../css/responsive_userprofile.css">
+
+	<!--Date CSS-->
+    <link href="../css/bootstrap-datepicker.min.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -131,7 +134,7 @@
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="form-group input" id="cal-photo">
 								<label for="exampleInput">Date Of Birth</label>
-									<input type="text" class="form-control" id="exampleInput" placeholder="Enter your date of birth">
+									<input type="text" class="form-control" id="datepicker" placeholder="Enter your date of birth">
 							</div>
 						</div>
 
@@ -305,6 +308,14 @@
 
 	<!--Bootstrap JS-->
 	<script type="text/javascript" src="../js/bootstrap/bootstrap.min.js"></script>
+
+	<!--Date JS-->
+    <script src="../js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript">
+    	var $j = jQuery.noConflict();
+        $j('#datepicker').val('');
+        $j("#datepicker").datepicker();
+    </script>
 
 </body>
 </html>

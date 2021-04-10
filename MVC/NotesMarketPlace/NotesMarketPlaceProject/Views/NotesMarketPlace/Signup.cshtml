@@ -7,13 +7,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-    </style>
-
     <!--Important meta tags-->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -37,7 +30,6 @@
 
 </head>
 <body>
-
     <section id="login">
         <div class="content-box-lg">
             <div class="row justify-content-center">
@@ -58,9 +50,14 @@
                                 <div class="row">
 
                                     <div class="col-md-12 col-sm-12 col-12">
-                                        <div class="success text-center" style="display:none;">
-                                            <p><i class="fa fa-check circle"></i> Your account has been successfully created</p>
-                                        </div>
+                                        @*<div class="success text-center" style="display:none;">*@
+                                        @if ((string)TempData["Referrer"] == "SaveRegister")
+                                        {
+                                            <div class="alert text-center">
+                                            <p style="color:green;"><i class="fa fa-check circle"></i> Your account has been successfully created Please check your mail to verify email address</p>
+                                            @*</div>*@
+                                            </div>
+                                        }
                                     </div>
 
                                     <!--First Name-->
@@ -87,7 +84,7 @@
                                             @Html.Label("EmailID", "Email*")
                                             @Html.TextBoxFor(x => x.EmailID, new { @class = "form-control", @id = "exampleInputEmail1", @placeholder = "Enter Your Email Address" })
                                             @Html.ValidationMessageFor(x => x.EmailID, "", new { @style = "color:red" })
-                                            @Html.ValidationMessage("EmailExist", new { @style = "color:red" })
+                                            @Html.ValidationMessage("EmailExists", new { @class = "text-danger" })
                                         </div>
                                     </div>
 

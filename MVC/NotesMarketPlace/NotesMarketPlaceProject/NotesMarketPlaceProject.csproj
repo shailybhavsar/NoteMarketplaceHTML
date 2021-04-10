@@ -155,7 +155,7 @@
     <Compile Include="Context\Download.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Context\NameTable.cs">
+    <Compile Include="Context\NewGetSellerNotesDetails_Result.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Context\NoteCategory.cs">
@@ -191,29 +191,46 @@
     <Compile Include="Context\UserRole.cs">
       <DependentUpon>dbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NotesMarketPlaceController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper_Code\AllowExtensionsAttribute.cs" />
+    <Compile Include="Models\AddAdministrator.cs" />
+    <Compile Include="Models\AddCategory.cs" />
+    <Compile Include="Models\AddCountry.cs" />
     <Compile Include="Models\AddEditNotes.cs" />
+    <Compile Include="Models\AddType.cs" />
     <Compile Include="Models\BuyerRequest.cs" />
     <Compile Include="Models\ChangepasswordModel.cs" />
     <Compile Include="Models\ContactUs.cs" />
+    <Compile Include="Models\DashboardAdmin.cs" />
     <Compile Include="Models\DownloadnNotesModel.cs" />
+    <Compile Include="Models\DownloadNotesbyadmin.cs" />
     <Compile Include="Models\GetSellerNotesData.cs" />
     <Compile Include="Models\gmail.cs" />
+    <Compile Include="Models\MemberDetails.cs" />
+    <Compile Include="Models\Members.cs" />
+    <Compile Include="Models\MyProfile.cs" />
+    <Compile Include="Models\Notesunderreview.cs" />
+    <Compile Include="Models\PublishedNotesByAdmin.cs" />
     <Compile Include="Models\RegisterUser.cs" />
     <Compile Include="Models\RejectedNotes.cs" />
+    <Compile Include="Models\RejectedNotesAdmin.cs" />
     <Compile Include="Models\SearchNotes.cs" />
     <Compile Include="Models\SoldNotesModel.cs" />
+    <Compile Include="Models\SpamReports.cs" />
     <Compile Include="Models\UserAddNotes.cs" />
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Models\UserProfileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModel\DashboardViewModel.cs" />
     <Compile Include="ViewModel\DownloadViewModel.cs" />
+    <Compile Include="ViewModel\MemberDetaiviewModel.cs" />
+    <Compile Include="ViewModel\PublishedNotesadminvm.cs" />
+    <Compile Include="ViewModel\SearchNotesnewViewModel.cs" />
     <Compile Include="ViewModel\SearchNoteViewmodel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +239,48 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\add_notes.css" />
+    <Content Include="Content\css\Admin\add_administrator.css" />
+    <Content Include="Content\css\Admin\add_category.css" />
+    <Content Include="Content\css\Admin\add_country.css" />
+    <Content Include="Content\css\Admin\add_type.css" />
+    <Content Include="Content\css\Admin\dashboard.css" />
+    <Content Include="Content\css\Admin\download_notes.css" />
+    <Content Include="Content\css\Admin\forgotpwd.css" />
+    <Content Include="Content\css\Admin\login.css" />
+    <Content Include="Content\css\Admin\manage_administrator.css" />
+    <Content Include="Content\css\Admin\manage_category.css" />
+    <Content Include="Content\css\Admin\manage_country.css" />
+    <Content Include="Content\css\Admin\manage_system_configuration.css" />
+    <Content Include="Content\css\Admin\manage_type.css" />
+    <Content Include="Content\css\Admin\members.css" />
+    <Content Include="Content\css\Admin\member_details.css" />
+    <Content Include="Content\css\Admin\my_profile.css" />
+    <Content Include="Content\css\Admin\notes_underreview.css" />
+    <Content Include="Content\css\Admin\note_details.css" />
+    <Content Include="Content\css\Admin\published_notes.css" />
+    <Content Include="Content\css\Admin\rejected_notes.css" />
+    <Content Include="Content\css\Admin\responsive_add_administrator.css" />
+    <Content Include="Content\css\Admin\responsive_add_category.css" />
+    <Content Include="Content\css\Admin\responsive_add_country.css" />
+    <Content Include="Content\css\Admin\responsive_add_type.css" />
+    <Content Include="Content\css\Admin\responsive_dashboard.css" />
+    <Content Include="Content\css\Admin\responsive_download_notes.css" />
+    <Content Include="Content\css\Admin\responsive_forgotpwd.css" />
+    <Content Include="Content\css\Admin\responsive_login.css" />
+    <Content Include="Content\css\Admin\responsive_manage_Administrator.css" />
+    <Content Include="Content\css\Admin\responsive_manage_category.css" />
+    <Content Include="Content\css\Admin\responsive_manage_country.css" />
+    <Content Include="Content\css\Admin\responsive_manage_system.css" />
+    <Content Include="Content\css\Admin\responsive_manage_type.css" />
+    <Content Include="Content\css\Admin\responsive_members.css" />
+    <Content Include="Content\css\Admin\responsive_member_details.css" />
+    <Content Include="Content\css\Admin\responsive_my_profile.css" />
+    <Content Include="Content\css\Admin\responsive_notes_underreview.css" />
+    <Content Include="Content\css\Admin\responsive_note_details.css" />
+    <Content Include="Content\css\Admin\responsive_published_notes.css" />
+    <Content Include="Content\css\Admin\responsive_rejected_notes.css" />
+    <Content Include="Content\css\Admin\responsive_spam_reports.css" />
+    <Content Include="Content\css\Admin\spam_reports.css" />
     <Content Include="Content\css\bootstrap-datepicker.min.css" />
     <Content Include="Content\css\bootstrap\bootstrap-grid.css" />
     <Content Include="Content\css\bootstrap\bootstrap-grid.min.css" />
@@ -266,6 +325,7 @@
     <Content Include="Content\css\responsive_userprofile.css" />
     <Content Include="Content\css\search_notes.css" />
     <Content Include="Content\css\signup.css" />
+    <Content Include="Content\css\spam_reports.css" />
     <Content Include="Content\css\userprofile.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.min.css" />
@@ -456,6 +516,7 @@
     <Content Include="Content\images\home\customer-3.png" />
     <Content Include="Content\images\home\customer-4.png" />
     <Content Include="Content\images\home\download.png" />
+    <Content Include="Content\images\User-Profile\download.png" />
     <Content Include="Content\images\home\favicon.ico" />
     <Content Include="Content\images\home\logo.png" />
     <Content Include="Content\images\home\seller.png" />
@@ -624,6 +685,9 @@
     <Content Include="Scripts\DataTables\responsive.jqueryui.min.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.js" />
     <Content Include="Scripts\DataTables\responsive.semanticui.min.js" />
+    <Content Include="Scripts\jplist\jplist.core.min.js" />
+    <Content Include="Scripts\jplist\jplist.pagination-bundle.min.js" />
+    <Content Include="Scripts\jplist\jplist.textbox-filter.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -689,9 +753,33 @@
     <Content Include="Views\NotesMarketPlace\EditProfile.cshtml" />
     <Content Include="Views\NotesMarketPlace\FAQ.cshtml" />
     <Content Include="Views\NotesMarketPlace\RejectedNotes.cshtml" />
+    <Content Include="Views\NotesMarketPlace\_SearchNote.cshtml" />
+    <Content Include="Views\Admin\AddCountry.cshtml" />
+    <Content Include="Views\Shared\_FooterAdmin.cshtml" />
+    <Content Include="Views\Admin\AddType.cshtml" />
+    <Content Include="Views\Admin\AddCategory.cshtml" />
+    <Content Include="Views\Admin\ManageCountry.cshtml" />
+    <Content Include="Views\Admin\ManageType.cshtml" />
+    <Content Include="Views\Admin\ManageCategory.cshtml" />
+    <Content Include="Views\Admin\NotesUnderReview.cshtml" />
+    <Content Include="Views\Admin\MemberDetails.cshtml" />
+    <Content Include="Views\Admin\RejectedNotes.cshtml" />
+    <Content Include="Views\Admin\PublishedNotesByAdmin.cshtml" />
+    <Content Include="Views\Admin\Dashboard.cshtml" />
+    <Content Include="Views\Admin\DownloadedNotes.cshtml" />
+    <Content Include="Views\Admin\Members.cshtml" />
+    <Content Include="Views\Admin\NoteDetails.cshtml" />
+    <Content Include="Views\Admin\AddAdministrator.cshtml" />
+    <Content Include="Views\Admin\ManageAdmin.cshtml" />
+    <Content Include="Views\Admin\ManageSystemConfiguration.cshtml" />
+    <Content Include="Views\Admin\UpdateProfile.cshtml" />
+    <Content Include="Views\Admin\SpamReports.cshtml" />
+    <Content Include="Views\NotesMarketPlace\HomePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="AdminProfilePhoto\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Members\" />
     <Folder Include="Uploadimg\" />
     <Folder Include="Uploadprofileimg\" />
   </ItemGroup>

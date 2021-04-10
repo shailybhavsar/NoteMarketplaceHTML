@@ -57,11 +57,12 @@
                             <a href="@Url.Action("SoldNotes", "NotesMarketPlace")" class="dropdown-item">My Sold Notes</a>
                             <a href="@Url.Action("RejectedNotes", "NotesMarketPlace")" class="dropdown-item">My Rejected Notes</a>
                             <a href="@Url.Action("Changepassword", "NotesMarketPlace")" class="dropdown-item">Change Password</a>
-                            <a class="dropdown-item" id="log-out">Logout</a>
+                            <a class="dropdown-item" id="log-out" onclick="logout()">Logout</a>
                         </div>
                     </li>
                     <li class="nav-item" id="btn">
-                        <a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Logout</button></a>
+                        <a href="@Url.Action("Logout", "NotesMarketPlace")" class="nav-link"><button type="submit" class="btn btn-primary btn-block" onclick="return logoutcall()">Logout</button></a>
+
                     </li>
                 </ul>
             </div>
@@ -101,7 +102,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group input">
                                 @Html.LabelFor(m => m.EmailID, "Email*")
-                                @Html.TextBoxFor(m => m.EmailID, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your email address" , @readonly = "true" })
+                                @Html.TextBoxFor(m => m.EmailID, new { @class = "form-control", @id = "exampleInput", @placeholder = "Enter your email address", @readonly = "true" })
                                 @Html.ValidationMessageFor(m => m.EmailID, "", new { @style = "color:red" })
                             </div>
                         </div>
@@ -124,7 +125,7 @@
                                     <label for="upload">
                                         <img src="~/Content/images/User-Profile/upload.png" />
                                         <p id="upload_picture">Upload a Picture</p>
-                                        <input type="file" id="upload" name="upload" style="display: none;">
+                                        <input type="file" id="upload" name="upload" style="display: none;" accept="image/*">
                                     </label>
                                 </div>
                             </div>
@@ -144,11 +145,10 @@
                         </div>
 
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="form-group input" @*id="cal-photo"*@>
+                            <div class="form-group input">
                                 @Html.LabelFor(m => m.DOB, "Date Of Birth")
-                                @*@Html.TextBoxFor(m => m.DOB, new { @class = "form-control"-->@*, @id = "datepicker"<!--,type = "date", @placeholder = "Enter your date of birth" }*@
-                                @Html.TextBoxFor(m => m.DOB, new { @class = "form-control", @type = "date", @placeholder = "Enter your date of birth" })
-                            
+                                @*@Html.TextBoxFor(m => m.DOB, new { @class = "form-control", @id = "datepicker", @placeholder = "Enter your date of birth", @value = "" })*@
+                                @Html.TextBoxFor(m => m.DOB, new { @class = "form-control", @id = "exampleInput", @type = "date", @placeholder = "Enter your date of birth" })
                             </div>
                         </div>
 
@@ -293,8 +293,26 @@
 
     <!--Date JS-->
     <script src="~/Scripts/js/bootstrap-datepicker.min.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
+    @section  Scripts{
+        <script>
 
-    <script>
+        function logoutcall() {
+            if (confirm("Are you sure ,you want to Logout??")) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        function logout() {
+            if (confirm("Are you sure ,you want to Logout??")) {
+                window.location.href = '@Url.Action("Logout", "NotesMarketPlace")';
+            }
+            else {
+                window.location.href = '@Url.Action("EditProfile", "NotesMarketPlace")';
+            }
+            }
+
         var input_var = document.getElementById('upload');
         var infoArea = document.getElementById('upload_picture');
 
@@ -311,11 +329,18 @@
         }
 
         var $j = jQuery.noConflict();
-         $j("#datepicker").datepicker();
+        $j('#datepicker').val('');
+        $j("#datepicker").datepicker({ dateFormat: "dd-mm-yyyy" });
+        $j('#datepicker').change(function () {
+            var date = $j(this).val();
+            $j('#datepicker').val($j(this).val());
+            //alert($j(this).val());
+        }
+        )
 
-    </script>
-    @Scripts.Render("~/bundles/jqueryval")
-    @Html.ValidationMessage("error")
+        </script>
+        }
+        @Html.ValidationMessage("error")
 
-</body>
+    </body>
 </html>

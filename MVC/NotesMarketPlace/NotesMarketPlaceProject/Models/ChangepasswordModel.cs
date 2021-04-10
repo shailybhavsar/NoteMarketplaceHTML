@@ -12,7 +12,7 @@ namespace NotesMarketPlaceProject.Models
         public string OldPassword { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please Enter New Password")]
-        [RegularExpression(@"^(?=.{6,24})(?=.*[a-z])(?=.*[@#$%^&+=]).*$", ErrorMessage = "Atleast 1 lowercase,1 special char,1 digit(char between 6-24)")]
+        [RegularExpression(@"^(?=.{6,24})(?=.*[a-z])(?=.*[0-9])(?=.*[@#$%^&+=]).*$", ErrorMessage = "Atleast 1 lowercase,1 special char,1 digit(char between 6-24)")]
         public string NewPassword { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please Enter Confirm Password")]

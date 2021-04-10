@@ -28,6 +28,9 @@ namespace NotesMarketPlaceProject.Models
         public IEnumerable<NoteCategory> categories { get; set; }
         public IEnumerable<SearchNoteViewmodel> univercities { get; set; }
         public IEnumerable<SearchNoteViewmodel> courses { get; set; }
+        //public IEnumerable<SellerNote> sellerNotes { get; set; }
+        public IEnumerable<SearchNoteViewmodel> sellerNotes { get; set; }
+        public IEnumerable<SellerNote> courselist { get; set; }
 
         public IEnumerable<SearchNoteViewmodel> countbooks { get; set; }
         public IEnumerable<Country> countries { get; set; }

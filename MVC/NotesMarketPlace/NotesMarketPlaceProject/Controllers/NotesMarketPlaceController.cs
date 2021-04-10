@@ -20,13 +20,18 @@ namespace NotesMarketPlaceProject.Controllers
 {
     public class NotesMarketPlaceController : Controller
     {
-        NotesMarketPlaceTablesEntities1 db = new NotesMarketPlaceTablesEntities1();        // GET: NotesMarketPlace
+        NotesMarketPlaceTablesEntities2 db = new NotesMarketPlaceTablesEntities2();        // GET: NotesMarketPlace
         
+        public ActionResult HomePage()
+        {
+            return View();
+        }
         //SignUp
         public ActionResult Signup()
         {
             return View();
         }
+        //To check email already exist??
         public bool IsEmailExists(string eMail)
         {
             var IsCheck = db.Users.Where(x => x.EmailID == eMail).FirstOrDefault();
@@ -36,9 +41,14 @@ namespace NotesMarketPlaceProject.Controllers
         [HttpPost]
         public ActionResult SignUp(RegisterUser Model)
         {
+            var IsExist = IsEmailExists(Model.EmailID);
+            if(IsExist)
+            {
+                ModelState.AddModelError("EmailExists", "Email Already Exists");
+                return View("SignUp");
+            }
             if (ModelState.IsValid)
             {
-
                 var user = new User
                 {
                     FirstName = Model.FirstName,
@@ -47,11 +57,13 @@ namespace NotesMarketPlaceProject.Controllers
                     Password = Model.Password,
                     RoleID = 6,
                     IsEmailVerified = false,
-                    CreatedDate = DateTime.Now
+                    CreatedDate = DateTime.Now,
+                    IsActive=true
                 };
 
                 db.Users.Add(user);
                 db.SaveChanges();
+                TempData["Referrer"] = "SaveRegister";
 
 
                 var SenderEMail = new MailAddress("aaabhavsar022@gmail.com", Model.FirstName);
@@ -110,21 +122,28 @@ namespace NotesMarketPlaceProject.Controllers
 
         public ActionResult Login(UserLogin Model)
         {
-            var loginSession = db.Users.Where(x => x.EmailID == Model.EmailID).FirstOrDefault();
-
-            Session["ID"] = loginSession.ID.ToString();
-            int check = Convert.ToInt32(Session["ID"]);
-            var exits = db.UserProfiles.Where(x => x.UserID == check).FirstOrDefault();
+            
             if (ModelState.IsValid)
             {
                 var r = getemail(Model.EmailID);
                 if (r == null)
                 {
-                    ModelState.AddModelError("EmailID","InValid Email");
+                    ModelState.AddModelError("EmailID","InValid Email,Please Enter correct Email ID");
                     return View();
                 }
                 else
                 {
+                    var loginSession = db.Users.Where(x => x.EmailID == Model.EmailID).FirstOrDefault();
+                    Session["ID"] = loginSession.ID.ToString();
+
+                    int check = Convert.ToInt32(Session["ID"]);
+                    var exits = db.UserProfiles.Where(x => x.UserID == check).FirstOrDefault();
+
+                    var checkinusertbl = db.Users.Where(x => x.ID == check).FirstOrDefault();
+                    if (checkinusertbl.RoleID == 7 && Session["ID"] != null)
+                    {
+                        return RedirectToAction("Dashboard", "Admin");
+                    }
                     if (r.EmailID == Model.EmailID && r.Password == Model.Password)
                     {
                         if (exits != null)
@@ -143,7 +162,8 @@ namespace NotesMarketPlaceProject.Controllers
                 }
 
             }
-            return RedirectToAction("UserProfile");
+            //return RedirectToAction("UserProfile");
+            return View();
         }
 
         [HttpPost]
@@ -170,14 +190,19 @@ namespace NotesMarketPlaceProject.Controllers
         {
             bool emailexist = false;
             var IsExist = IsEmailExists(Model.EmailID);
-            var user = db.Users.Where(x => x.EmailID.Equals(Model.EmailID)).FirstOrDefault();
+            var user = db.Users.Where(x => x.EmailID == Model.EmailID).FirstOrDefault();
+            if(user==null)
+            {
+                ModelState.AddModelError("EmailID", "Please enter registered Email ID");
+            }
             if (IsExist)
             {
                 emailexist = true;
             }
+            string strNewPassword = null;
             if (emailexist == true)
             {
-                string strNewPassword = GeneratePassword().ToString();
+                strNewPassword = GeneratePassword().ToString();
                 var SenderEMail = new MailAddress("aaabhavsar022@gmail.com");
                 var receiverEmail = new MailAddress(Model.EmailID);
                 var SenderPassword = "Shreya@3103";
@@ -191,15 +216,20 @@ namespace NotesMarketPlaceProject.Controllers
 
                 MailMessage mailMessage = new MailMessage(SenderEMail.Address, receiverEmail.Address);
                 mailMessage.Subject = subject;
-                mailMessage.Body = "<br/>Hello, " + "<br/>We have generated password for you" + "<br/>" + strNewPassword + "<br/>" + "Regards, <br/> Notes MarketPlace.";
+                mailMessage.Body = "<br/>Hello  "+user.FirstName +"," + "<br/></br>We have generated password for you" + "<br/>" + strNewPassword + "<br/>" + "Regards, <br/> Notes MarketPlace.";
 
                 mailMessage.IsBodyHtml = true;
                 smtp.Send(mailMessage);
 
                 //Added
                 user.Password = strNewPassword;
+                user.ModifiedDate = DateTime.Now;
+                db.SaveChanges();
+
+                TempData["forgotpwd"] = "Displaymsg";
+                return RedirectToAction("Login", "NotesMarketPlace");
             }
-            return RedirectToAction("Login", "NotesMarketPlace");
+            return View();
         }
         public string GeneratePassword()
         {
@@ -242,9 +272,10 @@ namespace NotesMarketPlaceProject.Controllers
             if (temp != null)
             {
                 temp.Password = model.ConfirmPassword;
+                temp.ModifiedDate = DateTime.Now;
                 db.SaveChanges();
-                //Added
-                ViewBag.successMessage = "Success";
+                //Message will be display when password has been changed successfully
+                TempData["changepwd"] = "Displaypwdchange";
                 return RedirectToAction("Login", "NotesMarketPlace");
             }
             else
@@ -291,10 +322,16 @@ namespace NotesMarketPlaceProject.Controllers
         [HttpPost]
         public ActionResult UserProfile(UserProfileModel model, HttpPostedFileBase upload)
         {
-            var filename = Path.GetFileName(upload.FileName);
-            string path = Path.Combine(Server.MapPath("~/Uploadprofileimg"), filename);
-            upload.SaveAs(path);
-            string name = Path.GetFileName(filename);
+            string name = null;
+            string ex = null;
+            if (upload != null)
+            {
+                ex = Path.GetExtension(upload.FileName);
+                name= "DP_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ex;
+                string path = Path.Combine(Server.MapPath("~/Uploadprofileimg"), name);
+                upload.SaveAs(path);
+                
+            }
 
             List<Country> countryobj = db.Countries.ToList();
             ViewBag.countryobj = new SelectList(countryobj, "CountryName", "CountryName");
@@ -313,7 +350,7 @@ namespace NotesMarketPlaceProject.Controllers
                 var userprofile = new UserProfile
                 {
                     UserID = result,
-                    DOB = model.DOB,
+                    DOB = Convert.ToDateTime(model.DOB),
                     Gender = model.Gender,
                     PhoneNumberCountryCOde = model.PhoneNumberCountryCOde,
                     PhoneNumber = model.PhoneNumber,
@@ -325,7 +362,8 @@ namespace NotesMarketPlaceProject.Controllers
                     ZipCode = model.ZipCode,
                     Country = model.Country,
                     University = model.University,
-                    College = model.College
+                    College = model.College,
+                    CreatedDate=DateTime.Now
                 };
 
                 db.UserProfiles.Add(userprofile);
@@ -385,13 +423,18 @@ namespace NotesMarketPlaceProject.Controllers
 
             string userprofile = null;
             string userprofilepath = null;
-            
-            if(upload!=null)
+
+            string name = null;
+            string ex = null;
+
+            if (upload!=null)
             {
-                userprofile = Path.GetFileName(upload.FileName);
-                if(userprofile!=exists.ProfilePicture)
+                ex = Path.GetExtension(upload.FileName);
+                name = "DP_" + DateTime.Now.ToString("yyyyMMddHHmmss") + ex;
+                
+                if(name!=exists.ProfilePicture)
                 {
-                    userprofilepath= Path.Combine(Server.MapPath("~/Uploadprofileimg"), userprofile);
+                    userprofilepath= Path.Combine(Server.MapPath("~/Uploadprofileimg"), name);
                     upload.SaveAs(userprofilepath);
                     exists.ProfilePicture = userprofile;
                 }
@@ -412,6 +455,8 @@ namespace NotesMarketPlaceProject.Controllers
             exists.College = model.College;
             exists.Country = model.Country;
             exists.ZipCode = model.ZipCode;
+            exists.ModifiedDate = DateTime.Now;
+            exists.ModifiedBy = check.ID;
             db.SaveChanges();
             return RedirectToAction("EditProfile");
         }
@@ -448,10 +493,16 @@ namespace NotesMarketPlaceProject.Controllers
             string notes_pdf_path = null;
             string upload_note_name = null;
 
+            string dp_ex=null;;
+            string un_ex = null;
+            string pi_ex = null;
+
             //Store Display picture in database
             if (upload_image != null)
             {
-                filename = Path.GetFileName(upload_image.FileName);
+                //filename = Path.GetFileNameWithoutExtension(upload_image.FileName);
+                dp_ex = Path.GetExtension(upload_image.FileName);
+                filename = "DP_" + DateTime.Now.ToString("yyyyMMddHHmmss") + dp_ex;
                 path = Path.Combine(Server.MapPath("~/Uploadimg"), filename);
                 upload_image.SaveAs(path);
                 //name = Path.GetFileName(filename);
@@ -460,7 +511,8 @@ namespace NotesMarketPlaceProject.Controllers
             //Store preview picture in database
             if (upload_image1 != null)
             {
-                preview_img = Path.GetFileName(upload_image1.FileName);
+                pi_ex = Path.GetExtension(upload_image1.FileName);
+                preview_img = "DP_" + DateTime.Now.ToString("yyyyMMddHHmmss")+pi_ex;
                 preview_path = Path.Combine(Server.MapPath("~/Uploadimg"), preview_img);
                 upload_image1.SaveAs(preview_path);
                 //preview_img_name = Path.GetFileName(preview_img);
@@ -469,10 +521,20 @@ namespace NotesMarketPlaceProject.Controllers
             //Store Notes(pdf_form) in database
             if (upload_notes != null)
             {
-                notes_pdf = Path.GetFileName(upload_notes.FileName);
+                un_ex = Path.GetExtension(upload_notes.FileName);
+                notes_pdf = "DP_" + DateTime.Now.ToString("yyyyMMddHHmmss") + un_ex;
                 notes_pdf_path = Path.Combine(Server.MapPath("~/Uploadimg"), notes_pdf);
                 upload_notes.SaveAs(notes_pdf_path);
                 upload_note_name = Path.GetFileName(notes_pdf);
+                ////foreach(HttpPostedFileBase file in upload_notes)
+                ////{
+                ////    //string strpath = "~/Members/" +sellerid+"/"+ noteid +"/Attachments/";
+                ////    string strpath = "~/Members/" + sellerid  + "/Attachments/";
+                ////    un_ex = Path.GetExtension(file.FileName);
+                ////    notes_pdf = "DP_" + DateTime.Now.ToString("yyyyMMddHHmmss") + un_ex;
+                ////    notes_pdf_path= Path.Combine(Server.MapPath(strpath), notes_pdf);
+                ////    file.SaveAs(notes_pdf_path);
+                ////}
             }
 
             try
@@ -498,18 +560,21 @@ namespace NotesMarketPlaceProject.Controllers
                         SellingPrice = model.SellingPrice,
                         CreatedDate = DateTime.Now,
                         NotesPreview = preview_img,
+                        IsActive=true
                     };
                     db.SellerNotes.Add(sellernote);
                     var sellernotesattachments = new SellerNotesAttachment
                     {
                         NoteID=sellernote.ID,
-                        FileName = upload_note_name,
+                        FileName = notes_pdf,
                         FilePath = notes_pdf_path,
-                        CreatedDate = DateTime.Now
+                        CreatedDate = DateTime.Now,
+                        CreatedBy=sellerid,
+                        IsActive=true
                     };
                     db.SellerNotesAttachments.Add(sellernotesattachments);
                     db.SaveChanges();
-                    return RedirectToAction("Login", "NotesMarketPlace");
+                    //return RedirectToAction("Login", "NotesMarketPlace");
                 }
             }
             catch (DbEntityValidationException e)
@@ -527,8 +592,29 @@ namespace NotesMarketPlaceProject.Controllers
                 throw;
 
             }
-            ModelState.Clear();
-            return RedirectToAction("UserAddNotes", "NotesMarketPlace");
+            AddEditNotes obj = new AddEditNotes {
+                types = GetNoteTypes(),
+                categories = GetNoteCategories(),
+                countries = GetCountryList(),
+                Title = model.Title,
+                CategoryID = model.CategoryID,
+                TypeID = model.TypeID,
+                DisplayPicture = filename,
+                NumberOfPages = model.NumberOfPages,
+                Description = model.Description,
+                UniversityName = model.UniversityName,
+                CountryID = model.CountryID,
+                Course = model.Course,
+                CourseCode = model.CourseCode,
+                Professor = model.Professor,
+                IsPaid = model.IsPaid,
+                SellingPrice = model.SellingPrice,
+                NotesPreview = preview_img,
+                FileName = notes_pdf
+            };
+            TempData["displaypublish"] = "Displaymsg";
+            return View(obj);
+            //return RedirectToAction("UserAddNotes", "NotesMarketPlace");
         }
         public ActionResult DashboardEditNote(int id)
         {
@@ -636,6 +722,7 @@ namespace NotesMarketPlaceProject.Controllers
             exists.IsPaid = model.IsPaid;
             exists.SellingPrice = model.SellingPrice;
             exists.ModifiedDate = DateTime.Now;
+            exists.ModifiedBy = exists.SellerID;
             db.SaveChanges();
             return RedirectToAction("DashboardEditNote");
         }
@@ -646,6 +733,11 @@ namespace NotesMarketPlaceProject.Controllers
             return noteTypes;
 
         }
+        //public IEnumerable<SearchNoteViewmodel> GetUnivercityName()
+        //{
+        //    IEnumerable<SearchNoteViewmodel> obj = se
+        //    return obj;
+        //}
 
         //function for notecategories
         public List<NoteCategory> GetNoteCategories()
@@ -695,8 +787,28 @@ namespace NotesMarketPlaceProject.Controllers
         {
             var max = db.SellerNotes.OrderByDescending(x => x.ID).FirstOrDefault();
             var sellernote = db.SellerNotes.Where(x => x.ID == max.ID).FirstOrDefault();
+            var sellername = db.Users.Where(x => x.ID == sellernote.SellerID).FirstOrDefault();
+            var supportemail = db.SystemConfigurations.Where(x => x.ID == 1).FirstOrDefault();
             sellernote.Status = 7;
             db.SaveChanges();
+
+            var SenderEMail = new MailAddress("aaabhavsar022@gmail.com");
+            var receiverEmail = new MailAddress(supportemail.Value);
+            var SenderPassword = "Shreya@3103";
+            var subject = sellername.FirstName + "sent note for review";
+
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.EnableSsl = true;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential(SenderEMail.Address, SenderPassword);
+
+            MailMessage mailMessage = new MailMessage(SenderEMail.Address, receiverEmail.Address);
+            mailMessage.Subject = subject;
+            mailMessage.Body = "<br/><br/><br/>Hello Admins We want to inform you that, " + sellername.FirstName + " sent his note " + sellernote.Title + "For Review  Please look at the notes and take required actions." + "<br/><br/> Regards, Notes MarketPlace.";
+
+            mailMessage.IsBodyHtml = true;
+            smtp.Send(mailMessage);
             return RedirectToAction("DashBoard", "NotesMarketPlace");
         }
 
@@ -762,6 +874,17 @@ namespace NotesMarketPlaceProject.Controllers
 
             ViewBag.countrejectednotes = rejectednotes.Count();
 
+            //foreach (User u in userobj)
+            //{
+            //    List<Download> earning = db.Downloads.Where(x => x.Seller == u.ID && x.IsAttachmentDownloaded == true && x.IsSellerHasAllowedDownload == true && x.IsPaid == true).ToList();
+            //    var sum = earning.Sum(x => x.PurchasedPrice);
+            //    string totalearning = Convert.ToString(u.ID);
+            //    TempData[totalearning + "5"] = sum;
+            //}
+            List<Download> earning = db.Downloads.Where(x => x.Seller == tempvar && x.IsAttachmentDownloaded == true && x.IsSellerHasAllowedDownload == true).ToList();
+            var sum = earning.Sum(x => x.PurchasedPrice);
+            ViewBag.totalearning = sum;
+
             //Query to count number of Buyer Requests
             List<User> usertbl3 = db.Users.ToList();
             List<Download> downloadtbl3 = db.Downloads.Where(x => x.Seller == tempvar && (x.IsSellerHasAllowedDownload == false)).ToList();
@@ -793,21 +916,26 @@ namespace NotesMarketPlaceProject.Controllers
         }
         public ActionResult SearchNotes()
         {
-            
-            SearchNotes Model = new SearchNotes
-            {
-                types = GetNoteTypes(),
-                categories = GetNoteCategories(),
-                univercities = GetTitles().Where(x => x.UniversityName != null),
+            ViewBag.Sessioncheck = Session["ID"];
+            List<SellerNote> univercityname = db.SellerNotes.GroupBy(x=>x.UniversityName).Select(x=>x.FirstOrDefault()).Where(x=>x.UniversityName!=null).ToList();
+            ViewBag.countryobj = new SelectList(univercityname, "UniversityName", "UniversityName");
 
-                //Whatever notes is published will going to be display in search notes,status==9 means published notes
-               // courses = GetTitles().Where(x => x.Status == 9),
-                courses = GetTitles(),
-                countries = GetCountryList(),
-                //reviews = db.SellerNotesReviews.ToList()
+            List<SellerNote> coursename = db.SellerNotes.GroupBy(x => x.Course).Select(x => x.FirstOrDefault()).Where(x => x.Course != null).ToList();
+            ViewBag.courseobj = new SelectList(coursename, "Course", "Course");
+
+            List<SellerNotesReview> reviews = db.SellerNotesReviews.GroupBy(x => x.Ratings).Select(x => x.FirstOrDefault()).ToList();
+            ViewBag.reviewobj = new SelectList(reviews, "Ratings", "Ratings");
+
+            SearchNotesnewViewModel Model = new SearchNotesnewViewModel
+            {
+                types1 = GetNoteTypes(),
+                categories1 = GetNoteCategories(),
+                univercities1 = GetTitles().Where(x => x.UniversityName != null),
+                courses1 = GetTitles(),
+                countries1= GetCountryList(),
             };
 
-            foreach(var note in Model.courses)
+            foreach(var note in Model.courses1)
             {
                 note.avg = GetAvgRating(note.ID);
                 note.RateCount = GetRatingCount(note.ID);
@@ -842,24 +970,33 @@ namespace NotesMarketPlaceProject.Controllers
             }
         }
         [HttpPost]
-        public JsonResult FilterNotes(string search_item)
+        public ActionResult FilterNotes(int FK_Type=0,string FK_Course=null,int FK_Country=0,string FK_University=null,int FK_Category=0,string FK_Searchdata=null,decimal FK_Ratings=0, string pageNumber = "1",string pageSize = "5")
         {
             ///*List<SellerNote> obj = new List<SellerNote>();*/
-            var obj = db.SellerNotes.Where(x => x.Title.Contains(search_item)).ToList();
-            return Json(new { obj }, JsonRequestBehavior.AllowGet);
+            if (string.IsNullOrEmpty(FK_University))
+                FK_University = null;
+            if (string.IsNullOrEmpty(FK_Course))
+                FK_Course = null;
+            if (string.IsNullOrEmpty(FK_Searchdata))
+                FK_Searchdata = null;
+            
+            SearchNotesnewViewModel Model = new SearchNotesnewViewModel();
+            Model.PageSize = "9";
+            Model.PageNumber = pageNumber;
+
+            int PageNumber = Convert.ToInt32(pageNumber);
+            int PageSize = 9; /*Convert.ToInt32(PageSize);*/
+            List<NewGetSellerNotesDetails_Result> getData = db.NewGetSellerNotesDetails(FK_Type, FK_Category, FK_Country, FK_University, FK_Course, FK_Ratings, PageSize, PageNumber, FK_Searchdata).ToList();
+            
+            Model.newGetSellerNotesDetails_Results = getData;
+
+            foreach(var data in getData)
+            {
+                Model.TotalRecords = (int)data.TotalCount;
+            }
+
+            return PartialView("_SearchNote",Model);
         }
-        //public ActionResult FilterNotes(string search_item)
-        //{
-        //    /*List<SellerNote> obj = new List<SellerNote>();*/
-        //    //var obj = db.SellerNotes.Where(x => x.Title == search_item).ToList();
-        //    var books = from x in db.SellerNotes select x;
-        //    if (!string.IsNullOrEmpty(search_item));
-        //    {
-        //        books = books.Where(m => m.Title.Contains(search_item));
-        //    }
-        //    //return Json(books.ToList(), JsonRequestBehavior.AllowGet);
-        //    return View(books.ToList());
-        //}
 
         public ActionResult BuyerRequest()
         {
@@ -901,8 +1038,12 @@ namespace NotesMarketPlaceProject.Controllers
         }
         public ActionResult Updatedownloadtbl(int id)
         {
+            var result = Convert.ToInt32(Session["ID"]);
             var updatevar = db.Downloads.Where(x => x.ID == id).FirstOrDefault();
+            var checkinsellernoteattachment = db.SellerNotesAttachments.Where(x => x.NoteID == updatevar.NoteID).FirstOrDefault();
             updatevar.IsSellerHasAllowedDownload = true;
+            updatevar.AttachmentPath = checkinsellernoteattachment.FilePath;
+            updatevar.ModifiedBy = result;
             db.SaveChanges();
             
             //to get the buyer id
@@ -952,7 +1093,7 @@ namespace NotesMarketPlaceProject.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddReview(int id, DownloadViewModel model)
+        public ActionResult AddReview(int id)
         {
             //if (Convert.ToString(model.Ratings)==String.Empty)
             //{
@@ -962,23 +1103,28 @@ namespace NotesMarketPlaceProject.Controllers
             //{
             //    ModelState.AddModelError("Comments", "Please Enter Your Comments");
             //}
+            var ratings = Convert.ToDecimal(Request.Form["rating"]);
+            var comment = Request.Form["comments"];
 
             var exists = db.Downloads.Where(x => x.ID == id).FirstOrDefault();
-            if (ModelState.IsValid)
-            {
+            
+            //if (ModelState.IsValid)
+            //{
                 var obj = new SellerNotesReview
                 {
                     NoteID = exists.NoteID,
                     ReviewedByID = exists.Downloader,
                     AgainstDownloadsID = exists.ID,
-                    Ratings = model.Ratings,
-                    Comments = model.Comments,
+                    Ratings = ratings,
+                    Comments = comment,
                     CreatedDate = DateTime.Now,
-                    CreatedBy = exists.Downloader
+                    CreatedBy = exists.Downloader,
+                    IsActive=true
                 };
                 db.SellerNotesReviews.Add(obj);
                 db.SaveChanges();
-            }
+            ////}
+            
             return RedirectToAction("DownloadNotes");
         }
 
@@ -989,20 +1135,41 @@ namespace NotesMarketPlaceProject.Controllers
         {
 
             var exists = db.Downloads.Where(x => x.ID == id).FirstOrDefault();
-            if (ModelState.IsValid)
-            {
+            var downloader = db.Users.Where(x => x.ID == exists.Downloader).FirstOrDefault();
+            var seller = db.Users.Where(x => x.ID == exists.Seller).FirstOrDefault();
+            var supportemail = db.SystemConfigurations.Where(x => x.ID == 1).FirstOrDefault();
+            var remarks = Request.Form["remark"];
+            
                     var obj = new SellerNotesReportedIssue
                     {
                         NoteID=exists.NoteID,
                         ReportedByID=exists.Downloader,
                         AgainstDownloadID=exists.ID,
-                        Remarks = model.Remarks,
+                        Remarks = remarks,
                         CreatedDate=DateTime.Now,
                         CreatedBy= exists.Downloader
                     };
                     db.SellerNotesReportedIssues.Add(obj);
                     db.SaveChanges();
-            }
+            
+            var SenderEMail = new MailAddress("aaabhavsar022@gmail.com");
+            var receiverEmail = new MailAddress(supportemail.Value);
+            var SenderPassword = "Shreya@3103";
+            var subject = downloader.FirstName + " Reported an issue for " + exists.NoteTitle;
+
+            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+            smtp.EnableSsl = true;
+            smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential(SenderEMail.Address, SenderPassword);
+
+            MailMessage mailMessage = new MailMessage(SenderEMail.Address, receiverEmail.Address);
+            mailMessage.Subject = subject;
+            mailMessage.Body = "<br/><br/><br/>Hello Admins We want to inform you that, " + downloader.FirstName + " Reported an issue for" +seller.FirstName+ "'s Note with" +exists.NoteTitle+" Please look at the notes and take required actions." + "<br/><br/> Regards, Notes MarketPlace.";
+
+            mailMessage.IsBodyHtml = true;
+            smtp.Send(mailMessage);
+
             return RedirectToAction("DownloadNotes");
         }
         public ActionResult SoldNotes()
@@ -1050,6 +1217,8 @@ namespace NotesMarketPlaceProject.Controllers
             db.SaveChanges();
             return File(bytes, "application/octet-stream", getid.FileName);
         }
+
+        //This method is called from Mydownload notes
         public ActionResult DownloadNotePdf(int id)
         {
             //Check that whether this note is paid or free
@@ -1105,7 +1274,7 @@ namespace NotesMarketPlaceProject.Controllers
         {
             var result = Convert.ToInt32(Session["ID"]);
             var exists = db.Users.Where(a => a.ID == result).FirstOrDefault();
-
+            ViewBag.Sessioncheck=Session["ID"];
             if (Session["ID"] != null)
             {
                 ContactUs model = new ContactUs
@@ -1151,6 +1320,7 @@ namespace NotesMarketPlaceProject.Controllers
 
         public ActionResult NoteDetails(int id)
         {
+            ViewBag.Sessioncheck = Session["ID"];
             var temp = Convert.ToInt32(Session["ID"]);
             var buyername = db.Users.Where(x => x.ID == temp).FirstOrDefault();
 
@@ -1225,7 +1395,7 @@ namespace NotesMarketPlaceProject.Controllers
                 IsAttachmentDownloaded = true,
                 AttachmentDownloadedDate = DateTime.Now,
                 IsPaid = false,
-                PurchasedPrice=null,
+                PurchasedPrice=0,
                 NoteTitle=sellerid.Title,
                 NoteCategory=notecategoryid.CategoryName,
                 CreatedDate=DateTime.Now,
@@ -1301,25 +1471,23 @@ namespace NotesMarketPlaceProject.Controllers
             if (exits == null)
             {
                 string profilephoto = "user-img.png";
-                string fileName = HttpContext.Server.MapPath("~/Uploadimg/"+profilephoto);
+                string fileName = HttpContext.Server.MapPath("~/Uploadprofileimg/" + profilephoto);
                 byte[] imageData = null;
                 FileInfo fileInfo = new FileInfo(fileName);
                 long imageFileLength = fileInfo.Length;
                 FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
                 BinaryReader br = new BinaryReader(fs);
                 imageData = br.ReadBytes((int)imageFileLength);
-
                 return File(imageData, "image/png");
-
             }
             
             else
             {
                 var userimg = db.UserProfiles.Where(x => x.UserID == tempvar).FirstOrDefault();
-                byte[] bytes = Encoding.ASCII.GetBytes(userimg.ProfilePicture);
+                //byte[] bytes = Encoding.ASCII.GetBytes(userimg.ProfilePicture);
                 if (userimg.ProfilePicture != null)
                 {
-                    string fileName = HttpContext.Server.MapPath("~/Uploadimg/" + userimg.ProfilePicture);
+                    string fileName = HttpContext.Server.MapPath("~/Uploadprofileimg/" + userimg.ProfilePicture);
                     byte[] imageData = null;
                     FileInfo fileInfo = new FileInfo(fileName);
                     long imageFileLength = fileInfo.Length;
@@ -1331,7 +1499,7 @@ namespace NotesMarketPlaceProject.Controllers
                 else
                 {
                     string profilephoto = "user-img.png";
-                    string fileName = HttpContext.Server.MapPath("~/Uploadimg/" + profilephoto);
+                    string fileName = HttpContext.Server.MapPath("~/Uploadprofileimg/" + profilephoto);
                     byte[] imageData = null;
                     FileInfo fileInfo = new FileInfo(fileName);
                     long imageFileLength = fileInfo.Length;

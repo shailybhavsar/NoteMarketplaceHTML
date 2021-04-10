@@ -1,0 +1,142 @@
+/*================================================
+                    Navbar
+==================================================*/
+html,body{
+  height: 100%;
+  width: 100%;
+}
+body{
+  padding-top: 60px;
+}
+#navbar{
+  padding-right: 0px;
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.08);
+}
+.bg-light{
+  background-color: #fff !important;
+}
+
+/*logo*/
+.logo img{
+  margin: 8px 0px 10px -9px;
+}
+
+.collapse .navbar-collapse{
+  margin-left: auto !important;
+}
+
+#navbarSupportedContent{
+  margin-right: 70px;
+}
+
+.navbar-light .navbar-nav .nav-link{
+  font-family: Open Sans;
+  color: #000;
+  font-weight: 700;
+  margin-top: 15px;
+  margin-left: 5px;
+  font-size: 14px;
+}
+
+.navbar-light .navbar-nav .nav-link:hover{
+  color: #6255a5;
+  text-decoration: underline;
+}
+
+/*Button*/
+#btn .btn-block{
+ font-family: Open Sans;
+ font-weight: 500;
+ font-size: 13px;
+ background-color: #6255a5;
+ width: 70px;
+ height: 35px;
+ border: 4px #6255a5;
+ color: #fff;
+ padding: 1px 2px 3px 2px;
+ margin-right: -68px;
+ margin-top: -8px;
+ margin-bottom: 0px;
+}
+
+#btn .btn-block:hover{
+  background-color: #6255a5;
+  opacity: 0.9;
+}
+
+.nav-item .nav-link img{
+  height: 40px;
+  width: 40px;
+  margin-top: -7px;
+}
+
+#add{
+  margin-top: 60px;
+}
+
+/*================================================
+                Add Type
+==================================================*/
+.heading h3{
+  font-family: Open Sans;
+  font-size: 34px;
+  line-height: 38px;
+  color: #6255a5;
+  margin-top: 60px;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+
+.input label{
+  font-family: Open Sans;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  color: #333333;
+  margin-top: 6px;
+}
+
+#input{
+  height: 50px;
+  border-radius: 3px;
+  width: 100%;
+}
+
+
+.submit .btn{
+  background-color: #6255a5;
+  height: 50px;
+  margin-top: 30px;
+  margin-bottom: 60px;
+  border:3px transparent;
+}
+.submit .btn:hover{
+  background-color: #6255a5;
+  opacity: 0.9;
+}
+footer {
+  width: 100%;
+  bottom: 0;
+  height: 60px;
+  border-top: 1px solid #aaa;
+  padding-top: 20px;
+  background: #fff;
+}
+a.dropdown-item:hover {
+    color: white;
+    background-color: #6255a5;
+}
+#logout a {
+    color: #6255a5;
+}
+
+#logout a:hover {
+     color: white;
+     background-color: #6255a5;
+}
+.dropdown-menu a {
+    font-size: 16px;
+    font-family: Open Sans;
+    font-weight: 500;
+    line-height: 32px;
+}

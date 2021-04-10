@@ -25,7 +25,6 @@ namespace NotesMarketPlaceProject.Context
             this.Downloads3 = new HashSet<Download>();
             this.NoteCategories = new HashSet<NoteCategory>();
             this.NoteCategories1 = new HashSet<NoteCategory>();
-            this.NoteCategories2 = new HashSet<NoteCategory>();
             this.NoteTypes = new HashSet<NoteType>();
             this.NoteTypes1 = new HashSet<NoteType>();
             this.ReferenceDatas = new HashSet<ReferenceData>();
@@ -79,8 +78,6 @@ namespace NotesMarketPlaceProject.Context
         public virtual ICollection<NoteCategory> NoteCategories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NoteCategory> NoteCategories1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<NoteCategory> NoteCategories2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<NoteType> NoteTypes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

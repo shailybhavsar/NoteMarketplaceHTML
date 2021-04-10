@@ -15,13 +15,16 @@ namespace NotesMarketPlaceProject.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please Enter Last Name")]
         public string LastName { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Enter Last Name")]
+        ///[Required(AllowEmptyStrings = false, ErrorMessage = "Please Enter Last Name")]
 
         public int Gender { get; set; }
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Enter Last Name")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Enter Email Address")]
         [EmailAddress(ErrorMessage ="Please Enter Valid Email Address")]
         public string EmailID { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd}",ApplyFormatInEditMode =true)]
         public DateTime DOB { get; set; }
         public string ProfilePicture { get; set; }
         public string  PhoneNumberCountryCOde { get; set; }

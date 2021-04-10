@@ -1,0 +1,108 @@
+/*================================================
+                  HTML,Body
+==================================================*/
+
+.content-box-lg {
+    background-image: url("../images/pre-login/banner-with-overlay.jpg");
+    background-repeat: repeat;
+    width: 100%;
+    height: 120vh;
+}
+
+.page-center {
+    max-width: 610px;
+    position: absolute;
+    top: 10vh;
+    max-height: 500px;
+}
+
+.img-logo {
+    text-align: center;
+}
+
+/*================================================
+                    FORM
+==================================================*/
+
+.form-container {
+    background: #fff;
+    padding: 50px;
+    border-radius: 3px;
+    max-width: 580px;
+    margin: 25px auto;
+
+}
+
+/*================================================
+                    E mail
+==================================================*/
+
+/*Style to Login(h1 element)*/
+.form-container h1 {
+    text-align: center;
+    font-family: Open Sans;
+    font-size: 34px;
+    font-weight: 600;
+    line-height: 38px;
+    color: #6255a5;
+}
+
+/*Style to p element Login*/
+.form-container p {
+    text-align: center;
+    /*   margin-top: 20px;  */
+    font-family: Open sans;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 19px;
+    color: #333333;
+}
+
+.e-mail .form-control::placeholder {
+    color: #000;
+    font-family: Open Sans;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+/*Label Email*/
+.e-mail label {
+    font-family: Open Sans;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #333333;
+    /*   margin-top: 45px;  */
+}
+
+/*Email text*/
+#exampleInputEmail1 {
+    border: 1px solid #6255a5;
+    max-width: 480px;
+    height: 50px;
+    border-radius: 3px;
+}
+
+/*================================================
+                    BUTTON
+==================================================*/
+
+/*Button*/
+.btn-block {
+    background-color: #6255a5;
+    max-width: 480px;
+    height: 50px;
+    border-color: transparent;
+    border-radius: 3px;
+    color: #fff;
+    font-family: Open Sans;
+    font-size: 18px;
+    line-height: 22px;
+    margin-top: 30px;
+    font-weight: 700;
+}
+
+.btn-block:hover {
+    background-color: #6255a5;
+    opacity: 0.9;
+}

@@ -16,7 +16,7 @@ namespace NotesMarketPlaceProject
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "NotesMarketPlace", action = "Signup", id = UrlParameter.Optional }
+                defaults: new { controller = "NotesMarketPlace", action = "HomePage", id = UrlParameter.Optional }
             );
         }
     }

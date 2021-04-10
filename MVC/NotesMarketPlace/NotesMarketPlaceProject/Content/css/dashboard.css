@@ -60,10 +60,11 @@ html,body{
   opacity: 0.9;
 }
 
-.nav-item .nav-link img{
-  height: 40px;
-  width: 40px;
-  margin-top: -7px;
+.nav-item .nav-link img {
+    height: 40px;
+    width: 40px;
+    margin-top: -7px;
+    border-radius:50%;
 }
 .navbar-light .navbar-nav .nav-link:hover{
   color: #6255a5;
@@ -76,7 +77,7 @@ html,body{
   display: block;
 }
 
-.dropdown-menu {
+/*.dropdown-menu {
   display: none;
   position: absolute;
   background-color: #fff;
@@ -87,7 +88,7 @@ html,body{
   width: 180px;
   height: 210px;
   margin-left: 45px;
-}
+}*/
 
 .dropdown:hover .dropdown-content {display: block;}
 

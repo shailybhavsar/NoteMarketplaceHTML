@@ -21,7 +21,6 @@ namespace NotesMarketPlaceProject.Context
         }
     
         public int CategoryID { get; set; }
-        public int UserID { get; set; }
         public string CategoryName { get; set; }
         public string Description { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
@@ -32,7 +31,6 @@ namespace NotesMarketPlaceProject.Context
     
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }
-        public virtual User User2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SellerNote> SellerNotes { get; set; }
     }

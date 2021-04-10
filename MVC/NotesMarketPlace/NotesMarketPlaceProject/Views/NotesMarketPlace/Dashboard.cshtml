@@ -52,11 +52,12 @@
                             <a href="@Url.Action("SoldNotes", "NotesMarketPlace")" class="dropdown-item">My Sold Notes</a>
                             <a href="@Url.Action("RejectedNotes", "NotesMarketPlace")" class="dropdown-item">My Rejected Notes</a>
                             <a href="@Url.Action("Changepassword", "NotesMarketPlace")" class="dropdown-item">Change Password</a>
-                            <a class="dropdown-item" id="log-out">Logout</a>
+                            <a class="dropdown-item" id="log-out" onclick="logout()">Logout</a>
                         </div>
                     </li>
                     <li class="nav-item" id="btn">
-                        <a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Logout</button></a>
+                        <a href="@Url.Action("Logout", "NotesMarketPlace")" class="nav-link"><button type="submit" class="btn btn-primary btn-block" onclick="return logoutcall()">Logout</button></a>
+
                     </li>
                 </ul>
             </div>
@@ -101,11 +102,11 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 text-center">
-                                        <h1 class="dashboard-heading">@ViewBag.countsoldnote</h1>
+                                        <a href="@Url.Action("SoldNotes","NotesMarketPlace")"><h1 class="dashboard-heading">@ViewBag.countsoldnote</h1></a>
                                         <p class="dashboard-text">Number Of Notes Sold</p>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 text-center">
-                                        <h1 class="dashboard-heading">$10,00,000</h1>
+                                        <a href="@Url.Action("SoldNotes","NotesMarketPlace")"><h1 class="dashboard-heading">$@ViewBag.totalearning</h1></a>
                                         <p class="dashboard-text">Money Earned</p>
                                     </div>
                                 </div>
@@ -116,7 +117,7 @@
                     <div class="col-lg-2 col-md-4 col-sm-4">
                         <div class="card dashboard-card mx-auto">
                             <div class="card-body text-center">
-                                <h1 class="dashboard-heading">@ViewBag.countdownloadnotes</h1>
+                                <a href="@Url.Action("DownloadNotes","NotesMarketPlace")"><h1 class="dashboard-heading">@ViewBag.countdownloadnotes</h1></a>
                                 <p class="dashboard-text">My Downloads</p>
                             </div>
                         </div>
@@ -124,7 +125,7 @@
                     <div class="col-lg-2 col-md-4 col-sm-4">
                         <div class="card dashboard-card mx-auto">
                             <div class="card-body text-center">
-                                <h1 class="dashboard-heading">@ViewBag.countrejectednotes</h1>
+                                <a href="@Url.Action("RejectedNotes","NotesMarketPlace")"><h1 class="dashboard-heading">@ViewBag.countrejectednotes</h1></a>
                                 <p class="dashboard-text">My Rejected Notes</p>
                             </div>
                         </div>
@@ -132,7 +133,7 @@
                     <div class="col-lg-2 col-md-4 col-sm-4">
                         <div class="card dashboard-card mx-auto">
                             <div class="card-body text-center">
-                                <h1 class="dashboard-heading">@ViewBag.countbuyerrequest</h1>
+                                <a href="@Url.Action("BuyerRequest","NotesMarketPlace")"><h1 class="dashboard-heading">@ViewBag.countbuyerrequest</h1></a>
                                 <p class="dashboard-text">Buyer Requests</p>
                             </div>
                         </div>
@@ -191,7 +192,7 @@
                                     {
                                         <td>
                                             <a href="@Url.Action("DashboardEditNote", "NotesMarketPlace", new { id = item.titlelist.ID })"><img src="~/Content/images/Dashboard/edit.png" id="view-1" alt="edit" /></a>
-                                            <a href="@Url.Action("DeleteNotes", "NotesMarketPlace", new { id = item.titlelist.ID })"><img src="~/Content/images/delete.png" class="deletenote" alt="delete" onclick="chk()"></a>
+                                            <a href="@Url.Action("DeleteNotes", "NotesMarketPlace", new { id = item.titlelist.ID })"><img src="~/Content/images/delete.png" class="deletenote" alt="delete" onclick="return chk()"></a>
                                         </td>
                                     }
                                     else
@@ -261,7 +262,7 @@
                                             <td>Paid</td>
                                         }
                                         <td>$@item.titlelist1.SellingPrice</td>
-                                        <td><img src="~/Content/images/Dashboard/eye.png" alt="review"></td>
+                                        <td><img src="~/Content/images/Dashboard/eye.png" alt="review" onclick="window.location.href='@Url.Action("NoteDetails","NotesMarketPlace", new { id=item.titlelist1.ID})'"></td>
                                     </tr>
                                 }
                             </tbody>
@@ -330,6 +331,22 @@
                     return false;
                 }
             }
+
+            function logoutcall() {
+                if (confirm("Are you sure ,you want to Logout??")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            function logout() {
+            if (confirm("Are you sure ,you want to Logout??")) {
+                window.location.href = '@Url.Action("Logout", "NotesMarketPlace")';
+            }
+            else {
+                window.location.href = '@Url.Action("Dashboard", "NotesMarketPlace")';
+            }
+        }
         </script>
     }
 </body>

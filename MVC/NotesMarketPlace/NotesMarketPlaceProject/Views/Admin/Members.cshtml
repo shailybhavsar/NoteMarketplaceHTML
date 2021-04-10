@@ -1,0 +1,247 @@
+﻿@model IEnumerable<NotesMarketPlaceProject.Models.Members>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Members</title>
+
+    <!--Important meta tags-->
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!--Google Fonts-->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/bootstrap/bootstrap.min.css">
+
+    <!--Datatable CSS-->
+    <link href="~/Content/DataTables/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/Admin/members.css">
+
+    <!--Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="~/Content/css/Admin/responsive_members.css">
+</head>
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="@Url.Action("Dashboard","Admin")">
+                <img src="~/Content/images/logo.png" alt="logo" class="logo">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto text-right">
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Dashboard","Admin")">Dashboard</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdown-1" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Notes
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown-1">
+                            <a class="dropdown-item" href="@Url.Action("NotesUnderReview","Admin")">Notes Under Review</a>
+                            <a class="dropdown-item" href="@Url.Action("PublishedNotesByAdmin","Admin")">Published Notes</a>
+                            <a class="dropdown-item" href="@Url.Action("DownloadedNotes","Admin")">Downloaded Notes</a>
+                            <a class="dropdown-item" href="@Url.Action("RejectedNotes","Admin")">Rejected Notes</a>
+                        </div>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="@Url.Action("Members","Admin")">Members</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="" id="navbarDropdown-2" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Reports
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown-2">
+                            <a class="dropdown-item" href="@Url.Action("SpamReports","Admin")">Spam Reports</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdown-2" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Settings
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown-1">
+                            <a class="dropdown-item" href="@Url.Action("ManageSystemConfiguration","Admin")">Manage System Configuration</a>
+                            <a class="dropdown-item" href="@Url.Action("ManageAdmin","Admin")">Manage Administrator</a>
+                            <a class="dropdown-item" href="@Url.Action("ManageCategory","Admin")">Manage Category</a>
+                            <a class="dropdown-item" href="@Url.Action("ManageType","Admin")">Manage Type</a>
+                            <a class="dropdown-item" href="@Url.Action("ManageCountry","Admin")">Manage Countries</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <img src="@Url.Action("UserPhoto", "Admin")" alt="logo">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="@Url.Action("UpdateProfile","Admin")">Update Profile</a>
+                            <a class="dropdown-item" href="@Url.Action("Changepassword","NotesMarketPlace")">Change Password</a>
+                            <a class="dropdown-item" id="logout" onclick="logout()">Logout</a>
+
+                        </div>
+                    </li>
+                    <li class="nav-item" id="btn">
+                        <a class="nav-link" href="@Url.Action("Logout","NotesMarketPlace")"><button type="submit" class="btn btn-primary btn-block" onclick="return logoutcall()">Logout</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!--Navbar Ends-->
+    <!--Members-->
+    <section id="members">
+        <div class="container">
+
+            <div class="row" id="member">
+                <!--Member Heading-->
+                <div class="col-md-6 col-sm-4 col-12">
+                    <div class="member-heading">
+                        <div class="heading">
+                            <h3>Members</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-8 col-12">
+                    <div id="search">
+                        <div class="row">
+                            <div class="col-md-8 col-sm-7 col-8">
+                                <div class="form-group search-member">
+                                    <input type="text" class="form-control" id="example" placeholder="Search">
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-5 col-4">
+                                <div class="button" id="searchbtn">
+                                    <button class="btn btn-primary">SEARCH</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Table-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table" id="rejectednotes">
+                            <thead>
+                                <tr class="tr">
+                                    <th>SR NO.</th>
+                                    <th>FIRST NAME</th>
+                                    <th>LAST NAME</th>
+                                    <th>EMAIL</th>
+                                    <th>JOINING DATE</th>
+                                    <th>UNDER REVIEW NOTES</th>
+                                    <th>PUBLISHED NOTES</th>
+                                    <th>DOWNLOADED NOTES</th>
+                                    <th>TOTAL EXPENSES</th>
+                                    <th>TOTAL EARNINGS</th>
+                                    <th> </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ int i = 0;}
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@(i+=1)</td>
+                                        <td>@item.usertbl.FirstName</td>
+                                        <td>@item.usertbl.LastName</td>
+                                        <td>@item.usertbl.EmailID</td>
+                                        <td>@item.usertbl.CreatedDate</td>
+                                        <td><a href="@Url.Action("NotesUnderReview", "Admin",new { id = item.usertbl.ID })">@TempData[item.usertbl.ID.ToString() + "1"]</a></td>
+                                        <td><a href="@Url.Action("PublishedNotesByAdmin", "Admin",new { id = item.usertbl.ID })">@TempData[item.usertbl.ID.ToString() + "2"]</a></td>
+                                        <td><a href="@Url.Action("DownloadedNotes", "Admin",new { id = item.usertbl.ID })">@TempData[item.usertbl.ID.ToString() + "3"]</a></td>
+                                        <td><a href="@Url.Action("DownloadedNotes", "Admin",new { id = item.usertbl.ID })">$@TempData[item.usertbl.ID.ToString() + "4"]</a></td>
+                                        <td>$@TempData[item.usertbl.ID.ToString() + "5"]</td>
+                                        <td>
+                                            <div class="dropdown" id="dotdropdown">
+                                                <img src="~/Content/images/dots.png" class="dropimg" alt="view" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownfor3">
+                                                    <a href="@Url.Action("MemberDetails", "Admin",new { id = item.usertbl.ID })" class="dropdown-item">View More Details</a>
+                                                    <a href="@Url.Action("Deactivate", "Admin",new { id = item.usertbl.ID })" class="dropdown-item" onclick="return deactivate()">Deactivate</a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    @Html.Partial("_FooterAdmin")
+    <!--JQuery JS-->
+    <script src="~/Scripts/js/jquery.js"></script>
+
+    <!--Bootstrap JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/DataTables/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+
+    @section  Scripts{
+        <script>
+            $(document).ready(function () {
+                $.noConflict();
+                var table = $('#rejectednotes').DataTable({
+                    'sDom': '"top"i',
+                    "iDisplayLength": 5,
+                    language: {
+                        paginate: {
+                            next: '<i class="fa fa-angle-right fa-1x"></i>',
+                            previous: '<i class="fa fa-angle-left fa-1x"></i>',
+                            first: false,
+                            last: false
+                        }
+                    }
+                });
+
+            });
+            function deactivate() {
+                if (confirm("Are you sure you want to make this member inactive??")) {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+            function logoutcall() {
+
+                    if (confirm("Are you sure ,you want to Logout??")) {
+                        return true;
+                    } else {
+
+                        return false;
+                    }
+                }
+                function logout() {
+
+                    if (confirm("Are you sure ,you want to Logout??")) {
+                        window.location.href = '@Url.Action("Logout", "NotesMarketPlace")';
+                    }
+                    else {
+                        window.location.href = '@Url.Action("Members", "Admin")';
+                    }
+                }
+
+        </script>
+    }
+</body>
+</html>
+
+

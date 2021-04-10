@@ -1,4 +1,4 @@
-﻿@model NotesMarketPlaceProject.Models.SearchNotes
+﻿@model NotesMarketPlaceProject.ViewModel.SearchNotesnewViewModel
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,7 +44,15 @@
                     <li class="nav-item"><a href="@Url.Action("FAQ", "NotesMarketPlace")" class="nav-link">FAQ</a></li>
                     <li class="nav-item"><a href="@Url.Action("ContactUs", "NotesMarketPlace")" class="nav-link">Contact Us</a></li>
                     <li class="nav-item" id="btn">
-                        <a href="@Url.Action("Login", "NotesMarketPlace")" class="nav-link"><button type="submit" class="btn btn-primary btn-block">Login</button></a>
+                        @if (ViewBag.Sessioncheck == null)
+                        {
+                            <a class="nav-link" href="@Url.Action("Login", "NotesMarketPlace")"><button type="submit" class="btn btn-primary btn-block">Login</button></a>
+                        }
+                        else
+                        {
+                            <a class="nav-link" href="@Url.Action("Logout","NotesMarketPlace")"><button type="submit" class="btn btn-primary btn-block" onclick="return logoutcall()">Logout</button></a>
+
+                        }
                     </li>
                 </ul>
             </div>
@@ -89,32 +97,32 @@
                         <!--Option 1-->
                         <div class="col-md-2 col-sm-4 col-12">
                             <div class="form-group" id="option">
-                                @Html.LabelFor(m => m.TypeID, "")
-                                @Html.DropDownListFor(m => m.TypeID, new SelectList(Model.types, "TypeID", "TypeName"), "Select Type", new { @class = "form-control custom-select" ,@id="type"})
+                                @Html.LabelFor(m => m.TypeID1, "")
+                                @Html.DropDownListFor(m => m.TypeID1, new SelectList(Model.types1, "TypeID", "TypeName"), "Select Type", new { @class = "form-control custom-select" })
                             </div>
                         </div>
 
                         <!--Option 2-->
                         <div class="col-md-2 col-sm-4 col-12">
                             <div class="form-group" id="option">
-                                @Html.LabelFor(m => m.CategoryID, "")
-                                @Html.DropDownListFor(m => m.CategoryID, new SelectList(Model.categories, "CategoryID", "CategoryName"), "Select Category", new { @class = "form-control custom-select", @id = "ddlcategory" })
+                                @Html.LabelFor(m => m.CategoryID1, "")
+                                @Html.DropDownListFor(m => m.CategoryID1, new SelectList(Model.categories1, "CategoryID", "CategoryName"), "Select Category", new { @class = "form-control custom-select" })
                             </div>
                         </div>
 
                         <!--Option 3-->
                         <div class="col-md-2 col-sm-4 col-12">
                             <div class="form-group" id="option">
-                                @Html.LabelFor(m => m.UniversityName, "")
-                                @Html.DropDownListFor(m => m.UniversityName, new SelectList(Model.univercities, "ID", "UniversityName"), "Select University", new { @class = "form-control custom-select", @id = "exampleInput" })
+                                @Html.LabelFor(m => m.UniversityID1, "")
+                                @Html.DropDownListFor(m => m.UniversityID1, ViewBag.countryobj as SelectList, "Select University", new { @class = "form-control custom-select" })
                             </div>
                         </div>
 
                         <!--Option 4-->
                         <div class="col-md-2 col-sm-4 col-12">
                             <div class="form-group" id="option">
-                                @Html.LabelFor(m => m.Course, "")
-                                @Html.DropDownListFor(m => m.Course, new SelectList(Model.courses, "ID", "Course"), "Select Course", new { @class = "form-control custom-select", @id = "exampleInput" })
+                                @Html.LabelFor(m => m.CourseID1, "")
+                                @Html.DropDownListFor(m => m.CourseID1, ViewBag.courseobj as SelectList, "Select Course", new { @class = "form-control custom-select" })
 
                             </div>
                         </div>
@@ -122,8 +130,8 @@
                         <!--Option 5-->
                         <div class="col-md-2 col-sm-4 col-12">
                             <div class="form-group" id="option">
-                                @Html.LabelFor(m => m.CountryID, "")
-                                @Html.DropDownListFor(m => m.CountryID, new SelectList(Model.countries, "CountryID", "CountryName"), "Select Country", new { @class = "form-control custom-select", @id = "exampleInput" })
+                                @Html.LabelFor(m => m.CountryID1, "")
+                                @Html.DropDownListFor(m => m.CountryID1, new SelectList(Model.countries1, "CountryID", "CountryName"), "Select Country", new { @class = "form-control custom-select" })
 
                             </div>
                         </div>
@@ -131,10 +139,16 @@
                         <!--Option 6-->
                         <div class="col-md-2 col-sm-4 col-12">
                             <div class="form-group" id="option">
-                                <select class="form-control custom-select" id="placeholder">
-                                    <option>Select Rating</option>
-                                    <option>.</option>
+                                <select class="form-control custom-select" id="RatingID1">
+                                    <option value="">Select Rating</option>
+                                    <option value="1">1+</option>
+                                    <option value="2">2+</option>
+                                    <option value="3">3+</option>
+                                    <option value="4">4+</option>
+                                    <option value="5">5+</option>
                                 </select>
+                                @*@Html.LabelFor(m=>m.RatingID1,"")
+                                @Html.DropDownListFor(m=>m.RatingID1, ViewBag.reviewobj as SelectList, "Select Rating", new { @class = "form-control custom-select" })*@
                             </div>
                         </div>
                     </div>
@@ -146,89 +160,7 @@
     <!--Search And Filter Notes Ends-->
     <!--Books filtering-->
     <section id="books">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-12">
-                    <div class="book-heading">
-                        <h3>Total @ViewBag.CountBooks Notes</h3>
-                    </div>
-                </div>
-            </div>
-
-            <!--books-->
-            <div class="container"  id="book_filter">
-                <div class="card-group">
-                    <div class="card-deck">
-                        <div class="row">
-                            @foreach (var item in Model.courses)
-                            {
-                                <!--Book1-->
-                                <div class="col-lg-4 col-md-6 col-sm-12 col-12"  id="card_check">
-                                    <div class="card" id="Note_Details" onclick="window.location.href='@Url.Action("NoteDetails","NotesMarketPlace", new { id=item.ID})'">
-
-                                        <img class="card-img-top" src="~/Uploadimg/@item.DisplayPicture" alt="Card image cap">
-                                        <div class="card-body d-flex flex-column">
-                                            <h5 class="card-title" id="notedetails">@item.Title</h5>
-                                            <p class="card-text">
-                                                <div class="row">
-                                                    @if (item.UniversityName != null)
-                                                    {
-                                                        <div class="col-md-2 col-sm-2 col-2">
-                                                            <span id="img1"><img src="~/Content/images/Search/university.png" alt="university-img" class="img-fluid"></span>
-                                                        </div>
-                                                        <div class="col-md-10 col-sm-10 col-10">
-                                                            <span id="text">@Html.DisplayFor(m => item.UniversityName)</span>
-                                                        </div>
-                                                    }
-                                                    @if (item.NumberOfPages != null)
-                                                    {
-                                                        <div class="col-md-2 col-sm-2 col-2">
-                                                            <span id="img1"><img src="~/Content/images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
-                                                        </div>
-                                                        <div class="col-md-10 col-sm-10 col-10">
-                                                            <span id="text">@Html.DisplayFor(m => item.NumberOfPages)</span>
-                                                        </div>
-                                                    }
-                                                    @if(item.CreatedDate!=null)
-                                                    {
-                                                        <div class="col-md-2 col-sm-2 col-2">
-                                                            <span id="img1"><img src="~/Content/images/Search/date.png" alt="date-img" class="img-fluid"></span>
-                                                        </div>
-                                                        <div class="col-md-10 col-sm-10 col-10">
-                                                            <span id="text">@Html.DisplayFor(m => item.CreatedDate)</span>
-                                                        </div>
-                                                    }
-                                                    <div class="col-md-2 col-sm-2 col-2">
-                                                        <span id="img1"><img src="~/Content/images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
-                                                    </div>
-                                                    <div class="col-md-10 col-sm-10 col-10">
-                                                        <span id="text-imp">@item.ReportCount Users marked this note as inappropriate</span>
-                                                    </div>
-                                                </div>
-                                            </p>
-                                            <p class="card-text">
-                                                <small class="text-muted">
-                                                    @for (decimal i = 0; i < item.avg; i++)
-                                                    {
-                                                        <img src="~/Content/images/star.png" alt="star" id="rate">
-                                                    }
-                                                    @for (decimal i = item.avg; i < 5; i++)
-                                                    {
-                                                        <img src="~/Content/images/star-white.png" alt="star" id="rate">
-                                                    }
-                                                    @item.RateCount Reviews
-                                                </small>
-                                            </p>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
     </section>
     @Html.Partial("_Footer")
     <!--JQuery JS-->
@@ -244,84 +176,90 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 
     @section scripts {
+        <script src="~/Scripts/jplist/jplist.core.min.js"></script>
+        <script src="~/Scripts/jplist/jplist.pagination-bundle.min.js"></script>
+        <script src="~/Scripts/jplist/jplist.textbox-filter.min.js"></script>
         <script>
-            
-            //$('select').change(function () {
-            //    var type = $('#type').val();
-            //    $.ajax({
-            //        type: "POST",
-            //        url: '/NotesMarketPlace/FilterNotes',
-            //        //data = { 'type':type},
-            //        dataType: 'JSON',
+            function logoutcall() {
 
-            //        //data is an object(just para type)
-            //        success: function (data) {
-            //            alert("Hii");
-            //            //$('#book_filter').html(data);
-            //        },
-            //        error: function (err) {
-            //            alert(err.responseText);
-            //        }
-            //    }); 
-            //});
+                if (confirm("Are you sure ,you want to Logout??")) {
+                    return true;
+         
+                } else {
+
+                    return false;
+                }
+            }
 
             $(document).ready(function () {
-                $("#search_filter").keyup(function () {
-                    var search_item = $(this).val();
-                    console.log(search_item);
-                    
-                    $.ajax({
-                        type: "POST",
-                        url: "/NotesMarketPlace/FilterNotes",
-                        contentType: "html",
-                        dataType: 'JSON',
-                        data : { search_item : search_item },
-
-                        //data is an object(just para type)
-                        success: function (result) {
-                            console.log(result);
-                            //alert("hii");
-                            //if (result.length == 0) {
-                            //    alert("No found");
-                            //}
-                               
-                            //else {
-                            //    alert(result);
-                            //    $.each(result, function (index, value) {
-                            //        //var data = value.Title + "</br>";
-                            //        //$('.card-deck').append(data);
-                                    
-                            //    });
-                            //}
-                        },
-                        error: function (err) {
-                            console.log(err.statusText);
-                            alert(err.statusText);
-                        }
-                    });
-                });
+                bindSearchNote()
             });
+            $("#TypeID1").on("change", function () {
+                bindSearchNote()
+            });
+            $("#CategoryID1").on("change", function () {
+                bindSearchNote()
+            });
+            $("#UniversityID1").on("change", function () {
+                bindSearchNote()
+            });
+            $("#CourseID1").on("change", function () {
+                bindSearchNote()
+            });
+            $("#RatingID1").on("change", function () {
+               bindSearchNote()
+            });
+            $("#CountryID1").on("change", function () {
+                bindSearchNote()
+            });
+            $("#search_filter").keyup(function () {
+                bindSearchNote()
+            });
+            function bindSearchNote() {
+                
+                var FK_Type_val = $("#TypeID1").val();
+                var FK_Course_val = $("#CourseID1").val();
+                var FK_Country_val = $("#CountryID1").val();
+                var FK_University_val = $("#UniversityID1").val();
+                var FK_Category_val = $("#CategoryID1").val();
+                var FK_Searchdata_val = $("#search_filter").val();
+                var FK_Ratings_val = $("#RatingID1").val();
 
-            //$("#search_filter").on("keyup", function () {
-            //    var textenter = $(this).val();
-            //    //var title = $('#notedetails').text();
-            //    $(".card").each(function (results) {
-            //        {
-            //            var id = $(this).find('#notedetails').text();
-            //            console.log(id.indexOf(textenter))
-            //            if (id.indexOf(textenter) < 0) {
-            //                $(this).hide();
-            //            }
-            //            else {
-            //                $(this).show();
+                var pageSize = "9"; /*$("#DivSearchNotes .jplist-select").length > 0 ? $("#DivSearchNotes .jplist-select option:selected").attr("data-number") : "2";*/
+                var pageNumber = $("#books .jplist-pagination").length > 0 && $("#books .jplist-pagination .jplist-current").val() != "" ? $("#books .jplist-pagination .jplist-current").val() : "1";
+
+                
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("FilterNotes", "NotesMarketPlace")",
+                    data: { FK_Type: FK_Type_val, FK_Course: FK_Course_val, FK_Country: FK_Country_val, FK_University: FK_University_val, FK_Category: FK_Category_val, FK_Searchdata: FK_Searchdata_val, FK_Ratings: FK_Ratings_val ,PageNumber: pageNumber, PageSize: pageSize },
+
+                    //data is an object(just para type)
+                    success: function (result) {
+                        
+                        $("#books").replaceWith(result);
+                        
+                        $("#books .jplist-pagination").find("button").bind("click", function (event) {
                             
-            //            }
-            //        }
-            //    });
-            //});
+                            $("#books .jplist-pagination").find("button").removeClass("jplist-current");
+                            $(this).addClass("jplist-current");
+                            
+                            bindSearchNote();
+                        });
+                        
+                        $("#books .jplist-select").bind("change", function (event) {
+                            $("#books .jplist-pagination").remove();
+                            bindSearchNote();
+                        });
 
-           
+                    },
+                    error: function (err) {
+                        console.log(err.statusText);
+                        alert(err.statusText);
+                    }
+                });
+            }
         </script>
-}
+    }
 </body>
 </html>

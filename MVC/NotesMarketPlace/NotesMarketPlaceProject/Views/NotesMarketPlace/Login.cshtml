@@ -49,7 +49,25 @@
 
                                     <h1>Login</h1>
                                     <p>Enter your email address and password to login</p>
-                                        <div class="row">
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-12">
+
+                                            @if ((string)TempData["forgotpwd"] == "Displaymsg")
+                                            {
+                                                <div class="alert text-center">
+                                                    <p style="color:green;"><i class="fa fa-check circle"></i> Your password has been changed successfully and newly generated password is sent on your registered email address</p>
+
+                                                </div>
+                                            }
+
+                                            @if ((string)TempData["changepwd"] == "Displaypwdchange")
+                                            {
+                                                <div class="alert text-center">
+                                                    <p style="color:green;"><i class="fa fa-check circle"></i> Your password has been changed successfully</p>
+
+                                                </div>
+                                            }
+                                        </div>
 
                                         <!--Email-->
                                         <div class="col-md-12 col-sm-12 col-12">
@@ -57,6 +75,7 @@
                                                 @Html.Label("EmailID", "Email")
                                                 @Html.TextBoxFor(x => x.EmailID, new { @class = "form-control email-id", @id = "exampleInputEmail1", @placeholder = "notesmarketplace77@gmail.com" })
                                                 @Html.ValidationMessageFor(x => x.EmailID, "", new { @class = "error" })
+                                                @*@Html.ValidationMessage("EmailID", new { @class = "text-danger" })*@
                                             </div>
                                         </div>
 
@@ -65,26 +84,26 @@
                                             <div class="form-group pwd">
                                                 <div class="row">
                                                     <div class="col-md-6 col-sm-6 col-6">
-                                                        @Html.Label("Password","Password" , new {@class="password"})
+                                                        @Html.Label("Password", "Password", new { @class = "password" })
                                                     </div>
-                                                    
+
                                                     <div class="col-md-6 col-sm-6 col-6 forgotpassword">
                                                         <div class="float-right">
                                                             @Html.ActionLink("Forgot Password?", "ForgotPassword", new { @class = "password float-right forgotpassword" })
-                                                        </div>                    
-                                                     </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                                 @Html.PasswordFor(x => x.Password, new { @class = "form-control", @id = "password-field", @placeholder = "Enter Your Password" })
                                                 @Html.ValidationMessageFor(x => x.Password, "", new { @class = "error" })
                                                 <span toggle="#password-field" class="eye field-icon toggle-password"><img src="~/Content/images/pre-login/eye.png" alt="eye"></span>
-                                             </div>
+                                            </div>
                                         </div>
 
                                         <!--Check box-->
                                         <div class="col-md-12 col-sm-12 col-12">
                                             <div class="form-group form-check">
-                                                @Html.CheckBox("exampleCheck1", false, new { @class = "form-check-input" ,@id= "exampleCheck1" })
-                                                @Html.Label("Remember Me" , new { @class= "form-check-label" })
+                                                @Html.CheckBox("exampleCheck1", false, new { @class = "form-check-input", @id = "exampleCheck1" })
+                                                @Html.Label("Remember Me", new { @class = "form-check-label" })
                                             </div>
                                         </div>
 
@@ -98,7 +117,7 @@
                                                 </span>
                                             </p>
                                         </div>
-                                        </div>
+                                    </div>
                                 </div>
                             }
                     }

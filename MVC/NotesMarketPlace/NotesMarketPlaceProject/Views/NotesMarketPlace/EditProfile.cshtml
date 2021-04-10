@@ -57,11 +57,12 @@
                             <a href="@Url.Action("SoldNotes", "NotesMarketPlace")" class="dropdown-item">My Sold Notes</a>
                             <a href="@Url.Action("RejectedNotes", "NotesMarketPlace")" class="dropdown-item">My Rejected Notes</a>
                             <a href="@Url.Action("Changepassword", "NotesMarketPlace")" class="dropdown-item">Change Password</a>
-                            <a class="dropdown-item" id="log-out">Logout</a>
+                            <a class="dropdown-item" id="log-out" onclick="logout()">Logout</a>
                         </div>
                     </li>
                     <li class="nav-item" id="btn">
-                        <a class="nav-link" href="#"><button type="submit" class="btn btn-primary btn-block">Logout</button></a>
+                        <a href="@Url.Action("Logout", "NotesMarketPlace")" class="nav-link"><button type="submit" class="btn btn-primary btn-block" onclick="return logoutcall()">Logout</button></a>
+
                     </li>
                 </ul>
             </div>
@@ -131,7 +132,7 @@
                                         {
                                             <p id="upload_picture">@Html.DisplayFor(m=>m.ProfilePicture)</p>
                                         }
-                                        <input type="file" id="upload" name="upload" style="display: none;">
+                                        <input type="file" id="upload" name="upload" style="display: none;" accept="image/*">
                                     </label>
                                 </div>
                             </div>
@@ -153,7 +154,7 @@
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="form-group input" @*id="cal-photo"*@>
                                 @Html.LabelFor(m => m.DOB, "Date Of Birth")
-                                @Html.TextBoxFor(m => m.DOB, new { @class = "form-control"@*, @id = "datepicker"*@,type = "date",@placeholder = "Enter your date of birth"})
+                                @Html.TextBoxFor(m => m.DOB, "{0:yyyy-MM-dd}",new { @class = "form-control", @id = "exampleInput", type = "date",@placeholder = "Enter your date of birth"})
                             </div>
                         </div>
 
@@ -316,7 +317,23 @@
         }
 
         var $j = jQuery.noConflict();
-         $j("#datepicker").datepicker();
+        $j("#datepicker").datepicker();
+
+        function logoutcall() {
+            if (confirm("Are you sure ,you want to Logout??")) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        function logout() {
+            if (confirm("Are you sure ,you want to Logout??")) {
+                window.location.href = '@Url.Action("Logout", "NotesMarketPlace")';
+            }
+            else {
+                window.location.href = '@Url.Action("EditProfile", "NotesMarketPlace")';
+            }
+        }
 
     </script>
     @Scripts.Render("~/bundles/jqueryval");

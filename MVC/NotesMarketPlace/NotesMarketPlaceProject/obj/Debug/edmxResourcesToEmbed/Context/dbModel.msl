@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="NotesMarketPlaceTablesModelStoreContainer" CdmEntityContainer="NotesMarketPlaceTablesEntities1">
+  <EntityContainerMapping StorageEntityContainer="NotesMarketPlaceTablesModelStoreContainer" CdmEntityContainer="NotesMarketPlaceTablesEntities2">
     <EntitySetMapping Name="Countries">
       <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel.Country">
         <MappingFragment StoreEntitySet="Country">
@@ -37,19 +37,10 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="NameTables">
-      <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel.NameTable">
-        <MappingFragment StoreEntitySet="NameTable">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="NoteCategories">
       <EntityTypeMapping TypeName="NotesMarketPlaceTablesModel.NoteCategory">
         <MappingFragment StoreEntitySet="NoteCategories">
           <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -239,5 +230,26 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="NewGetSellerNotesDetails" FunctionName="NotesMarketPlaceTablesModel.Store.NewGetSellerNotesDetails">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="NotesMarketPlaceTablesModel.NewGetSellerNotesDetails_Result">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SellerID" ColumnName="SellerID" />
+          <ScalarProperty Name="DisplayPicture" ColumnName="DisplayPicture" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UniversityName" ColumnName="UniversityName" />
+          <ScalarProperty Name="NumberOfPages" ColumnName="NumberOfPages" />
+          <ScalarProperty Name="PublishedDate" ColumnName="PublishedDate" />
+          <ScalarProperty Name="CountyName" ColumnName="CountyName" />
+          <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+          <ScalarProperty Name="Report" ColumnName="Report" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="TotalRating" ColumnName="TotalRating" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

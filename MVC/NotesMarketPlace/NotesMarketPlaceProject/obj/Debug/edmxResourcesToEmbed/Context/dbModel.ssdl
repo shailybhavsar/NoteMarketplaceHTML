@@ -34,19 +34,11 @@
     <Property Name="ModifiedDate" Type="datetime" />
     <Property Name="ModifiedBy" Type="int" />
   </EntityType>
-  <EntityType Name="NameTable">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" MaxLength="50" />
-  </EntityType>
   <EntityType Name="NoteCategories">
     <Key>
       <PropertyRef Name="CategoryID" />
     </Key>
     <Property Name="CategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="UserID" Type="int" Nullable="false" />
     <Property Name="CategoryName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Description" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="CreatedDate" Type="datetime" />
@@ -224,18 +216,6 @@
     <Property Name="ModifiedBy" Type="int" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
-  <Association Name="FK_AddCategory_Users">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
-    <End Role="NoteCategories" Type="Self.NoteCategories" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="NoteCategories">
-        <PropertyRef Name="UserID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_Country_Users">
     <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
     <End Role="Country" Type="Self.Country" Multiplicity="*" />
@@ -728,10 +708,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="NewGetSellerNotesDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FK_Type" Type="int" Mode="In" />
+    <Parameter Name="FK_Category" Type="int" Mode="In" />
+    <Parameter Name="FK_Country" Type="int" Mode="In" />
+    <Parameter Name="FK_University" Type="nvarchar" Mode="In" />
+    <Parameter Name="FK_Course" Type="nvarchar" Mode="In" />
+    <Parameter Name="FK_Rating" Type="decimal" Mode="In" />
+    <Parameter Name="PageSize" Type="int" Mode="In" />
+    <Parameter Name="PageNumber" Type="int" Mode="In" />
+    <Parameter Name="Search" Type="nvarchar" Mode="In" />
+  </Function>
   <EntityContainer Name="NotesMarketPlaceTablesModelStoreContainer">
     <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Downloads" EntityType="Self.Downloads" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="NameTable" EntityType="Self.NameTable" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NoteCategories" EntityType="Self.NoteCategories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NoteTypes" EntityType="Self.NoteTypes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ReferenceData" EntityType="Self.ReferenceData" Schema="dbo" store:Type="Tables" />
@@ -743,10 +733,6 @@
     <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_AddCategory_Users" Association="Self.FK_AddCategory_Users">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="NoteCategories" EntitySet="NoteCategories" />
-    </AssociationSet>
     <AssociationSet Name="FK_Country_Users" Association="Self.FK_Country_Users">
       <End Role="Users" EntitySet="Users" />
       <End Role="Country" EntitySet="Country" />

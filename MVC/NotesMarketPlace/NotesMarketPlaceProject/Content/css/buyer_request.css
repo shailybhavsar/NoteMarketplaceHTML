@@ -65,6 +65,7 @@ body{
   height: 40px;
   width: 40px;
   margin-top: -7px;
+  border-radius:50%;
 }
 
 #add{

@@ -43,7 +43,15 @@
                     <li class="nav-item"><a href="@Url.Action("FAQ", "NotesMarketPlace")" class="nav-link">FAQ</a></li>
                     <li class="nav-item"><a href="@Url.Action("ContactUs", "NotesMarketPlace")" class="nav-link">Contact Us</a></li>
                     <li class="nav-item" id="btn">
-                        <a href="@Url.Action("Login", "NotesMarketPlace")" class="nav-link"><button type="submit" class="btn btn-primary btn-block">Login</button></a>
+                        @if (ViewBag.Sessioncheck == null)
+                        {
+                            <a class="nav-link" href="@Url.Action("Login", "NotesMarketPlace")"><button type="submit" class="btn btn-primary btn-block">Login</button></a>
+                        }
+                        else
+                        {
+                            <a class="nav-link" href="@Url.Action("Logout","NotesMarketPlace")"><button type="submit" class="btn btn-primary btn-block" onclick="return logoutcall()">Logout</button></a>
+
+                        }
                     </li>
                 </ul>
             </div>
@@ -241,16 +249,23 @@
                     <!--PDF-->
 
                     <div id="Iframe-Cicis-Menu-To-Go" class="set-margin-cicis-menu-to-go set-padding-cicis-menu-to-go set-border-cicis-menu-to-go set-box-shadow-cicis-menu-to-go center-block-horiz">
-                        <div class="responsive-wrapper responsive-wrapper-padding-bottom-90pct" style="-webkit-overflow-scrolling: touch; overflow: auto;">
-                            <iframe src="~/Uploadimg/@Model.Singlenote.NotesPreview">
-                                <p style="font-size: 110%;">
-                                    <em>
-                                        <strong>ERROR: </strong>
-                                        An &#105;frame should be displayed here but your browser version does not support &#105;frames.
-                                    </em> Please update your browser to its most recent version and try again, or access the file <a href="../images/sample.pdf">with this link.</a>
-                                </p>
-                            </iframe>
-                        </div>
+                        @if (Model.Singlenote.NotesPreview!=null)
+                        {
+                            <div class="responsive-wrapper responsive-wrapper-padding-bottom-90pct" style="-webkit-overflow-scrolling: touch; overflow: auto;">
+                                <iframe src="~/Uploadimg/@Model.Singlenote.NotesPreview">
+                                    <p style="font-size: 110%;">
+                                        <em>
+                                            <strong>ERROR: </strong>
+                                            An &#105;frame should be displayed here but your browser version does not support &#105;frames.
+                                        </em> Please update your browser to its most recent version and try again, or access the file <a href="../images/sample.pdf">with this link.</a>
+                                    </p>
+                                </iframe>
+                            </div>
+                        }
+                        else
+                        {
+                            <strong style="color:#6255a5;">  No Preview Uploaded by Seller for this Note</strong>
+                        }
                     </div>
 
                 </div>
@@ -261,43 +276,53 @@
                         <h3>Customer Review </h3>
                     </div>
                     <div class="col-md-12 col-sm-12 col-12" id="customer-review-box">
-
-                        @foreach (var item in @ViewBag.Reviewtable)
+                        @if (@ViewBag.Reviewtable != null)
                         {
-                        <div class="col-md-12 col-sm-12 col-12 reviewer-1">
-                            <div class="row">
-                                <div class="col-md-3 col-sm-3 col-3 img-fluid" id="img">
-                                    <img src="~/Uploadprofileimg/@item.userprofiledata.ProfilePicture">
-                                </div>
-                                <div class="col-md-9 col-sm-9 col-9 reviewer-3" id="text">
-                                    <div class="row">
-                                        <h4>@item.userdata.FirstName</h4>
-                                    </div>
-                                    <div class="row">
-                                        <div class="rate" id="rating">
+                            foreach (var item in @ViewBag.Reviewtable)
+                            {
+                                if (item != null)
+                                {
+                                    <div class="col-md-12 col-sm-12 col-12 reviewer-1">
+                                        <div class="row">
+                                            <div class="col-md-3 col-sm-3 col-3 img-fluid" id="img">
+                                                <img src="~/Uploadprofileimg/@item.userprofiledata.ProfilePicture">
+                                            </div>
+                                            <div class="col-md-9 col-sm-9 col-9 reviewer-3" id="text">
+                                                <div class="row">
+                                                    <h4>@item.userdata.FirstName</h4>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="rate" id="rating">
 
-                                            @for (decimal i = 0; i < item.reviewdata.Ratings; i++)
-                                            {
-                                                <img src="~/Content/images/star.png" alt="star">
-                                            }
-                                            @for (decimal i = item.reviewdata.Ratings; i < 5; i++)
-                                            {
-                                                <img src="~/Content/images/star-white.png" alt="star">
-                                            }
+                                                        @for (decimal i = 0; i < item.reviewdata.Ratings; i++)
+                                                        {
+                                                            <img src="~/Content/images/star.png" alt="star">
+                                                        }
+                                                        @for (decimal i = item.reviewdata.Ratings; i < 5; i++)
+                                                        {
+                                                            <img src="~/Content/images/star-white.png" alt="star">
+                                                        }
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <p>@item.reviewdata.Comments</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div id="line1">
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <p>@item.reviewdata.Comments</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div id="line1">
-                                </div>
-                            </div>
-                        </div>
+                                }
+                                else
+                                {
+                                    <strong style="color:#6255a5;">No Reviews for this note</strong>
+                                }
+                            }
                         }
-                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -312,6 +337,16 @@
     <script src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
 
     <script>
+        function logoutcall() {
+
+            if (confirm("Are you sure ,you want to Logout??")) {
+                return true;
+
+            } else {
+
+                return false;
+            }
+        }
         $('#download-btn1').click(function () {
             if (confirm("Are you sure you want to download this Paid note??")) {
                 //hidden_id is the id of input type=hidden.
