@@ -65,8 +65,8 @@ namespace NotesMarketPlaceProject.Controllers
                 db.SaveChanges();
                 TempData["Referrer"] = "SaveRegister";
 
-
-                var SenderEMail = new MailAddress("aaabhavsar022@gmail.com", Model.FirstName);
+                var supportemail = db.SystemConfigurations.Where(x => x.ID == 1).FirstOrDefault();
+                var SenderEMail = new MailAddress(supportemail.Value, Model.FirstName);
                 var receiverEmail = new MailAddress(Model.EmailID);
                 var SenderPassword = "Shreya@3103";
                 var body = string.Empty;
@@ -137,10 +137,16 @@ namespace NotesMarketPlaceProject.Controllers
                     Session["ID"] = loginSession.ID.ToString();
 
                     int check = Convert.ToInt32(Session["ID"]);
+                    var checkinusertbl = db.Users.Where(x => x.ID == check).FirstOrDefault();
+
                     var exits = db.UserProfiles.Where(x => x.UserID == check).FirstOrDefault();
 
-                    var checkinusertbl = db.Users.Where(x => x.ID == check).FirstOrDefault();
+                    
                     if (checkinusertbl.RoleID == 7 && Session["ID"] != null)
+                    {
+                        return RedirectToAction("Dashboard", "Admin");
+                    }
+                    if (checkinusertbl.RoleID == 8 && Session["ID"] != null)
                     {
                         return RedirectToAction("Dashboard", "Admin");
                     }
@@ -788,14 +794,15 @@ namespace NotesMarketPlaceProject.Controllers
             var max = db.SellerNotes.OrderByDescending(x => x.ID).FirstOrDefault();
             var sellernote = db.SellerNotes.Where(x => x.ID == max.ID).FirstOrDefault();
             var sellername = db.Users.Where(x => x.ID == sellernote.SellerID).FirstOrDefault();
-            var supportemail = db.SystemConfigurations.Where(x => x.ID == 1).FirstOrDefault();
             sellernote.Status = 7;
             db.SaveChanges();
 
-            var SenderEMail = new MailAddress("aaabhavsar022@gmail.com");
-            var receiverEmail = new MailAddress(supportemail.Value);
+            var supportemail = db.SystemConfigurations.Where(x => x.ID == 1).FirstOrDefault();
+            var adminemail = db.SystemConfigurations.Where(x => x.ID == 2).FirstOrDefault();
+            var SenderEMail = new MailAddress(supportemail.Value);
+            var receiverEmail = new MailAddress(adminemail.Value);
             var SenderPassword = "Shreya@3103";
-            var subject = sellername.FirstName + "sent note for review";
+            var subject = sellername.FirstName + " sent note for review";
 
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
             smtp.EnableSsl = true;
@@ -805,7 +812,7 @@ namespace NotesMarketPlaceProject.Controllers
 
             MailMessage mailMessage = new MailMessage(SenderEMail.Address, receiverEmail.Address);
             mailMessage.Subject = subject;
-            mailMessage.Body = "<br/><br/><br/>Hello Admins We want to inform you that, " + sellername.FirstName + " sent his note " + sellernote.Title + "For Review  Please look at the notes and take required actions." + "<br/><br/> Regards, Notes MarketPlace.";
+            mailMessage.Body = "<br/><br/><br/>Hello Admins We want to inform you that, " + sellername.FirstName + " sent his note " + sellernote.Title + "For Review  Please look at the notes and take required actions." + "<br/><br/> Regards"+ "<br/>Notes MarketPlace.";
 
             mailMessage.IsBodyHtml = true;
             smtp.Send(mailMessage);
@@ -1137,7 +1144,7 @@ namespace NotesMarketPlaceProject.Controllers
             var exists = db.Downloads.Where(x => x.ID == id).FirstOrDefault();
             var downloader = db.Users.Where(x => x.ID == exists.Downloader).FirstOrDefault();
             var seller = db.Users.Where(x => x.ID == exists.Seller).FirstOrDefault();
-            var supportemail = db.SystemConfigurations.Where(x => x.ID == 1).FirstOrDefault();
+            
             var remarks = Request.Form["remark"];
             
                     var obj = new SellerNotesReportedIssue
@@ -1151,9 +1158,10 @@ namespace NotesMarketPlaceProject.Controllers
                     };
                     db.SellerNotesReportedIssues.Add(obj);
                     db.SaveChanges();
-            
-            var SenderEMail = new MailAddress("aaabhavsar022@gmail.com");
-            var receiverEmail = new MailAddress(supportemail.Value);
+            var supportemail = db.SystemConfigurations.Where(x => x.ID == 1).FirstOrDefault();
+            var adminemail = db.SystemConfigurations.Where(x => x.ID == 2).FirstOrDefault();
+            var SenderEMail = new MailAddress(supportemail.Value);
+            var receiverEmail = new MailAddress(adminemail.Value);
             var SenderPassword = "Shreya@3103";
             var subject = downloader.FirstName + " Reported an issue for " + exists.NoteTitle;
 

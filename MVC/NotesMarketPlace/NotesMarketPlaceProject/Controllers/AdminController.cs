@@ -68,7 +68,7 @@ namespace NotesMarketPlaceProject.Controllers
                     db.Countries.Add(obj);
                     db.SaveChanges();
                 }
-                return View("AddCountry");
+                return RedirectToAction("ManageCountry","Admin");
             }
             else
             {
@@ -78,7 +78,7 @@ namespace NotesMarketPlaceProject.Controllers
                 check.ModifiedDate = DateTime.Now;
                 check.ModifiedBy = checkid.ID;
                 db.SaveChanges();
-                return View("AddCountry");
+                return RedirectToAction("ManageCountry", "Admin");
             }
         }
 
@@ -124,7 +124,7 @@ namespace NotesMarketPlaceProject.Controllers
                     db.NoteTypes.Add(obj);
                     db.SaveChanges();
                 }
-                return View();
+                return RedirectToAction("ManageType","Admin");
             }
             else
             {
@@ -134,7 +134,7 @@ namespace NotesMarketPlaceProject.Controllers
                 check.ModifiedDate = DateTime.Now;
                 check.ModifiedBy = checkid.ID;
                 db.SaveChanges();
-                return View();
+                return RedirectToAction("ManageType","Admin");
             }
         }
 
@@ -182,7 +182,7 @@ namespace NotesMarketPlaceProject.Controllers
                     db.NoteCategories.Add(obj);
                     db.SaveChanges();
                 }
-                return View("AddCategory");
+                return RedirectToAction("ManageCategory", "Admin");
             }
             else
             {
@@ -192,9 +192,9 @@ namespace NotesMarketPlaceProject.Controllers
                 check.ModifiedDate = DateTime.Now;
                 check.ModifiedBy = checkid.ID;
                 db.SaveChanges();
-                return View("AddCategory");
+                return RedirectToAction("ManageCategory", "Admin");
             }
-            return View();
+            
         }
 
         //Add Administrator
@@ -202,101 +202,110 @@ namespace NotesMarketPlaceProject.Controllers
         {
             List<Country> countrcode = db.Countries.ToList();
             ViewBag.countrycode = new SelectList(countrcode, "CountryCode", "CountryCode");
+            var checksuperadmin = Convert.ToInt32(Session["ID"]);
+            var existindb = db.Users.Where(x => x.ID == checksuperadmin).FirstOrDefault();
+            if (Session["ID"] != null && existindb.RoleID==8)
+            {
+                if (id == null)
+                {
+                    return View();
+                }
+                else
+                {
+                    var check = db.Users.Where(x => x.ID == id).FirstOrDefault();
+                    var exist = db.UserProfiles.Where(x => x.UserID == id).FirstOrDefault();
+
+                    AddAdministrator Model = new AddAdministrator
+                    {
+                        FirstName = check.FirstName,
+                        LastName = check.LastName,
+                        Email = check.EmailID,
+                        PhoneNumberCountryCOde = exist.PhoneNumberCountryCOde,
+                        phonenumber = exist.PhoneNumber
+                    };
+                    return View(Model);
+                }
+            }
+            else
+            {
+                return RedirectToAction("Login", "NotesMarketPlace");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AddAdministrator(int? id, AddAdministrator Model)
+        {
+            List<Country> countrcode = db.Countries.ToList();
+            ViewBag.countrycode = new SelectList(countrcode, "CountryCode", "CountryCode");
+
+            string strNewPassword = null;
             if (id == null)
             {
+                if (ModelState.IsValid)
+                {
+                    strNewPassword = GeneratePassword().ToString();
+                    User obj = new User
+                    {
+                        RoleID = 7,
+                        FirstName = Model.FirstName,
+                        LastName = Model.LastName,
+                        EmailID = Model.Email,
+                        Password = strNewPassword,
+                        IsEmailVerified = false,
+                        CreatedDate = DateTime.Now,
+                        IsActive = true
+                    };
+                    db.Users.Add(obj);
+                    UserProfile obj1 = new UserProfile
+                    {
+                        UserID = obj.ID,
+                        PhoneNumberCountryCOde = Model.PhoneNumberCountryCOde,
+                        PhoneNumber = Model.phonenumber,
+                        AddressLine1 = "Tatvasoft",
+                        AddressLine2 = "xxx",
+                        City = "Ahmedabad",
+                        State = "Gujarat",
+                        Country = "India",
+                        ZipCode = "380056"
+                    };
+                    db.UserProfiles.Add(obj1);
+                    db.SaveChanges();
+                }
+                var SenderEMail = new MailAddress("aaabhavsar022@gmail.com");
+                var receiverEmail = new MailAddress(Model.Email);
+                var SenderPassword = "Shreya@3103";
+                var subject = "Password has been created for you for NotesMarketPlace";
+
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                smtp.EnableSsl = true;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential(SenderEMail.Address, SenderPassword);
+
+                MailMessage mailMessage = new MailMessage(SenderEMail.Address, receiverEmail.Address);
+                mailMessage.Subject = subject;
+                mailMessage.Body = "<br/>Hello, " + Model.FirstName + "<br/>We have generated password for you" + "<br/>" + strNewPassword + "<br/>" + "Regards, <br/> Notes MarketPlace.";
+
+                mailMessage.IsBodyHtml = true;
+                smtp.Send(mailMessage);
                 return View();
             }
             else
             {
                 var check = db.Users.Where(x => x.ID == id).FirstOrDefault();
                 var exist = db.UserProfiles.Where(x => x.UserID == id).FirstOrDefault();
+                check.FirstName = Model.FirstName;
+                check.LastName = Model.LastName;
+                check.EmailID = Model.Email;
+                check.ModifiedDate = DateTime.Now;
+                exist.PhoneNumberCountryCOde = Model.PhoneNumberCountryCOde;
+                exist.PhoneNumber = Model.phonenumber;
 
-                AddAdministrator Model = new AddAdministrator
-                {
-                    FirstName = check.FirstName,
-                    LastName = check.LastName,
-                    Email = check.EmailID,
-                    PhoneNumberCountryCOde = exist.PhoneNumberCountryCOde,
-                    phonenumber = exist.PhoneNumber
-                };
-                return View(Model);
+                db.SaveChanges();
+                return View();
             }
+
         }
-    
-        //[HttpPost]
-        //public ActionResult AddAdministrator(int? id,AddAdministrator Model)
-        //{
-        //    List<Country> countrcode = db.Countries.ToList();
-        //    ViewBag.countrycode = new SelectList(countrcode, "CountryCode", "CountryCode");
-
-        //    string strNewPassword = null;
-        //    if(id==null)
-        //    {
-        //        if (ModelState.IsValid)
-        //        {
-        //            strNewPassword = GeneratePassword().ToString();
-        //            User obj = new User
-        //            {
-        //                RoleID = 7,
-        //                FirstName = Model.FirstName,
-        //                LastName = Model.LastName,
-        //                EmailID = Model.Email,
-        //                Password = strNewPassword,
-        //                IsEmailVerified = false,
-        //                CreatedDate = DateTime.Now,
-        //                IsActive = true
-        //            };
-        //            db.Users.Add(obj);
-        //            UserProfile obj1 = new UserProfile
-        //            {
-        //                UserID = obj.ID,
-        //                PhoneNumberCountryCOde = Model.PhoneNumberCountryCOde,
-        //                PhoneNumber = Model.phonenumber,
-        //                AddressLine1 = "Tatvasoft",
-        //                AddressLine2 = "xxx",
-        //                City = "Ahmedabad",
-        //                State = "Gujarat",
-        //                Country="India",
-        //                ZipCode = "380056"
-        //            };
-        //            db.UserProfiles.Add(obj1);
-        //            db.SaveChanges();
-        //        }
-        //        var SenderEMail = new MailAddress("aaabhavsar022@gmail.com");
-        //        var receiverEmail = new MailAddress(Model.Email);
-        //        var SenderPassword = "Shreya@3103";
-        //        var subject = "Password has been created for you for NotesMarketPlace";
-
-        //        SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-        //        smtp.EnableSsl = true;
-        //        smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
-        //        smtp.UseDefaultCredentials = false;
-        //        smtp.Credentials = new NetworkCredential(SenderEMail.Address, SenderPassword);
-
-        //        MailMessage mailMessage = new MailMessage(SenderEMail.Address, receiverEmail.Address);
-        //        mailMessage.Subject = subject;
-        //        mailMessage.Body = "<br/>Hello, " + Model.FirstName + "<br/>We have generated password for you" + "<br/>" + strNewPassword + "<br/>" + "Regards, <br/> Notes MarketPlace.";
-
-        //        mailMessage.IsBodyHtml = true;
-        //        smtp.Send(mailMessage);
-        //        return View();
-        //    }
-        //    else
-        //    {
-        //        var check = db.Users.Where(x => x.ID == id).FirstOrDefault();
-        //        var exist = db.UserProfiles.Where(x => x.UserID == id).FirstOrDefault();
-        //        check.FirstName = Model.FirstName;
-        //        check.LastName = Model.LastName;
-        //        check.EmailID = Model.Email;
-        //        check.ModifiedDate = DateTime.Now;
-        //        exist.PhoneNumberCountryCOde = Model.PhoneNumberCountryCOde;
-        //        exist.PhoneNumber = Model.phonenumber;
-                
-        //        db.SaveChanges();
-        //        return View();
-        //    }
-            
-        //}
 
         public string GeneratePassword()
         {
