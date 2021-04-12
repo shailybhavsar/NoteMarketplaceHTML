@@ -125,7 +125,7 @@
                                         {
                                             <p id="upload_image-filename">@Model.DisplayPicture</p>
                                         }
-                                        <input type="file" id="upload_image" name="upload_image" style="display: none;" accept="image/*">
+                                        <input type="file" class="upload" id="upload_image" name="upload_image" accept="image/*">
 
                                         @*@Html.TextBoxFor(m => m.DisplayPicture, new { @class = "form-control", @type = "file", @id = "upload_image", @name = "upload_image", @style = "display: none;" accept = "image/*" })*@
                                     </label>
@@ -177,8 +177,7 @@
                                         {
                                             <p id="upload_notes-filename">@Model.FileName</p>
                                         }
-                                        @Html.TextBoxFor(m => m.upload_notes, new { @class = "checkfile", type = "file", @id = "upload_notes", @name = "upload_notes", @style = "display: none;", @accept = ".pdf" })
-                                        <!----<input type="file" id="upload_notes" name="upload_notes" style="display: none;" data-val="true" data-val-required="File is required" accept=".pdf"--><!--@*AllowMultiple="true"*@--> <!--multiple="multiple">-->
+                                        @Html.TextBoxFor(m => m.upload_notes, new { @class = "checkfile upload", type = "file", @id = "upload_notes", @name = "upload_notes"@*, @style = "display: none;"*@, @accept = ".pdf"@*, required = "required"*@ })
                                         @Html.ValidationMessageFor(m => m.upload_notes, "", new { @style = "color:red;" })
                                     </label>
                                 </div>
@@ -348,9 +347,10 @@
                                         {
                                             <p id="upload_image-filename1">@Model.NotesPreview</p>
                                         }
-                                        <input type="file" id="upload_image1" name="upload_image1" style="display: none;" accept=".pdf">
-                                        @*Html.TextBoxFor(x => x.Preview, new { @type = "file", @name = "upload_image1", @id = "upload_image1", @style = "display: none;" ,@accept=".pdf" })*@
-                                        @*@Html.ValidationMessageFor(x=>x.Preview,"",new { @style="color:red;"})*@
+                                        <input type="file" class="upload" id="upload_image1" name="upload_image1" style="" accept=".pdf" onchange="pressed()">
+                                        @*@Html.TextBoxFor(x => x.upload_image1, new { @type = "file", @name = "upload_image1", @id = "upload_image1", @accept = ".pdf" })
+                                        @Html.ValidationMessageFor(x=>x.upload_image1, "",new { @style="color:red;"})*@
+                                        @*@Html.ValidationMessage("Preview", new { @class = "text-danger" })*@
                                     </label>
                                 </div>
                             </div>
@@ -368,6 +368,7 @@
                                 {
                                     <button type="button" class="btn btn-primary" id="display_button" onclick="window.location.href='@Url.Action("Publishnote", "NotesMarketPlace")'">PUBLISH</button>
                                 }
+                                
                             </div>
                         </div>
                     </div>
@@ -403,6 +404,14 @@
                 }
             });
         });
+
+        window.pressed = function () {
+            var a = document.getElementById('aa');
+            if (a.value == "") {
+                fileLabel.innerHTML = "Choose file";
+            }
+        };
+        $('#upload_image1').attr('title', 'Please upload preview for paid notes');
         //For Profile Picture
         var input_var = document.getElementById('upload_notes');
         var infoArea = document.getElementById('upload_notes-filename');

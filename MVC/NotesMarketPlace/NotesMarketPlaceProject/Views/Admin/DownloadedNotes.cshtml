@@ -119,7 +119,7 @@
                             <div class="form-group search-name" id="note">
                                 <p>Note</p>
                                 <select class="form-control custom-select" id="select_note">
-                                    <option class="custom-select">Select Note</option>
+                                    <option class="custom-select" value="">Select Note</option>
                                     @foreach (var item in @ViewBag.Selectnote)
                                     {
                                         <option>@item.NoteTitle</option>
@@ -132,7 +132,7 @@
                             <div class="form-group search-name" id="seller">
                                 <p>Seller</p>
                                 <select class="form-control custom-select" id="select_seller">
-                                    <option class="custom-select">Select Seller</option>
+                                    <option class="custom-select" value="">Select Seller</option>
                                     @foreach (var item in @ViewBag.Seller)
                                     {
                                         <option>@item.sellerdropdown.FirstName @item.sellerdropdown.LastName</option>
@@ -145,7 +145,7 @@
                             <div class="form-group search-name" id="buyer">
                                 <p>Buyer</p>
                                 <select class="form-control custom-select" id="select_buyer">
-                                    <option class="custom-select">Select Buyer</option>
+                                    <option class="custom-select" value="">Select Buyer</option>
                                     @foreach (var item in @ViewBag.Buyer)
                                     {
                                         <option>@item.buyerdropdown.FirstName @item.buyerdropdown.LastName</option>

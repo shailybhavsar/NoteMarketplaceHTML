@@ -18,7 +18,11 @@ namespace NotesMarketPlaceProject.Models
         [Required(AllowEmptyStrings =false,ErrorMessage ="Please Enter EmailId")]
         [EmailAddress]
         public string Email { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Countrycode")]
         public string PhoneNumberCountryCOde { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Enter Phone Number")]
         public string phonenumber { get; set; }
 
         public User usertbl { get; set; }

@@ -109,7 +109,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="row">
                 <div class="col-md-7 col-sm-7">
                     <div class="row">
@@ -219,8 +219,8 @@
                                         {
                                             <td>Rejected</td>
                                         }
-                                        <td><a href="@Url.Action("DownloadedNotes","Admin", new { id=item.sellernotetbl.ID})">@TempData[item.usertbl.ID.ToString() + "1"]</a></td>
-                                        <td>$@TempData[item.usertbl.ID.ToString() + "2"]</td>
+                                        <td><a href="@Url.Action("DownloadedNotes","Admin", new { id=item.sellernotetbl.ID})">@TempData[item.sellernotetbl.ID.ToString() + "1"]</a></td>
+                                        <td>$@TempData[item.sellernotetbl.ID.ToString() + "2"]</td>
                                         <td>@item.sellernotetbl.CreatedDate</td>
                                         @if (item.sellernotetbl.Status == 9)
                                         {

@@ -371,17 +371,26 @@ namespace NotesMarketPlaceProject.Controllers
         
         public ActionResult ManageAdmin()
         {
-            if (Session["ID"] == null)
+            var checksuperadmin = Convert.ToInt32(Session["ID"]);
+            var existindb = db.Users.Where(x => x.ID == checksuperadmin).FirstOrDefault();
+            if (Session["ID"] != null && existindb.RoleID == 8)
+            {
+                if (Session["ID"] == null)
+                {
+                    return RedirectToAction("Login", "NotesMarketPlace");
+                }
+                List<User> usertbl = db.Users.Where(x => x.RoleID == 7).ToList();
+                List<UserProfile> userprofiletbl = db.UserProfiles.ToList();
+                var manageadmin = from u in usertbl
+                                  join up in userprofiletbl on u.ID equals up.UserID
+                                  orderby u.CreatedDate descending
+                                  select new AddAdministrator { usertbl = u, userprofiletbl = up };
+                return View(manageadmin);
+            }
+            else
             {
                 return RedirectToAction("Login", "NotesMarketPlace");
             }
-            List<User> usertbl = db.Users.Where(x=>x.RoleID==7).ToList();
-            List<UserProfile> userprofiletbl = db.UserProfiles.ToList();
-            var manageadmin = from u in usertbl
-                              join up in userprofiletbl on u.ID equals up.UserID
-                              orderby u.CreatedDate descending
-                              select new AddAdministrator { usertbl=u,userprofiletbl=up};
-            return View(manageadmin);
         }
 
         //Manage category
@@ -544,57 +553,73 @@ namespace NotesMarketPlaceProject.Controllers
         }
 
         //Member Details
-        public ActionResult MemberDetails(int id)
+        public ActionResult MemberDetails(int? id)
         {
             if (Session["ID"] == null)
             {
                 return RedirectToAction("Login", "NotesMarketPlace");
             }
-            List<User> userobj = db.Users.Where(x=>x.ID==id).ToList();
-            var SingleMember = (from user in db.Users
-                                          join userprofile in db.UserProfiles on user.ID equals userprofile.UserID
-                                          where user.ID == id
-                                          select new MemberDetails
-                                          {
-                                              singleuser = user,
-                                              singleuserprofile = userprofile
-                                          }).FirstOrDefault();
+            
+                List<User> userobj = db.Users.Where(x => x.ID == id).ToList();
+                var SingleMember = (from user in db.Users
+                                    join userprofile in db.UserProfiles on user.ID equals userprofile.UserID
+                                    where user.ID == id
+                                    select new MemberDetails
+                                    {
+                                        singleuser = user,
+                                        singleuserprofile = userprofile
+                                    }).FirstOrDefault();
 
-            var Singlemembertbl = (from user in db.Users
-                                   join sellerdata in db.SellerNotes on user.ID equals sellerdata.SellerID into table1
-                                   from sellerdata in table1
-                                   join category in db.NoteCategories on sellerdata.Category equals category.CategoryID
-                                   where sellerdata.Status != 6 && sellerdata.Status!=11 && sellerdata.SellerID == id 
-                                   select new MemberDetails
-                                   {
-                                       sellernotetbl = sellerdata,
-                                       categorytbl = category,
-                                       usertbl=user
-                                   });
-            var check = db.Users.Where(x => x.ID == id).FirstOrDefault();
-            var exist = db.SellerNotes.Where(x => x.SellerID == check.ID).ToList();
-            //var downloadtblrecord = db.Downloads.Where(x => x.NoteID == exist.ID).ToList();
-            MemberDetaiviewModel model = new MemberDetaiviewModel
-            {
-                memberdetailsingledata= SingleMember,
-                memberdetailstable= Singlemembertbl
-            };
+                var Singlemembertbl = (from user in db.Users.Where(x=>x.ID==id)
+                                       join sellerdata in db.SellerNotes on user.ID equals sellerdata.SellerID into table1
+                                       from sellerdata in table1
+                                       join category in db.NoteCategories on sellerdata.Category equals category.CategoryID
+                                       where sellerdata.Status != 6 && sellerdata.Status != 11 && sellerdata.SellerID == id
+                                       select new MemberDetails
+                                       {
+                                           sellernotetbl = sellerdata,
+                                           categorytbl = category,
+                                           usertbl = user
+                                       });
+                List<SellerNote> selllerobj = db.SellerNotes.Where(x => x.SellerID == id).ToList();
 
-            foreach (User u in userobj)
+                var check = db.Users.Where(x => x.ID == id).FirstOrDefault();
+                var exist = db.SellerNotes.Where(x => x.SellerID == check.ID).ToList();
+                //var downloadtblrecord = db.Downloads.Where(x => x.NoteID == exist.ID).ToList();
+                MemberDetaiviewModel model = new MemberDetaiviewModel
+                {
+                    memberdetailsingledata = SingleMember,
+                    memberdetailstable = Singlemembertbl
+                };
+
+                //foreach (var u in Singlemembertbl)
+                //{
+                //    List<Download> downloadnotes = db.Downloads.Where(x => x.NoteID == u.sellernotetbl.ID && x.Seller != x.Downloader && x.IsAttachmentDownloaded == true && x.IsSellerHasAllowedDownload).ToList();
+                //    string downloadnotescount = Convert.ToString(u.sellernotetbl.ID);
+                //    TempData[downloadnotescount + "1"] = downloadnotes.Count;
+                //}
+
+                //foreach (var u in Singlemembertbl)
+                //{
+                //    List<Download> earning = db.Downloads.Where(x => x.NoteID == u.sellernotetbl.ID && x.IsAttachmentDownloaded == true).ToList();
+                //    var sum = earning.Sum(x => x.PurchasedPrice);
+                //    string totalearning = Convert.ToString(u.sellernotetbl.ID);
+                //    TempData[totalearning + "2"] = sum;
+                //}
+                foreach(SellerNote s in selllerobj)
             {
-                List<Download> downloadnotes = db.Downloads.Where(x => x.Downloader == u.ID && x.IsAttachmentDownloaded == true && x.IsSellerHasAllowedDownload).ToList();
-                string downloadnotescount = Convert.ToString(u.ID);
+                List<Download> downloadnotes = db.Downloads.Where(x => x.NoteID == s.ID && x.IsAttachmentDownloaded == true).ToList();
+                string downloadnotescount = Convert.ToString(s.ID);
                 TempData[downloadnotescount + "1"] = downloadnotes.Count;
             }
-            
-            foreach (var u in Singlemembertbl)
+
+                foreach(SellerNote s in selllerobj)
             {
-                List<Download> earning = db.Downloads.Where(x => x.Seller == u.sellernotetbl.SellerID && x.IsAttachmentDownloaded == true && x.IsSellerHasAllowedDownload == true && x.IsPaid == true).ToList();
+                List<Download> earning = db.Downloads.Where(x => x.NoteID == s.ID && x.IsAttachmentDownloaded == true).ToList();
                 var sum = earning.Sum(x => x.PurchasedPrice);
-                string totalearning = Convert.ToString(u.sellernotetbl.SellerID);
+                string totalearning = Convert.ToString(s.ID);
                 TempData[totalearning + "2"] = sum;
             }
-
             return View(model);
         }
 
@@ -933,6 +958,7 @@ namespace NotesMarketPlaceProject.Controllers
             }
             List<User> userobj = db.Users.ToList();
             var Model = from u in db.Users.Where(x=>x.RoleID == 6) 
+                        join up in db.UserProfiles on u.ID equals up.UserID
                         orderby u.CreatedDate descending
                         select new Members { usertbl = u };
 

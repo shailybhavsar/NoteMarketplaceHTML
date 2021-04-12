@@ -42,11 +42,11 @@ namespace NotesMarketPlaceProject.Models
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please Select Category")]
         public int CategoryID { get; set; }
-        [Required]
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "Please Upload Notes")]
+        //[Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Upload Notes")]
         //[ValidateFile(ErrorMessage = "Please ensure a file is selected.")]
         public HttpPostedFileBase upload_notes { get; set; }
-
+            
         //NoteTypes
         public int TypeID { get; set; }
 

@@ -27,7 +27,11 @@ namespace NotesMarketPlaceProject.Models
         [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd}",ApplyFormatInEditMode =true)]
         public DateTime DOB { get; set; }
         public string ProfilePicture { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Countrycode")]
         public string  PhoneNumberCountryCOde { get; set; }
+
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Please Enter Phone Number")]
         public string PhoneNumber { get; set; }
 
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please Fill The Field")]

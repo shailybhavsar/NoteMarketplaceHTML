@@ -133,9 +133,12 @@
 
                                     <div class="col-md-3 col-sm-3 col-3">
                                         @Html.DropDownList("PhoneNumberCountryCOde", (IEnumerable<SelectListItem>)ViewBag.countrycode, new { @class = "form-control custom-select", @id = "input" })
+                                        @Html.ValidationMessageFor(m => m.PhoneNumberCountryCOde, "", new { @style = "color:red" })
+
                                     </div>
                                     <div class="col-md-9 col-md-9 col-9">
                                         @Html.TextBoxFor(s => s.phonenumber, new { @class = "form-control", @id = "input", @placeholder = "Enter your phone number" })
+                                        @Html.ValidationMessageFor(m => m.phonenumber, "", new { @style = "color:red" })
 
                                     </div>
                                 </div>

@@ -92,8 +92,15 @@ namespace NotesMarketPlaceProject.Controllers
 
             }
 
-            ModelState.Clear();
-            return View("Signup");
+            //ModelState.Clear();
+            //return View("Signup");
+            RegisterUser modelobj = new RegisterUser
+            {
+                FirstName=Model.FirstName,
+                LastName=Model.LastName,
+                EmailID=Model.EmailID,
+            };
+            return View(modelobj);
         }
 
 
@@ -532,15 +539,6 @@ namespace NotesMarketPlaceProject.Controllers
                 notes_pdf_path = Path.Combine(Server.MapPath("~/Uploadimg"), notes_pdf);
                 upload_notes.SaveAs(notes_pdf_path);
                 upload_note_name = Path.GetFileName(notes_pdf);
-                ////foreach(HttpPostedFileBase file in upload_notes)
-                ////{
-                ////    //string strpath = "~/Members/" +sellerid+"/"+ noteid +"/Attachments/";
-                ////    string strpath = "~/Members/" + sellerid  + "/Attachments/";
-                ////    un_ex = Path.GetExtension(file.FileName);
-                ////    notes_pdf = "DP_" + DateTime.Now.ToString("yyyyMMddHHmmss") + un_ex;
-                ////    notes_pdf_path= Path.Combine(Server.MapPath(strpath), notes_pdf);
-                ////    file.SaveAs(notes_pdf_path);
-                ////}
             }
 
             try
@@ -1301,7 +1299,7 @@ namespace NotesMarketPlaceProject.Controllers
             if (ModelState.IsValid)
             {
                 var SenderEMail = new MailAddress("aaabhavsar022@gmail.com");
-                var receiverEmail = new MailAddress("shailyjbhavsar@gmail.com");
+                var receiverEmail = new MailAddress(Model.EMailid);
                 var SenderPassword = "Shreya@3103";
 
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
@@ -1311,9 +1309,9 @@ namespace NotesMarketPlaceProject.Controllers
                 smtp.UseDefaultCredentials = false;
                 smtp.Credentials = new NetworkCredential(SenderEMail.Address, SenderPassword);
 
-                MailMessage mailMessage = new MailMessage(SenderEMail, receiverEmail);
+                MailMessage mailMessage = new MailMessage(SenderEMail.Address, receiverEmail.Address);
                 mailMessage.Subject = Model.FullName;
-                mailMessage.Body = "<br/>Hello " + "<br/>" + Model.Questions + "<br/>Regards," + "<br/>" + Model.FullName;
+                mailMessage.Body = "<br/>Hello " + "<br/>" + Model.Questions + "<br/><br/>Regards," + "<br/>" + Model.FullName;
 
 
                 mailMessage.IsBodyHtml = true;
