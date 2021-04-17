@@ -31,7 +31,7 @@
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="@Url.Action("HomePage","NotesMarketPlace")">
                 <img src="~/Content/images/User-Profile/logo.png" alt="logo">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -122,7 +122,7 @@
                                         <td><a href="@Url.Action("NoteDetails", "NotesMarketPlace", new { id = item.downloadtbl.NoteID })">@Html.DisplayFor(m => item.downloadtbl.NoteTitle)</a></td>
                                         <td>@Html.DisplayFor(m => item.downloadtbl.NoteCategory)</td>
                                         <td>@Html.DisplayFor(m => item.usertbl.EmailID)</td>
-                                        <td>@Html.DisplayFor(m => item.userprofiletbl.PhoneNumber)</td>
+                                        <td>@item.userprofiletbl.PhoneNumberCountryCOde @item.userprofiletbl.PhoneNumber</td>
                                         @if (item.downloadtbl.IsPaid == false)
                                         {
                                             <td>Free</td>
@@ -171,7 +171,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script type="text/javascript" src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Scripts/DataTables/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>*@
 
     @section  Scripts{
         <script>

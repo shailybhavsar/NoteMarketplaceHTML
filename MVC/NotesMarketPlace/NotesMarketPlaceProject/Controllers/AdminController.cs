@@ -511,8 +511,11 @@ namespace NotesMarketPlaceProject.Controllers
         //When Admin clicks on Inreview button
         public ActionResult ReviewNotes(int id)
         {
+            var result = Convert.ToInt32(Session["ID"]);
+            var checkadmin = db.Users.Where(a => a.ID == result).FirstOrDefault();
             var check = db.SellerNotes.Where(x => x.ID == id && x.Status == 7).FirstOrDefault();
             check.Status = 8;
+            check.ActionedBy = checkadmin.ID;
             db.SaveChanges();
             return RedirectToAction("NotesUnderReview", "Admin");
         }
@@ -520,9 +523,12 @@ namespace NotesMarketPlaceProject.Controllers
         //When Admin clicks on Approve button
         public ActionResult ApproveNotes(int id)
         {
+            var result = Convert.ToInt32(Session["ID"]);
+            var checkadmin = db.Users.Where(a => a.ID == result).FirstOrDefault();
             var check = db.SellerNotes.Where(x => x.ID == id && (x.Status == 7 || x.Status == 8)).FirstOrDefault();
             check.Status = 9;
             check.PublishedDate = DateTime.Now;
+            check.ActionedBy = checkadmin.ID;
             db.SaveChanges();
             return RedirectToAction("NotesUnderReview", "Admin");
         }
@@ -531,10 +537,13 @@ namespace NotesMarketPlaceProject.Controllers
         [HttpPost]
         public ActionResult RejectNotes(int id)
         {
+            var result = Convert.ToInt32(Session["ID"]);
+            var checkadmin = db.Users.Where(a => a.ID == result).FirstOrDefault();
             var comments = Request.Form["Comment"];
             var check = db.SellerNotes.Where(x => x.ID == id).FirstOrDefault();
             check.AdminRemarks = comments;
             check.Status = 10;
+            check.ActionedBy = checkadmin.ID;
             db.SaveChanges();
             return RedirectToAction("NotesUnderReview", "Admin");
         }
@@ -592,34 +601,21 @@ namespace NotesMarketPlaceProject.Controllers
                     memberdetailstable = Singlemembertbl
                 };
 
-                //foreach (var u in Singlemembertbl)
-                //{
-                //    List<Download> downloadnotes = db.Downloads.Where(x => x.NoteID == u.sellernotetbl.ID && x.Seller != x.Downloader && x.IsAttachmentDownloaded == true && x.IsSellerHasAllowedDownload).ToList();
-                //    string downloadnotescount = Convert.ToString(u.sellernotetbl.ID);
-                //    TempData[downloadnotescount + "1"] = downloadnotes.Count;
-                //}
-
-                //foreach (var u in Singlemembertbl)
-                //{
-                //    List<Download> earning = db.Downloads.Where(x => x.NoteID == u.sellernotetbl.ID && x.IsAttachmentDownloaded == true).ToList();
-                //    var sum = earning.Sum(x => x.PurchasedPrice);
-                //    string totalearning = Convert.ToString(u.sellernotetbl.ID);
-                //    TempData[totalearning + "2"] = sum;
-                //}
                 foreach(SellerNote s in selllerobj)
-            {
-                List<Download> downloadnotes = db.Downloads.Where(x => x.NoteID == s.ID && x.IsAttachmentDownloaded == true).ToList();
+                {
+                List<Download> downloadnotes = db.Downloads.Where(x => x.NoteID == s.ID &&  x.Seller==s.SellerID && x.IsAttachmentDownloaded == true).ToList();
                 string downloadnotescount = Convert.ToString(s.ID);
                 TempData[downloadnotescount + "1"] = downloadnotes.Count;
-            }
+                }
 
-                foreach(SellerNote s in selllerobj)
+            foreach (SellerNote s in selllerobj)
             {
-                List<Download> earning = db.Downloads.Where(x => x.NoteID == s.ID && x.IsAttachmentDownloaded == true).ToList();
+                List<Download> earning = db.Downloads.Where(x => x.NoteID == s.ID && x.Seller == s.SellerID && x.IsAttachmentDownloaded == true).ToList();
                 var sum = earning.Sum(x => x.PurchasedPrice);
                 string totalearning = Convert.ToString(s.ID);
                 TempData[totalearning + "2"] = sum;
             }
+
             return View(model);
         }
 
@@ -704,7 +700,7 @@ namespace NotesMarketPlaceProject.Controllers
             //single user(from member)
             List<User> memberuser = db.Users.Where(x => x.ID == id).ToList();
             //usertbladmin for getting adminname(who reject the notes)
-            List<User> useradmintbl = db.Users.ToList();
+            List<User> useradmintbl = db.Users.Where(x=>x.RoleID==7).ToList();
             List<SellerNote> sellernotetbl = db.SellerNotes.Where(x => x.Status == 9).ToList();
             List<NoteCategory> notecattbl = db.NoteCategories.ToList();
             List<Download> downloadtbl = db.Downloads.ToList();
@@ -782,10 +778,13 @@ namespace NotesMarketPlaceProject.Controllers
         [HttpPost]
         public ActionResult UnpublishBook(int id)
         {
+            var result = Convert.ToInt32(Session["ID"]);
+            var checkadmin = db.Users.Where(a => a.ID == result).FirstOrDefault();
             var remarks = Request.Form["Remarks"];
             var check = db.SellerNotes.Where(x => x.ID == id).FirstOrDefault();
             check.AdminRemarks = remarks;
             check.Status = 11;
+            check.ActionedBy = checkadmin.ID;
             db.SaveChanges();
 
             //to get the seller id
@@ -818,9 +817,9 @@ namespace NotesMarketPlaceProject.Controllers
             {
                 return RedirectToAction("Login", "NotesMarketPlace");
             }
-            ViewBag.NoOfNotesInReview = db.SellerNotes.Where(x => x.Status == 8).Count();
+            ViewBag.NoOfNotesInReview = db.SellerNotes.Where(x => x.Status == 7  || x.Status == 8).Count();
             var dt = DateTime.Now.AddDays(-7);
-            ViewBag.NoOfNotesDownloadedin7days = db.Downloads.Where(x => x.AttachmentDownloadedDate > dt).Count();
+            ViewBag.NoOfNotesDownloadedin7days = db.Downloads.Where(x => x.AttachmentDownloadedDate > dt && x.IsAttachmentDownloaded==true).Count();
             ViewBag.NoOfNewRegistration = db.Users.Where(x=>x.RoleID==6 && x.CreatedDate > dt).Count();
 
             var minDate = DateTime.Now.AddMonths(-1);
@@ -919,8 +918,8 @@ namespace NotesMarketPlaceProject.Controllers
             }
             else
             {
-                List<Download> downloadobj = db.Downloads.Where(x => x.IsAttachmentDownloaded == true && x.Downloader==id).ToList();
-                List<User> buyerdata = db.Users.ToList();
+                List<Download> downloadobj = db.Downloads.Where(x => x.IsAttachmentDownloaded == true).ToList();
+                List<User> buyerdata = db.Users.Where(x=>x.ID==id).ToList();
                 List<User> sellerdata = db.Users.ToList();
                 var downlodednotes = from d in downloadobj
                                      join b in buyerdata on d.Downloader equals b.ID into table1
@@ -941,7 +940,7 @@ namespace NotesMarketPlaceProject.Controllers
                                   select new DownloadNotesbyadmin { downloaddata = s, sellerdropdown = u });
 
                 //dropdown for selecting buyer
-                List<Download> downloaddatabuyer = db.Downloads.Where(x => x.IsAttachmentDownloaded == true && x.Downloader==id).GroupBy(x => x.Downloader).Select(x => x.FirstOrDefault()).ToList();
+                List<Download> downloaddatabuyer = db.Downloads.Where(x => x.IsAttachmentDownloaded == true && x.Downloader == id).GroupBy(x => x.Downloader).Select(x => x.FirstOrDefault()).ToList();
                 ViewBag.Buyer = from u in sellerdata
                                 join s in downloaddatabuyer on u.ID equals s.Downloader into table1
                                 from s in table1
@@ -949,6 +948,38 @@ namespace NotesMarketPlaceProject.Controllers
 
                 return View(downlodednotes);
             }
+        }
+        public ActionResult DownloadedNotesFromNoteID(int? id)
+        {
+            List<Download> downloadobj = db.Downloads.Where(x => x.IsAttachmentDownloaded == true && (x.NoteID==id) && (x.Seller != x.Downloader)).ToList();
+            List<User> buyerdata = db.Users.ToList();
+            List<User> sellerdata = db.Users.ToList();
+            var downlodednotes = from d in downloadobj
+                                 join b in buyerdata on d.Downloader equals b.ID into table1
+                                 from b in table1
+                                 join s in sellerdata on d.Seller equals s.ID
+                                 orderby d.AttachmentDownloadedDate descending
+                                 select new DownloadNotesbyadmin { downloaddata = d, buyeruser = b, selleruser = s };
+
+            //dropdown for select note
+            List<Download> selectnote = db.Downloads.GroupBy(x => x.NoteTitle).Select(x => x.FirstOrDefault()).Where(x => x.IsAttachmentDownloaded == true && x.NoteID==id).ToList();
+            ViewBag.Selectnote = selectnote;
+
+            //dropdown for selecting seller
+            List<Download> downloaddataseller = db.Downloads.Where(x => x.IsAttachmentDownloaded == true && x.NoteID == id).GroupBy(x => x.Seller).Select(x => x.FirstOrDefault()).ToList();
+            ViewBag.Seller = (from u in sellerdata
+                              join s in downloaddataseller on u.ID equals s.Seller into table1
+                              from s in table1
+                              select new DownloadNotesbyadmin { downloaddata = s, sellerdropdown = u });
+
+            //dropdown for selecting buyer
+            List<Download> downloaddatabuyer = db.Downloads.Where(x => x.IsAttachmentDownloaded == true && x.NoteID == id).GroupBy(x => x.Downloader).Select(x => x.FirstOrDefault()).ToList();
+            ViewBag.Buyer = from u in sellerdata
+                            join s in downloaddatabuyer on u.ID equals s.Downloader into table1
+                            from s in table1
+                            select new DownloadNotesbyadmin { downloaddata = s, buyerdropdown = u };
+
+            return View(downlodednotes);
         }
         public ActionResult Members()
         {
@@ -991,7 +1022,7 @@ namespace NotesMarketPlaceProject.Controllers
             }
             foreach(User u in userobj)
             {
-                List<Download> earning = db.Downloads.Where(x => x.Seller == u.ID && x.IsAttachmentDownloaded == true && x.IsSellerHasAllowedDownload == true && x.IsPaid == true).ToList();
+                List<Download> earning = db.Downloads.Where(x => x.Seller == u.ID && x.IsAttachmentDownloaded == true).ToList();
                 var sum = earning.Sum(x => x.PurchasedPrice);
                 string totalearning = Convert.ToString(u.ID);
                 TempData[totalearning + "5"] = sum;
@@ -1049,11 +1080,6 @@ namespace NotesMarketPlaceProject.Controllers
                                   where r.NoteID == id
                                   select new SearchNotes { userdata = u, reviewdata = r, userprofiledata = up };
 
-            //if (Session["ID"] != null)
-            //{
-            //    ViewBag.BuyerName = buyername.FirstName;
-            //}
-            //ViewBag.SellerName = sellername.FirstName + " " + sellername.LastName;
             ViewBag.ReprtIssue = reportissuecount;//To display number of reported issues
 
             ViewBag.Numberofratings = ratingcount;//Display number of rating

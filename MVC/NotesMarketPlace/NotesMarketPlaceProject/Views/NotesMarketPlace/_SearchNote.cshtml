@@ -1,6 +1,4 @@
 ﻿@model NotesMarketPlaceProject.ViewModel.SearchNotesnewViewModel
-
-
 @if (Model != null && Model.newGetSellerNotesDetails_Results != null && Model.newGetSellerNotesDetails_Results.Count() > 0)
 {
     double dblPageCount = (double)((decimal)Model.TotalRecords / decimal.Parse(Model.PageSize));
@@ -15,99 +13,104 @@
                 </div>
             </div>
             <div id="PartialSearchNoteOuter">
-                @*<div class="card-group" id="PartialSearchNoteInner">*@
-                    @*<div class="card-deck">*@
-                        <div class="row">
-                            @foreach (var item in Model.newGetSellerNotesDetails_Results)
-                            {
-                                <!--Book1-->
-                                <div class="col-lg-4 col-md-6 col-sm-12 col-12" id="card_check">
-                                    <div class="card" id="Note_Details" onclick="window.location.href='@Url.Action("NoteDetails", "NotesMarketPlace", new { id = item.ID })'">
+                <div class="row">
+                    @foreach (var item in Model.newGetSellerNotesDetails_Results)
+                    {
+                        <!--Book-->
+                        <div class="col-lg-4 col-md-6 col-sm-12 col-12" id="card_check">
+                            <div class="card" id="Note_Details" onclick="window.location.href='@Url.Action("NoteDetails", "NotesMarketPlace", new { id = item.ID })'">
 
-                                        <img class="card-img-top" src="~/Uploadimg/@item.DisplayPicture" alt="Card image cap">
-                                        <div class="card-body d-flex flex-column">
-                                            <h5 class="card-title" id="notedetails">@item.Title</h5>
-                                            <p class="card-text">
-                                                <div class="row">
-                                                    @if (item.UniversityName != null)
-                                                    {
-                                                        <div class="col-md-2 col-sm-2 col-2">
-                                                            <span id="img1"><img src="~/Content/images/Search/university.png" alt="university-img" class="img-fluid"></span>
-                                                        </div>
-                                                        <div class="col-md-10 col-sm-10 col-10">
-                                                            <span id="text">@item.UniversityName , @item.CountyName</span>
-                                                        </div>
-                                                    }
-                                                    @if (item.NumberOfPages != null)
-                                                    {
-                                                        <div class="col-md-2 col-sm-2 col-2">
-                                                            <span id="img1"><img src="~/Content/images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
-                                                        </div>
-                                                        <div class="col-md-10 col-sm-10 col-10">
-                                                            <span id="text">@Html.DisplayFor(m => item.NumberOfPages)</span>
-                                                        </div>
-                                                    }
-                                                    @if (item.CreatedDate != null)
-                                                    {
-                                                        <div class="col-md-2 col-sm-2 col-2">
-                                                            <span id="img1"><img src="~/Content/images/Search/date.png" alt="date-img" class="img-fluid"></span>
-                                                        </div>
-                                                        <div class="col-md-10 col-sm-10 col-10">
-                                                            <span id="text">@Html.DisplayFor(m => item.CreatedDate)</span>
-                                                        </div>
-                                                    }
-                                                    <div class="col-md-2 col-sm-2 col-2">
-                                                        <span id="img1"><img src="~/Content/images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
-                                                    </div>
-                                                    <div class="col-md-10 col-sm-10 col-10">
-                                                        @if (item.Report != null)
-                                                        {
-                                                            <span id="text-imp">@item.Report Users marked this note as inappropriate</span>
-                                                        }
-                                                        else
-                                                        {
-                                                            <span id="text-imp">0 Users marked this note as inappropriate</span>
-                                                        }
-                                                    </div>
-                                                </div>
-                                            </p>
-                                            <p class="card-text">
-
-                                                <small class="text-muted">
-                                                    @if (item.Rating != null)
-                                                    {
-                                                        for (int i = 0; i < (int)item.Rating; i++)
-                                                        {
-                                                            <img src="~/Content/images/star.png" alt="star" id="rate">
-                                                        }
-                                                        for (int i = (int)item.Rating; i < 5; i++)
-                                                        {
-                                                            <img src="~/Content/images/star-white.png" alt="star" id="rate">
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                        for (int i = 0; i < 5; i++)
-                                                        {
-                                                            <img src="~/Content/images/star-white.png" alt="star" id="rate">
-                                                        }
-                                                    }
-                                                    @if(item.Rating!=null)
-                                                    {
-                                                        <p>@item.TotalRating Reviews</p>
-                                                    }
-                                                    else
-                                                    {
-                                                        <p>0 Reviews</p>
-                                                    }
-                                                  </small>
+                                @if (item.DisplayPicture != null)
+                                {
+                                    <img class="card-img-top" src="~/Uploadimg/@item.DisplayPicture" alt="Card image cap">
+                                }
+                                else
+                                {
+                                    <img class="card-img-top" src="~/Uploadimg/Default.jpg" alt="Card image cap">
+                                }
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title" id="notedetails">@item.Title</h5>
+                                <p class="card-text">
+                                    <div class="row">
+                                        @if (item.UniversityName != null)
+                                        {
+                                            <div class="col-md-2 col-sm-2 col-2">
+                                                <span id="img1"><img src="~/Content/images/Search/university.png" alt="university-img" class="img-fluid"></span>
+                                            </div>
+                                            <div class="col-md-10 col-sm-10 col-10">
+                                                <span id="text">@item.UniversityName , @item.CountyName</span>
+                                            </div>
+                                        }
+                                        @if (item.NumberOfPages != null)
+                                        {
+                                            <div class="col-md-2 col-sm-2 col-2">
+                                                <span id="img1"><img src="~/Content/images/Search/pages.png" alt="pages-img" class="img-fluid"></span>
+                                            </div>
+                                            <div class="col-md-10 col-sm-10 col-10">
+                                                <span id="text">@Html.DisplayFor(m => item.NumberOfPages)</span>
+                                            </div>
+                                        }
+                                        @if (item.CreatedDate != null)
+                                        {
+                                            <div class="col-md-2 col-sm-2 col-2">
+                                                <span id="img1"><img src="~/Content/images/Search/date.png" alt="date-img" class="img-fluid"></span>
+                                            </div>
+                                            <div class="col-md-10 col-sm-10 col-10">
+                                                <span id="text">@Html.DisplayFor(m => item.CreatedDate)</span>
+                                            </div>
+                                        }
+                                        <div class="col-md-2 col-sm-2 col-2">
+                                            <span id="img1"><img src="~/Content/images/Search/flag.png" alt="flag-img" class="img-fluid"></span>
+                                        </div>
+                                        <div class="col-md-10 col-sm-10 col-10">
+                                            @if (item.Report != null)
+                                            {
+                                                <span id="text-imp">@item.Report Users marked this note as inappropriate</span>
+                                            }
+                                            else
+                                            {
+                                                <span id="text-imp">0 Users marked this note as inappropriate</span>
+                                            }
                                         </div>
                                     </div>
+                                </p>
+                                <p class="card-text">
+                                    <small class="text-muted">
+                                        @if (item.Rating != null)
+                                        {
+                                            for (int i = 0; i < (int)item.Rating; i++)
+                                            {
+                                                <img src="~/Content/images/star.png" alt="star" id="rate">
+                                            }
+                                            for (int i = (int)item.Rating; i < 5; i++)
+                                            {
+                                                <img src="~/Content/images/star-white.png" alt="star" id="rate">
+                                            }
+                                        }
+                                        else
+                                        {
+                                            for (int i = 0; i < 5; i++)
+                                            {
+                                                <img src="~/Content/images/star-white.png" alt="star" id="rate">
+                                            }
+                                        }
+                                       
+                                    </small>
+                                    @if (item.Rating != null)
+                                    {
+                                    <p>@item.TotalRating Reviews</p>
+                                     }
+                                     else
+                                     {
+                                     <p>0 Review</p>
+                                     }
+                            
+                                    </div>
                                 </div>
-                             }
-                        </div>
-                    @*</div>*@
-                @*</div>*@
+                            </div>
+                        }
+                </div>
+
                 <div class="jplist-panel footer">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="row">
@@ -117,21 +120,11 @@
                                     Showing @((Convert.ToInt32(Model.PageNumber) - 1) * Convert.ToInt32(Model.PageSize) + 1) to @(Convert.ToInt32(Model.PageNumber) * Convert.ToInt32(Model.PageSize) <= Model.TotalRecords ? Convert.ToInt32(Model.PageNumber) * Convert.ToInt32(Model.PageSize) : Model.TotalRecords) of @Model.TotalRecords entries
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                                <div class="jplist-drop-down dataTables_length" data-control-type="items-per-page-drop-down" data-control-name="paging" data-control-action="paging">
-                                    Show&nbsp;<select class="jplist-select" data-control-type="items-per-page-select" data-control-name="paging" data-control-action="paging">
-                                        <option data-number="9" @(Model.PageSize == "9" ? "selected = \"selected\"" : "")>9</option>
-                                        <option data-number="@Model.TotalRecords" @(Model.PageSize == Model.TotalRecords.ToString() ? "selected = \"selected\"" : "")>View All</option>
-                                    </select>&nbsp;entries
-                                </div>
-                            </div>
                             <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12" style="text-align:center">
-                                <!-- pagination data-prev="<" data-next=">" data-first="<<" data-last=">>" -->
                                 <div class="jplist-pagination" data-control-type="pagination" data-control-name="paging" data-control-action="paging" data-range="5">
                                     @if (pageCount > 1 && Convert.ToInt32(Model.PageNumber) > 1)
                                     {
                                         <div class="jplist-pagingprev jplist-hidden" data-type="pagingprev">
-                                            @*<button type="button" class="jplist-first" data-number="0" data-type="first" title="" value="1">«</button>*@
                                             <button type="button" class="jplist-prev" data-type="prev" title="" data-number="0" value="@(Convert.ToInt32(Model.PageNumber) - 1)">‹</button>
                                         </div>
                                     }
@@ -140,17 +133,6 @@
                                             @if (pageCount > 1)
                                             {
                                                 int startPage = 1, endPage = pageCount;
-                                                if (pageCount > 5)
-                                                {
-                                                    if (Convert.ToInt32(Model.PageNumber) - 2 > 0)
-                                                    {
-                                                        startPage = Convert.ToInt32(Model.PageNumber) - 2;
-                                                    }
-                                                    if (Convert.ToInt32(Model.PageNumber) + 2 <= pageCount)
-                                                    {
-                                                        endPage = Convert.ToInt32(Model.PageNumber) + 2;
-                                                    }
-                                                }
                                                 for (int iPage = startPage; iPage <= endPage; iPage++)
                                                 {
                                                     if (iPage != Convert.ToInt32(Model.PageNumber))
@@ -169,7 +151,7 @@
                                     {
                                         <div class="jplist-pagingnext" data-type="pagingnext">
                                             <button type="button" class="jplist-next" data-type="next" title="" data-number="@(Convert.ToInt32(Model.PageNumber) + 1)" value="@(Convert.ToInt32(Model.PageNumber) + 1)">›</button>
-                                            @*<button type="button" class="jplist-last" data-type="last" title="" data-number="@pageCount" value="@pageCount">»</button>*@
+
                                         </div>
                                     }
                                 </div>

@@ -31,7 +31,7 @@
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="@Url.Action("HomePage","NotesMarketPlace")">
                 <img src="~/Content/images/User-Profile/logo.png" alt="logo">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -76,7 +76,7 @@
                 <div class="col-md-12 col-sm-12 col-12" id="buyer">
                     <div class="row">
                         <div class="col-md-6 col-sm-6 col-12" id="heading">
-                            <h3>Buyer Requests</h3>
+                            <h3>Rejected Notes</h3>
                         </div>
 
                         <div class="col-md-6 col-sm-6 col-12">
@@ -147,7 +147,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script type="text/javascript" src="~/Scripts/js/bootstrap/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/Scripts/DataTables/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>
+    @*<script type="text/javascript" src="~/Scripts/DataTables/dataTables.bootstrap.js"></script>*@
 
     @section  Scripts{
         <script>
@@ -180,7 +180,6 @@
                 }
             }
             function logout() {
-                alert("Hii");
                 if (confirm("Are you sure ,you want to Logout??")) {
                 window.location.href = '@Url.Action("Logout", "NotesMarketPlace")';
             }

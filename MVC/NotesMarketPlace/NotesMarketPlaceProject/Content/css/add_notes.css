@@ -63,10 +63,20 @@ input#upload_image1.upload.input-validation-error{
   background-color: #6255a5;
   opacity: 0.9;
 }
-
-/*Background image*/
-#background-image{
-  background-image: url("../images/User-Profile/banner-with-overlay.jpg");
+#save_btn {
+    background-color: #6255a5;
+    opacity: 0.9;
+}
+div#selling_price {
+    margin-top: 20px;
+}
+#radio-button label {
+    margin-left: -7px;
+    margin-right: 17px;
+}
+    /*Background image*/
+    #background-image {
+    background-image: url("../images/User-Profile/banner-with-overlay.jpg");
     width: 100%;
     height: 190px;
     background-repeat: no-repeat;

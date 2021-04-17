@@ -10,6 +10,7 @@ namespace NotesMarketPlaceProject.Models
 {
     public class AddEditNotes
     {
+        public int ID { get; set; }
         public int SellerID { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Please Enter Title")]
         public string Title { get; set; }

@@ -26,7 +26,7 @@
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="@Url.Action("HomePage","NotesMarketPlace")">
                 <img src="~/Content/images/logo.png" alt="logo" class="logo" />
             </a>
 
@@ -147,8 +147,6 @@
                                     <option value="4">4+</option>
                                     <option value="5">5+</option>
                                 </select>
-                                @*@Html.LabelFor(m=>m.RatingID1,"")
-                                @Html.DropDownListFor(m=>m.RatingID1, ViewBag.reviewobj as SelectList, "Select Rating", new { @class = "form-control custom-select" })*@
                             </div>
                         </div>
                     </div>
@@ -224,8 +222,7 @@
                 var FK_Category_val = $("#CategoryID1").val();
                 var FK_Searchdata_val = $("#search_filter").val();
                 var FK_Ratings_val = $("#RatingID1").val();
-
-                var pageSize = "9"; /*$("#DivSearchNotes .jplist-select").length > 0 ? $("#DivSearchNotes .jplist-select option:selected").attr("data-number") : "2";*/
+                var pageSize = "9";
                 var pageNumber = $("#books .jplist-pagination").length > 0 && $("#books .jplist-pagination .jplist-current").val() != "" ? $("#books .jplist-pagination .jplist-current").val() : "1";
 
                 
@@ -234,7 +231,6 @@
                     url: "@Url.Action("FilterNotes", "NotesMarketPlace")",
                     data: { FK_Type: FK_Type_val, FK_Course: FK_Course_val, FK_Country: FK_Country_val, FK_University: FK_University_val, FK_Category: FK_Category_val, FK_Searchdata: FK_Searchdata_val, FK_Ratings: FK_Ratings_val ,PageNumber: pageNumber, PageSize: pageSize },
 
-                    //data is an object(just para type)
                     success: function (result) {
                         
                         $("#books").replaceWith(result);
@@ -242,8 +238,7 @@
                         $("#books .jplist-pagination").find("button").bind("click", function (event) {
                             
                             $("#books .jplist-pagination").find("button").removeClass("jplist-current");
-                            $(this).addClass("jplist-current");
-                            
+                            $(this).addClass("jplist-current");                           
                             bindSearchNote();
                         });
                         

@@ -775,6 +775,7 @@
     <Content Include="Views\Admin\UpdateProfile.cshtml" />
     <Content Include="Views\Admin\SpamReports.cshtml" />
     <Content Include="Views\NotesMarketPlace\HomePage.cshtml" />
+    <Content Include="Views\Admin\DownloadedNotesFromNoteID.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AdminProfilePhoto\" />

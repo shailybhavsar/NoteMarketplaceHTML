@@ -299,9 +299,9 @@ footer {
 }
 
 .jplist-pagination {
-    display: flex;
+    /*display: flex;
     justify-content: left;
-    margin-left:-70px;
+    margin-left:-70px;*/
     margin-top:30px;
     margin-bottom:30px;
 }

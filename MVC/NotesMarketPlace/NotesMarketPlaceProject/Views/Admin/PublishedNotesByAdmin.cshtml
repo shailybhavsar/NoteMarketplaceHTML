@@ -187,7 +187,7 @@
                                         <td>@item.usertbl.FirstName @item.usertbl.LastName<span style="float:right"><a href="@Url.Action("MemberDetails","Admin",new { id=item.usertbl.ID})"><img src="~/Content/images/downloads/eye.png" alt="review"></a></span></td>
                                         <td>@item.sellernotetbl.PublishedDate</td>
                                         <td>@item.useradmin.FirstName @item.useradmin.LastName</td>
-                                        <td>@TempData[item.sellernotetbl.ID.ToString()]</td>
+                                        <td><a href="@Url.Action("DownloadedNotesFromNoteID","Admin", new { id=item.sellernotetbl.ID})">@TempData[item.sellernotetbl.ID.ToString()]</a></td>
                                         <td>
                                             <div class="dropdown" id="dotdropdown">
                                                 <img src="~/Content/images/dots.png" class="dropimg" alt="view" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

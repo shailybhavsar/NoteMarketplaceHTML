@@ -219,7 +219,7 @@
                                         {
                                             <td>Rejected</td>
                                         }
-                                        <td><a href="@Url.Action("DownloadedNotes","Admin", new { id=item.sellernotetbl.ID})">@TempData[item.sellernotetbl.ID.ToString() + "1"]</a></td>
+                                        <td><a href="@Url.Action("DownloadedNotesFromNoteID","Admin", new { id=item.sellernotetbl.ID})">@TempData[item.sellernotetbl.ID.ToString() + "1"]</a></td>
                                         <td>$@TempData[item.sellernotetbl.ID.ToString() + "2"]</td>
                                         <td>@item.sellernotetbl.CreatedDate</td>
                                         @if (item.sellernotetbl.Status == 9)

@@ -111,7 +111,14 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-12 col-12" id="heading-left">
                                 <h3>Notes Details</h3>
-                                <img class="card-img-top" src="~/Uploadimg/@Model.Singlenote.DisplayPicture" alt="Card image cap" id="">
+                                @if (Model.Singlenote.DisplayPicture != null)
+                                {
+                                    <img class="card-img-top" src="~/Uploadimg/@Model.Singlenote.DisplayPicture" alt="Card image cap">
+                                }
+                                else
+                                {
+                                    <img class="card-img-top" src="~/Uploadimg/Default.jpg" alt="Card image cap">
+                                }
                             </div>
                             <div class="col-md-6 col-sm-12 col-12" id="heading-right">
                                 <h2></h2>
@@ -272,7 +279,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <span style="float:right" id="delete_review_img">
-                                                <a href="@Url.Action("DeleteReview","Admin",new { id=item.reviewdata.ID})"><img src="~/Content/images/delete.png" alt="delete" onclick="return deletereview()">
+                                                <a href="@Url.Action("DeleteReview","Admin",new { id=item.reviewdata.ID})"><img src="~/Content/images/delete.png" alt="delete" onclick="return deletereview()"></a>
                                             </span>
                                             <h4>@item.userdata.FirstName</h4>
 
@@ -302,6 +309,10 @@
                                 </div>
                             </div>
                         </div>
+                    }
+                    @if (ViewBag.Numberofratings == 0)
+                    {
+                    <strong style="color:#6255a5;">No Reviews for this note</strong>
                     }
                 </div>
             </div>

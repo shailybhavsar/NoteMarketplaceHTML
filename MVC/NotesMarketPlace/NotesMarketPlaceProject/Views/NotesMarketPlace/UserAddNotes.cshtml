@@ -1,7 +1,4 @@
 ﻿@model NotesMarketPlaceProject.Models.AddEditNotes
-@{    
-//Layout = "~/Views/Shared/_Layout.cshtml";
-}
 
 <!DOCTYPE html>
 <html>
@@ -27,7 +24,7 @@
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="@Url.Action("HomePage","NotesMarketPlace")">
                 <img src="~/Content/images/Add-notes/logo.png" alt="logo" class="logo">
             </a>
 
@@ -291,7 +288,7 @@
                     <h2>Selling Information</h2>
                 </div>
 
-                <div class="col-md-6 col-sm-6 col-12">
+                <div class="col-md-6 col-sm-12 col-12">
                     <div class="form-row">
                         <div class="col-md-12 col-sm-12 col-12">
                             @Html.Label("exampleInput", "Sell For*")
@@ -336,7 +333,7 @@
                                         <label for="input">Note Preview</label>
                                     </div>
                                 </div>
-                                <div class="col-md-12 text-center add-border">
+                                <div class="col-md-12 col-sm-12 col-12 text-center add-border">
                                     <label for="upload_image1">
                                         <img src="~/Content/images/Add-notes/upload-file.png" />
                                         @if (Model.NotesPreview == null)
@@ -348,9 +345,7 @@
                                             <p id="upload_image-filename1">@Model.NotesPreview</p>
                                         }
                                         <input type="file" class="upload" id="upload_image1" name="upload_image1" style="" accept=".pdf" onchange="pressed()">
-                                        @*@Html.TextBoxFor(x => x.upload_image1, new { @type = "file", @name = "upload_image1", @id = "upload_image1", @accept = ".pdf" })
-                                        @Html.ValidationMessageFor(x=>x.upload_image1, "",new { @style="color:red;"})*@
-                                        @*@Html.ValidationMessage("Preview", new { @class = "text-danger" })*@
+                                     
                                     </label>
                                 </div>
                             </div>
@@ -363,12 +358,16 @@
                     <div class="form-row">
                         <div class="col-md-12 col-sm-12 col-12">
                             <div class="Button-class">
-                                <button type="submit" class="btn btn-primary">SAVE</button>
+                                <button type="submit" class="btn btn-primary" id="save_btn">SAVE</button>
                                 @if ((string)TempData["displaypublish"] == "Displaymsg")
                                 {
-                                    <button type="button" class="btn btn-primary" id="display_button" onclick="window.location.href='@Url.Action("Publishnote", "NotesMarketPlace")'">PUBLISH</button>
+                                    <button type="button" class="btn btn-primary" id="display_button">PUBLISH</button>
                                 }
-                                
+                                else
+                                {
+                                    <button type="button" class="btn btn-primary" id="display_button" disabled style="background-color:#6255a5; border-color:#6255a5;">PUBLISH</button>
+                                }
+
                             </div>
                         </div>
                     </div>
@@ -465,7 +464,7 @@
         }
         $('#display_button').click(function () {
             if (confirm("Publishing this note will send note to administrator for review, once administrator review and approve then this note will be published toportal. Press yes to continue.")) {
-               window.location.href='@Url.Action("Publishnote", "NotesMarketPlace")';
+               window.location.href='@Url.Action("Publishnotefromedit", "NotesMarketPlace",new { id=Model.ID})';
             }
             else {
                 window.location.href='@Url.Action("UserAddNotes", "NotesMarketPlace")';

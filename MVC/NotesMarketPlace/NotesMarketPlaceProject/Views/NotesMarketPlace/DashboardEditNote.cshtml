@@ -1,4 +1,4 @@
-﻿    @model NotesMarketPlaceProject.Models.AddEditNotes
+﻿@model NotesMarketPlaceProject.Models.AddEditNotes
 
 <!DOCTYPE html>
 <html>
@@ -17,7 +17,7 @@
     <!--Navbar-->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="navbar">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="@Url.Action("HomePage","NotesMarketPlace")">
                 <img src="~/Content/images/Add-notes/logo.png" alt="logo" class="logo">
             </a>
 
@@ -112,7 +112,7 @@
                                         {
                                             <p id="upload_image-filename">@Html.DisplayFor(m => m.DisplayPicture)</p>
                                         }
-                                        <input type="file" id="upload_image" name="upload_image" style="display: none;" accept="image/*">
+                                        <input type="file" class="upload" id="upload_image" name="upload_image" style="display: none;" accept="image/*">
                                     </label>
                                 </div>
                             </div>
@@ -161,8 +161,8 @@
                                         {
                                               <p id="upload_notes-filename">@Html.DisplayFor(m => m.FileName)</p>
                                         }
-                                        <input type="file" id="upload_notes" name="upload_notes" style="display: none;" data-val="true" data-val-required="File is required" accept=".pdf">
-                                        @*@Html.ValidationMessageFor(m => m.FileName, "", new { @style = "color:red;" })*@
+                                    <input type="file" class="upload" id="upload_notes" name="upload_notes" style="display: none;" data-val="true" data-val-required="File is required" accept=".pdf">
+                                        
                                     </label>
                                 </div>
                             </div>
@@ -322,23 +322,21 @@
                                         {
                                             <p id="upload_image-filename1">@Html.DisplayFor(x => x.NotesPreview)</p>
                                         }
-                                        <input type="file" id="upload_image1" name="upload_image1" style="display: none;" accept=".pdf">
-                                        @*@Html.TextBoxFor(x => x.NotesPreview, new { @type = "file", @name = "upload_image1", @id = "upload_image1", @style = "display: none;", @accept = ".pdf" })*@
-                                        @*@Html.ValidationMessageFor(x=>x.Preview,"",new { @style="color:red;"})*@
+                                        <input type="file" class="upload" id="upload_image1" name="upload_image1" style="" accept=".pdf" onchange="pressed()">
                                     </label>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+               
                 <!--Button-->
                 <div class="col-md-12 col-sm-12 col-12">
                     <div class="form-row">
                         <div class="col-md-12 col-sm-12 col-12">
                             <div class="Button-class">
                                 <button type="submit" class="btn btn-primary">UPDATE</button>
-                                <button type="button" class="btn btn-primary" id="display_button" onclick="window.location.href='@Url.Action("NoteDetails","NotesMarketPlace")'">PUBLISH</button>
+                                <button type="button" class="btn btn-primary" id="display_button">PUBLISH</button>
                             </div>
                         </div>
                     </div>
@@ -361,6 +359,36 @@
 
 
     <script>
+        $(document).ready(function () {
+            $('input[type=radio][name="IsPaid"]').on('change', function () {
+                var a = $(this).val();
+                if (a == "True") {
+                    //alert(a);
+                    $('#upload_image1').prop("required", true);
+                    document.getElementById("selling_price").style.display = "block";
+                }
+                else {
+                    //alert(a)
+                    $('#upload_image1').prop("required", false);
+                    document.getElementById("selling_price").style.display = "none";
+                }
+            });
+        });
+
+        window.pressed = function () {
+            var a = document.getElementById('aa');
+            if (a.value == "") {
+                fileLabel.innerHTML = "Choose file";
+            }
+        };
+        $('#display_button').click(function () {
+            if (confirm("Publishing this note will send note to administrator for review, once administrator review and approve then this note will be published toportal. Press yes to continue.")) {
+               window.location.href='@Url.Action("Publishnotefromedit", "NotesMarketPlace",new { id=Model.ID})';
+            }
+            else {
+                window.location.href='@Url.Action("DashboardEditNote", "NotesMarketPlace")';
+            }
+        });
         //For Profile Picture
         var input_var = document.getElementById('upload_notes');
         var infoArea = document.getElementById('upload_notes-filename');
@@ -412,14 +440,6 @@
 
             infoAreaimg1.textContent = 'Picture name: ' + fileName;
         }
-        $('#display_button').click(function () {
-            if (confirm("Publishing this note will send note to administrator for review, once administrator review and approve then this note will be published toportal. Press yes to continue.")) {
-               window.location.href='@Url.Action("Publishnote", "NotesMarketPlace")';
-            }
-            else {
-                window.location.href='@Url.Action("UserAddNotes", "NotesMarketPlace")';
-            }
-        });
 
         function logoutcall() {
             if (confirm("Are you sure ,you want to Logout??")) {

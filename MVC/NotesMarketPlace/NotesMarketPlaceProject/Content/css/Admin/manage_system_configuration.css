@@ -42,6 +42,10 @@ body{
   color: #6255a5;
   text-decoration: underline;
 }
+.dropdown-menu a:hover {
+    background-color: #6255a5;
+    color: #fff;
+}
 
 /*Button*/
 #btn .btn-block{

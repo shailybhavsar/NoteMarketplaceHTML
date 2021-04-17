@@ -365,8 +365,8 @@ table.dataTable.no-footer {
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
 		background: none;
-		background-color: white;
-		color: #333 !important;
+		background-color: #6255a5;
+		color: white;
 		border-radius: 50%;
 		border: 1px solid white;
 		font-family: "open sans",sans-serif;
